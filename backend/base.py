@@ -41,8 +41,8 @@ def user_data():
         # Assuming you want to send back both the name and the _id fields
         entry = {
             
-            #"_id": str(doc)  # Convert ObjectID to string
-             "_id": str(doc["_id"]) 
+            "_id": str(doc)  # Convert ObjectID to string
+             #"_id": str(doc["_id"]) # this just gets the id whereas the top one is the entire userdata array made into a string
             }
         data.append(entry)
 
