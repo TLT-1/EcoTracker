@@ -8,9 +8,9 @@ export default function App() {
 
 
     // this code fetches the backend user data and displays it on the front end 
-    const [data, setData] = useState([{}])
+    const [data, setData] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/profile").then(
+        fetch("http://localhost:5000/usersdata").then(
             res => res.json()
         ).then(
             data => {
@@ -58,26 +58,26 @@ export default function App() {
 
                 
                 <div>
-                    {(typeof data.members === 'undefined') ? (
-                        <p>Loading....</p>
-                    ) : (
-                            data.members.map((member, i) => (
-                                <p key={i}>{member}</p>
-                        ))
-                    )}
+                    <h1>Data from MongoDB</h1>
+                    <ul>
+                        {data.map((item, index) => (
+                            <li key={index}>ID: {item._id}</li>
+                        ))}
+                    </ul>
+                </div>    
                 
-
-                </div>
+              
                 
 
 
         <Animated.Image
           source={require('./assets/ecoTrackLogosu.png')}
           style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
-        />
+                />
       </View>
       <StatusBar style="auto" />
     </View>
+
   );
 }
   

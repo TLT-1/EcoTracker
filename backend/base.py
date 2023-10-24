@@ -41,12 +41,12 @@ def user_data():
         # Assuming you want to send back both the name and the _id fields
         entry = {
             
-            "_id": str(doc)  # Convert ObjectID to string
-            # "_id": str(doc["_id"]) 
+            #"_id": str(doc)  # Convert ObjectID to string
+             "_id": str(doc["_id"]) 
             }
         data.append(entry)
 
-    return jsonify({"data": data})
+    return jsonify(data)
 
 
 @app.errorhandler(404)
