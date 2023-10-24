@@ -5,6 +5,29 @@ import { StyleSheet, Text, View, Image, Animated, Easing  } from 'react-native';
 export default function App() {
     const [scaleValue] = useState(new Animated.Value(1));
 
+
+
+    // this code fetches the backend user data and displays it on the front end 
+    const [data, setData] = useState([{}])
+    useEffect(() => {
+        fetch("http://localhost:5000/profile").then(
+            res => res.json()
+        ).then(
+            data => {
+                setData(data)
+                console.log(data)
+            }
+        )
+
+
+    }, []);
+
+
+
+
+
+
+
   useEffect(() => {
     const pulseAnimation = Animated.sequence([
       Animated.timing(scaleValue, {
@@ -24,13 +47,30 @@ export default function App() {
     Animated.loop(pulseAnimation).start();
   }, [scaleValue]);
   
-  return (
+    return (
+    
     <View style={styles.container}>
       <View style={styles.titleScreen}>
         <Image
           source={require('./assets/ecoTrackTitleScreen.png')}
           style={styles.titleScreenImage}
-        />
+                />
+
+                
+                <div>
+                    {(typeof data.members === 'undefined') ? (
+                        <p>Loading....</p>
+                    ) : (
+                            data.members.map((member, i) => (
+                                <p key={i}>{member}</p>
+                        ))
+                    )}
+                
+
+                </div>
+                
+
+
         <Animated.Image
           source={require('./assets/ecoTrackLogosu.png')}
           style={[styles.logo, { transform: [{ scale: scaleValue }] }]}

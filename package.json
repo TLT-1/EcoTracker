@@ -2,6 +2,8 @@
   "name": "ecotracker",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "expo start",
     "start-backend": "cd backend && env\\Scripts\\flask run --no-debugger",
@@ -14,6 +16,7 @@
     "axios": "^1.5.1",
     "expo": "~49.0.15",
     "expo-status-bar": "~1.6.0",
+    "mongodb": "^6.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.6",
@@ -22,7 +25,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
-  },
-  "private": true,
-  "proxy": "http://localhost:5000"
+  }
+
 }
