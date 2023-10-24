@@ -1,114 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Animated, Easing  } from 'react-native';
+import TitleScreen from './src/Components/pages/TitleScreen';
 
 export default function App() {
-    const [scaleValue] = useState(new Animated.Value(1));
-
-
-
-    // this code fetches the backend user data and displays it on the front end 
-    const [data, setData] = useState([])
-    useEffect(() => {
-        fetch("http://localhost:5000/usersdata").then(
-            res => res.json()
-        ).then(
-            data => {
-                setData(data)
-                console.log(data)
-            }
-        )
-
-
-    }, []);
-
-
-
-
-
-
-
-  useEffect(() => {
-    const pulseAnimation = Animated.sequence([
-      Animated.timing(scaleValue, {
-        toValue: 1.1,
-        duration: 1500,
-        easing: Easing.ease,
-        useNativeDriver: true,
-      }),
-      Animated.timing(scaleValue, {
-        toValue: 1,
-        duration: 1500,
-        easing: Easing.ease,
-        useNativeDriver: true,
-      }),
-    ]);
-
-    Animated.loop(pulseAnimation).start();
-  }, [scaleValue]);
-  
-    return (
-    
-    <View style={styles.container}>
-      <View style={styles.titleScreen}>
-        <Image
-          source={require('./assets/ecoTrackTitleScreen.png')}
-          style={styles.titleScreenImage}
-                />
-
-                
-                <div>
-                    <h1>Data from MongoDB</h1>
-                    <ul>
-                        {data.map((item, index) => (
-                            <li key={index}>ID: {item._id}</li>
-                        ))}
-                    </ul>
-                </div>    
-                
-              
-                
-
-
-        <Animated.Image
-          source={require('./assets/ecoTrackLogosu.png')}
-          style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
-                />
-      </View>
-      <StatusBar style="auto" />
-    </View>
-
-  );
+       return (
+        <TitleScreen />
+    );
 }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      backgroundColor: 'transparent',
-    },
-    titleScreen: {
-      position: 'absolute',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      width: '100%',
-      height: '100%',
-    },
-    titleScreenImage: {
-      flex: 1,
-      width: '100%',
-      height: '100%',
-    },
-    logo: {
-        position: 'absolute',
-        width: 500,
-        height: 500,
-        resizeMode: 'contain',
-    },
-  });
+//     // this code fetches the backend user data and displays it on the front end 
+//     const [data, setData] = useState([])
+//     useEffect(() => {
+//         fetch("http://localhost:5000/usersdata").then(
+//             res => res.json()
+//         ).then(
+//             data => {
+//                 setData(data)
+//                 console.log(data)
+//             }
+//         )
+//     }, []);
 
+//     return (
+//         <View>
+//             <TitleScreen />
+//             <div>
+//                 <h1>Data from MongoDB</h1>
+//                 <ul>
+//                     {data.map((item, index) => (
+//                         <li key={index}>ID: {item._id}</li>
+//                     ))}
+//                 </ul>
+//             </div>    
+//             <StatusBar style="auto" />
+//         </View>
+//     );
+// }
+
+ 
 /*
 import { useState } from 'react'
 import axios from "axios";
