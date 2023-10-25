@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+/*import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Animated, Easing  } from 'react-native';
 import TitleScreen from './src/Components/pages/TitleScreen';
@@ -8,6 +8,36 @@ export default function App() {
         <TitleScreen />
     );
 }
+*/
+
+
+
+import React from 'react';
+import { StatusBar, View } from 'react-native';
+import TitleScreen from './src/Components/pages/TitleScreen';
+
+const App = () => {
+    return (
+        <View style={{ flex: 1 }}>
+            <TitleScreen />
+            <StatusBar style="auto" />
+        </View>
+    );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
 //     // this code fetches the backend user data and displays it on the front end 
 //     const [data, setData] = useState([])
 //     useEffect(() => {
