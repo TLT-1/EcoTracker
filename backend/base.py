@@ -55,3 +55,30 @@ def not_found(e):
 
 
 
+#//    // this code fetches the backend user data and displays it on the front end 
+#//     const [data, setData] = useState([])
+#//     useEffect(() => {
+#//         fetch("http://localhost:5000/usersdata").then(
+#//             res => res.json()
+#//         ).then(
+#//             data => {
+#//                 setData(data)
+#//                 console.log(data)
+#//             }
+#//         )
+#//     }, []);#
+
+#//     return (
+#//         <View>
+#//             <TitleScreen />
+#//             <div>
+#//                 <h1>Data from MongoDB</h1>
+#//                 <ul>
+#//                     {data.map((item, index) => (
+#//                         <li key={index}>ID: {item._id}</li>
+#//                     ))}
+#//                 </ul>
+#//             </div>    
+#//             <StatusBar style="auto" />
+#//         </View>
+#//     );
