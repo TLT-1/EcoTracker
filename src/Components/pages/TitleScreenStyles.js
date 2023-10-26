@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
-    width: '30%', // Adjusted the percentage to make the size responsive (bc chad/rebecca said resposive is cool)
-    aspectRatio: 1, // Maintain the aspect ratio for responsive scaling (bc chad/rebecca said resposive is cool)
+    width: '30%', // Adjusted the percentage to make the size responsive (bc chad/rebecca said responsive is cool)
+    aspectRatio: 1, // Maintain the aspect ratio for responsive scaling (bc chad/rebecca said responsive is cool)
     resizeMode: 'contain',
   },
 });
