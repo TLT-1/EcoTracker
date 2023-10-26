@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Animated, Easing } from 'react-native';
-import styles from './TitleScreenStyles';
-
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, Image, Animated, Easing } from "react-native";
+import styles from "./TitleScreenStyles";
 
 const TitleScreen = () => {
-
     const [scaleValue] = useState(new Animated.Value(1));
 
     useEffect(() => {
@@ -30,16 +28,16 @@ const TitleScreen = () => {
         <View style={styles.container}>
             <View style={styles.titleScreen}>
                 <Image
-                    source={require('../../../assets/ecoTrackTitleScreen.png')}
+                    source={require("../../../assets/ecoTrackTitleScreen.png")}
                     style={styles.titleScreenImage}
                 />
                 <Animated.Image
-                    source={require('../../../assets/ecoTrackLogosu.png')}
+                    source={require("../../../assets/ecoTrackLogosu.png")}
                     style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
                 />
             </View>
         </View>
     );
-}
+};
 
 export default TitleScreen;
