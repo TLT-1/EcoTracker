@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Animated, Easing } from "react-native";
-import styles from "./TitleScreenStyles";
+import styles from "../Styles/TitleScreenStyles";
 
 const TitleScreen = () => {
     const [scaleValue] = useState(new Animated.Value(1));
