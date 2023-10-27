@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar, View } from "react-native";
 import TitleScreen from "./src/Components/pages/TitleScreen";
+import TitleScreen from "./src/Components/pages/LogIn";
 
 const App = () => {
     return (
