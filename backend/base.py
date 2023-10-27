@@ -5,7 +5,8 @@ from pymongo.server_api import ServerApi
 #import pymongo
 from flask import jsonify
 from flask_cors import CORS
-
+from User import User
+import mongo_to_class
 
 
 
@@ -13,29 +14,27 @@ app = Flask(__name__)
 CORS(app)
 
 
+
+
 @app.route('/profile')
 def my_profile():
-    #response_body = {
-     #   "name": "Nagato",
-     #   "about" :"Hello! I'm a full stack developer that loves python and javascriptdoes this work"
-    #}
+    response_body = {
+        "id": f"{mongo_to_class.user_info().id}",
+        
+    }
 
-    #return response_body
-    return jsonify({"members": ["mem1","mem2"]})
+    return response_body
+    #cursor = mongo_to_class.init_all()
+    #return jsonify(mongo_to_class.user_info().id)
 
 
 
-@app.route('/usersdata')
+User_id = mongo_to_class.user_info().id
+
+@app.route(f'/{User_id}/info/usersdata')
 def user_data():
-   
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
-
-    #Create a new client and connect to the server
-    client = MongoClient(uri, server_api=ServerApi('1'))
-
-    db = client["EcoTracker"]
-    col = db["user_data"]
-    cursor = col.find()
+    cursor = mongo_to_class.data_init()
+    user = mongo_to_class.user_info()
 
     data = []
     for doc in cursor:
@@ -47,7 +46,8 @@ def user_data():
             }
         data.append(entry)
 
-    return jsonify(data)
+    #return jsonify(data)
+    return jsonify(user.first_name, user.last_name, user.gender, user.age, user.weight_lb)
 
 
 @app.errorhandler(404)
@@ -83,3 +83,22 @@ def not_found(e):
 #//             <StatusBar style="auto" />
 #//         </View>
 #//     );
+
+
+
+
+
+
+
+#// need to add the user id thing
+ #   const [data, setData] = useState([])
+  #  useEffect(() => {
+   #     fetch("http://localhost:5000/"+data+"usersdata").then(
+    #        res => res.json()
+     #   ).then(
+      #      data => {
+       #         setData(data)
+        #        console.log(data)
+         #   }
+    #    )
+   # }, []);

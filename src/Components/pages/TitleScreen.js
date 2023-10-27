@@ -5,6 +5,9 @@ import styles from "../Styles/TitleScreenStyles";
 const TitleScreen = () => {
     const [scaleValue] = useState(new Animated.Value(1));
 
+
+    
+
     useEffect(() => {
         const pulseAnimation = Animated.sequence([
             Animated.timing(scaleValue, {
@@ -23,6 +26,10 @@ const TitleScreen = () => {
 
         Animated.loop(pulseAnimation).start();
     }, [scaleValue]);
+
+    
+
+    
 
     return (
         <View style={styles.container}>
