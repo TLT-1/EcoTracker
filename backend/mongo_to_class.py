@@ -64,7 +64,8 @@ def user_driving():
     user_one = Driving(user_one_year, user_one_make,user_one_model, user_one_avg_speed_mph )
    
 
-    print(user_one.car())
+    #print(user_one.car())
+    return user_one
 
 #user_driving()
 
@@ -76,7 +77,8 @@ def user_exercise():
     user_one = Exercise(user_one_activity, user_one_freq_per_week,user_one_duration_per_day_min )
    
 
-    print(user_one.exercise())
+    #print(user_one.exercise())
+    return user_one
     
 #user_exercise()
 
@@ -88,7 +90,8 @@ def user_dietary_choice():
     user_one = DietartyChoice(user_one_diet_level, user_one_food )
    
 
-    print(user_one.food_level())
+    #print(user_one.food_level())
+    return user_one
     
 #user_dietary_choice()
 
@@ -102,7 +105,8 @@ def user_hobby():
     user_one = Hobby(user_one_activity, user_one_freq_per_week,user_one_duration_per_day_min )
    
 
-    print(user_one.activity_weekly())
+    #print(user_one.activity_weekly())
+    return user_one
     
 #user_hobby()
 
@@ -114,6 +118,7 @@ def user_energy_usage():
     user_one = EnergyUsage(user_one_appliance, user_one_watts,user_one_hours_day )
    
 
-    print(user_one.watts_days())
+    #print(user_one.watts_days())
+    return user_one
     
 #user_energy_usage()
