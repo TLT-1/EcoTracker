@@ -79,8 +79,9 @@ function App() {
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Overview' }} />
                 <Stack.Screen name="Details" component={DetailsScreen} />
-                <Stack.Screen name="Title" component={TitleScreen} />
-                <Stack.Screen name="LogIn" component={LogIn} />
+                <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
+
             </Stack.Navigator>
         </NavigationContainer>
     );
