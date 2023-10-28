@@ -2,6 +2,6 @@ import React from 'react';
 import '../../App.css';
 
 
-export default function UserAccount() {
-    return <h1 className='UserAccount'>UserAccount</h1>;
+export default function LogIn() {
+    return <h1 className='LogIn'>Log In</h1>;
 }
