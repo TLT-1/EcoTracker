@@ -66,7 +66,7 @@ const TitleScreen = () => {
                 />
 
 
-               
+                {/* 
                 <div>
                     <h1>Data from MongoDB</h1>
                     <ul>
@@ -74,7 +74,7 @@ const TitleScreen = () => {
                         <li>ID: {data_to}</li>
                     </ul>
                 </div>
-
+                */ }
                 
 
 

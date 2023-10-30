@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Animated, Easing, Button, TextInput, TouchableOpacity } from "react-native";
 import styles from "../Styles/LogInStyles";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 
@@ -66,7 +68,7 @@ function LogIn() {
                     autoCapitalize="none"
                 />
                 <br></br>
-                <TouchableOpacity style={styles.button} onPress={() => { /* Handle login logic here */ }}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Title')}>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
