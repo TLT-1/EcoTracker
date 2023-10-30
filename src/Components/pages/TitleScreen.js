@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Animated, Easing } from "react-native";
 import styles from "../Styles/TitleScreenStyles";
+import Footer from '../Footer';
 
 const TitleScreen = () => {
     const [scaleValue] = useState(new Animated.Value(1));
@@ -28,7 +29,7 @@ const TitleScreen = () => {
 
     /* this code will first go to the users profile on the back end and grab the id number, that will then be used for 
     the "initialData.id" so that it can grab all the other data with the right extention, to change data just change ie dietarychoice to driving for the driving data */
-     const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
     const [data_to, setData_to] = useState([]);
 
     useEffect(() => {
@@ -75,7 +76,7 @@ const TitleScreen = () => {
                     </ul>
                 </div>
                 */ }
-                
+
 
 
 
@@ -84,6 +85,7 @@ const TitleScreen = () => {
                     source={require("../../../assets/ecoTrackLogosu.png")}
                     style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
                 />
+                <Footer />
             </View>
         </View>
     );
