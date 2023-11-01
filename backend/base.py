@@ -102,17 +102,10 @@ def user_energyusage():
 
 @app.route('/login', methods=['POST'])
 def login():
-    print(request.json)
     data = request.json
     username = data.get('username')
     password = data.get('password')
-    print(username)
-    print(password)
-    
-    #response = {
-    #        "id": username,
-    #    "email": password
-    #    }
+   
 
     
     #return jsonify(response)
