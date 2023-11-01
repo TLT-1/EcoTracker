@@ -102,20 +102,36 @@ def user_energyusage():
 
 @app.route('/login', methods=['POST'])
 def login():
-
+    print(request.json)
     data = request.json
     username = data.get('username')
     password = data.get('password')
+    print(username)
+    print(password)
     
-    
-    response = {
-            "id": username,
-        "email": password
-        }
+    #response = {
+    #        "id": username,
+    #    "email": password
+    #    }
 
     
-    return jsonify(response)
-    
+    #return jsonify(response)
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        username = data.get('username')
+        password = data.get('password')
+        
+        # Your existing code to process the username and password goes here
+        
+        response = {
+            "id": username,
+            "email": password
+        }
+        return jsonify(response)
+    else:
+        return jsonify({"error": "Invalid input, JSON required"}), 400  # Bad Request
+
+   
     
 
 

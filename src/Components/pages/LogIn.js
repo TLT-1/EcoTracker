@@ -32,6 +32,7 @@ function LogIn() {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    //console.log(username, password)
 
     const handleLogin = async () => {
         try {
@@ -41,18 +42,18 @@ function LogIn() {
                 url: 'http://localhost:5000/login',
                 headers: { 'Content-Type': 'application/json' },
                 data: {
-                    username: "test2",
-                    password: "test2@gmail.com",
+                    username: username,
+                    password: password,
                 }
-
             });
 
-            console.log(response.data); // Log the response from the server
+            //console.log(response.data);  // Print out the response data
         } catch (error) {
-            console.error('Error:', error);
+            console.error(error);
         }
     };
-    
+
+    handleLogin();
     
 
 
@@ -92,7 +93,7 @@ function LogIn() {
                     autoCapitalize="none"
                 />
                 <br></br>
-                <TouchableOpacity style={styles.button} onPress={() => { } }>
+                <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('Title') } }>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
