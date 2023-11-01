@@ -57,6 +57,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 18,
     },
+    linkText: {
+        color: 'blue',
+        textDecorationLine: 'underline', // Optional: Adds an underline for the clickable text
+    },
 });
 
 export default styles;

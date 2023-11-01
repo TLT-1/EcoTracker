@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, Animated, Easing, Button, TextInput, TouchableOpacity } from "react-native";
-import styles from "../Styles/LogInStyles";
+import { StyleSheet, Text, View, Image, Animated, Easing, Button, TextInput,  Alert } from "react-native";
+//import styles from "../Styles/LogInStyles";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import axios from 'axios';
 
 
 
-
-
+{/* 
 function LogIn() {
     const [scaleValue] = useState(new Animated.Value(1));
 
@@ -29,9 +29,33 @@ function LogIn() {
 
         Animated.loop(pulseAnimation).start();
     }, [scaleValue]);
-
+    
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            // Make POST request using axios with data
+            const response = await axios({
+                method: 'POST',
+                url: 'http://localhost:5000/login',
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    username: "test2",
+                    password: "test2@gmail.com",
+                }
+
+            });
+
+            console.log(response.data); // Log the response from the server
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+    
+    
+
+
     return (
         
         
@@ -68,13 +92,16 @@ function LogIn() {
                     autoCapitalize="none"
                 />
                 <br></br>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Title')}>
+                <TouchableOpacity style={styles.button} onPress={() => { } }>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
 
 
-            <Text style={{color:'blue'} }>Dont Have an Account? Sign Up</Text>
+            <Text style={styles.text}>Don't Have an Account? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                <Text style={styles.linkText}>Sign Up</Text>
+            </TouchableOpacity>
 
 
         </View >
@@ -84,4 +111,65 @@ function LogIn() {
         
     );
 }
+export default LogIn;
+*/ }
+
+
+
+
+const LogIn = () => {
+    const [userInput, setUserInput] = useState('');
+
+    const handleSubmit = () => {
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_input: userInput,
+            }),
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                Alert.alert('Success', 'Input submitted successfully');
+                console.log(json);
+            })
+            .catch((error) => {
+                console.error(error);
+                Alert.alert('Error', 'Failed to submit input');
+            });
+    };
+
+    return (
+        <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                onChangeText={setUserInput}
+                value={userInput}
+                placeholder="Enter input"
+            />
+            <Button
+                onPress={handleSubmit}
+                title="Submit"
+            />
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        padding: 16,
+    },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+    },
+});
+
 export default LogIn;

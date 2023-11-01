@@ -28,6 +28,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Linking from 'expo-linking';
 import TitleScreen from "./src/Components/pages/TitleScreen";
 import LogIn from "./src/Components/pages/LogIn";
+import SignUp from "./src/Components/pages/SignUp";
 
 function HomeScreen({navigation }) {
     return (
@@ -81,6 +82,7 @@ function App() {
                 <Stack.Screen name="Details" component={DetailsScreen} />
                 <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
+                <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>

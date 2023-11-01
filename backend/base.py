@@ -1,9 +1,10 @@
-from flask import Flask
+from urllib import response
+from flask import Flask, json
 from pymongo import collection
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 #import pymongo
-from flask import jsonify
+from flask import request, jsonify
 from flask_cors import CORS
 from User import User
 from Driving import Driving
@@ -12,7 +13,13 @@ import mongo_to_class
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+    r"/*": {
+        "origins": "*",  # allow requests from any origin
+        "allow_headers": ["Content-Type"],  # explicitly allow Content-Type header
+        "methods": ["OPTIONS", "POST"]  # explicitly allow OPTIONS and POST methods
+    }
+})
 
 
 
@@ -93,13 +100,94 @@ def user_energyusage():
 
 
 
+#@app.route('/login', methods=['POST'])
+#def login():
+   # print(request.data)  # Output raw request data to the console
+    #data = request.get_json()
+    #print("hallo")
+    #print(data) 
+#    data = request.json
+#    username = data.get('username')
+#    password = data.get('password')
+    
+    # You can now use the username and password
+    # Add your processing code here
+
+
+#    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+#    client = MongoClient(uri, server_api=ServerApi('1'))
+#    db = client["EcoTracker"]
+#    user_data_collection = db['user_data']
+#    result = user_data_collection.insert_one(data)
+
+    
+#    if result.inserted_id:
+#        return jsonify({"message": "User data inserted successfully", "id": str(result.inserted_id)})
+#    else:
+#        return jsonify({"message": "An error occurred while inserting user data"})
+
+    #data = request.json
+    #username = data.get('username')
+    #password = data.get('password')
+    #response = {
+      #      "id": str(username),
+      #  "email": str(password)
+      #  }
+
+    
+    # You can now use the username and password
+    # Add your processing code here
+    
+    #return jsonify(response)
+    #data = request.get_json()
+    
+    #username = data.get('username')
+    #password = data.get('password')
+    
+    # You can now use the username and password
+    # Add your processing code here
+    
+    # For demonstration, just sending a response back
+    #response_data = {
+     #   "id": f"{password}",
+     #   "email": f"{username}@gmail.com"
+    #}
+    
+    #return jsonify(response_data), 200
+    #data = request.get_json()
+    
+    #username = data.get('username')
+    #password = data.get('password')
+    
+    # ... (your existing code)
+    
+   # username = request.json['username']
+    #password = request.json['password']
+    #response_data = {
+    #    "id": f"{password}",
+    #    "email": f"{username}@gmail.com"
+    #}
+    #return jsonify(response_data), 200
+   # request_data = json.loads(request.data)
+    #searchData = request_data['data']
+    #return jsonify(searchData)
+    
+
+
+
+@app.route('/login', methods=['POST'])
+def handle_form_submission():
+    user_input = request.form['user_input']
+    # Process the user input here
+    return 'Form submitted!'
 
 @app.errorhandler(404)
 def not_found(e):
     return jsonify({"error": "Not Found"}), 404
 
 
-
+if __name__ == "__main__":
+    app.run(debug=True)
 #//    // this code fetches the backend user data and displays it on the front end 
 #const [data, setData] = useState([]);
 # const [data_to, setData_to] = useState([]);
