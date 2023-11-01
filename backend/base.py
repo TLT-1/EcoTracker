@@ -100,86 +100,27 @@ def user_energyusage():
 
 
 
-#@app.route('/login', methods=['POST'])
-#def login():
-   # print(request.data)  # Output raw request data to the console
-    #data = request.get_json()
-    #print("hallo")
-    #print(data) 
-#    data = request.json
-#    username = data.get('username')
-#    password = data.get('password')
-    
-    # You can now use the username and password
-    # Add your processing code here
-
-
-#    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
-#    client = MongoClient(uri, server_api=ServerApi('1'))
-#    db = client["EcoTracker"]
-#    user_data_collection = db['user_data']
-#    result = user_data_collection.insert_one(data)
-
-    
-#    if result.inserted_id:
-#        return jsonify({"message": "User data inserted successfully", "id": str(result.inserted_id)})
-#    else:
-#        return jsonify({"message": "An error occurred while inserting user data"})
-
-    #data = request.json
-    #username = data.get('username')
-    #password = data.get('password')
-    #response = {
-      #      "id": str(username),
-      #  "email": str(password)
-      #  }
-
-    
-    # You can now use the username and password
-    # Add your processing code here
-    
-    #return jsonify(response)
-    #data = request.get_json()
-    
-    #username = data.get('username')
-    #password = data.get('password')
-    
-    # You can now use the username and password
-    # Add your processing code here
-    
-    # For demonstration, just sending a response back
-    #response_data = {
-     #   "id": f"{password}",
-     #   "email": f"{username}@gmail.com"
-    #}
-    
-    #return jsonify(response_data), 200
-    #data = request.get_json()
-    
-    #username = data.get('username')
-    #password = data.get('password')
-    
-    # ... (your existing code)
-    
-   # username = request.json['username']
-    #password = request.json['password']
-    #response_data = {
-    #    "id": f"{password}",
-    #    "email": f"{username}@gmail.com"
-    #}
-    #return jsonify(response_data), 200
-   # request_data = json.loads(request.data)
-    #searchData = request_data['data']
-    #return jsonify(searchData)
-    
-
-
-
 @app.route('/login', methods=['POST'])
-def handle_form_submission():
-    user_input = request.form['user_input']
-    # Process the user input here
-    return 'Form submitted!'
+def login():
+
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+    
+    
+    response = {
+            "id": username,
+        "email": password
+        }
+
+    
+    return jsonify(response)
+    
+    
+
+
+
+
 
 @app.errorhandler(404)
 def not_found(e):
