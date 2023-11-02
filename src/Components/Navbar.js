@@ -54,13 +54,13 @@ const Navbar = () => {
                         { left: 0, right: 'auto', flexDirection: 'column' },
                     ]}
                 >
-                    <TouchableOpacity onPress={() => navigateToPage('Home')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigateToPage('Track')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Track')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>Track</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigateToPage('News')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('News')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>News</Text>
                     </TouchableOpacity>
                 </View>
