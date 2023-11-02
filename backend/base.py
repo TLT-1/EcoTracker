@@ -9,7 +9,7 @@ from flask_cors import CORS
 from User import User
 from Driving import Driving
 import mongo_to_class
-
+import time
 
 
 app = Flask(__name__)
@@ -111,8 +111,15 @@ def login():
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
     col = db["users_ids"]
-    
-    
+    current_time = time.time()
+    user_id = 12345
+    custom_number1 = int(current_time) + user_id
+    formatted_time = time.strftime('%Y%m%d%H%M%S', time.localtime())
+    # Now append or prepend a custom value
+    custom_number = int(formatted_time) * 10 + user_id
+    rand_user_id = (custom_number * custom_number1)//11777111770
+
+
     #return jsonify(response)
     if request.is_json:  # Check if the request has a JSON content type
         data = request.json
@@ -125,7 +132,8 @@ def login():
             "username": username,
             "password": password
         }
-        apple = col.insert_one({"username": username, "password": password})
+        
+        apple = col.insert_one({"id": rand_user_id,"username": username, "password": password})
         return jsonify(response)
     else:
         return jsonify({"error": "Invalid input, JSON required"}), 400  # Bad Request
