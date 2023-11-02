@@ -105,8 +105,13 @@ def login():
     data = request.json
     username = data.get('username')
     password = data.get('password')
-   
-
+    
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["EcoTracker"]
+    col = db["users_ids"]
+    
     
     #return jsonify(response)
     if request.is_json:  # Check if the request has a JSON content type
@@ -117,9 +122,10 @@ def login():
         # Your existing code to process the username and password goes here
         
         response = {
-            "id": username,
-            "email": password
+            "username": username,
+            "password": password
         }
+        apple = col.insert_one({"username": username, "password": password})
         return jsonify(response)
     else:
         return jsonify({"error": "Invalid input, JSON required"}), 400  # Bad Request

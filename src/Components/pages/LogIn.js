@@ -53,7 +53,7 @@ function LogIn() {
         }
     };
 
-    handleLogin();
+    //handleLogin();
     
 
 
@@ -93,7 +93,13 @@ function LogIn() {
                     autoCapitalize="none"
                 />
                 <br></br>
-                <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('Title') } }>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={async () => {
+                        await handleLogin();
+                        navigation.navigate('Title');
+                    }}
+                >
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
             </View>
