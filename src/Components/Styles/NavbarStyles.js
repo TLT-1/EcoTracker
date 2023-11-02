@@ -16,19 +16,19 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     menuIcon: {
-        fontSize: 40,
+        fontSize: 36,
         color: 'white',
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 2,
     },
     menuContainer: {
-        backgroundColor: '#062a52',
+        backgroundColor: '#522E06',
         position: 'absolute',
         top: 80,
         left: 15,
         width: 100,
-        padding: 10,
+        padding: 20,
         zIndex: 1,
     },
     menuItem: {
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
+        marginHorizontal: 50,
     },
 });
 

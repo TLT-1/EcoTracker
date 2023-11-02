@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react'; // Don't forget to import useEffect
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import NavbarStyles from './Styles/NavbarStyles';
 
@@ -13,16 +13,29 @@ const Navbar = () => {
 
     const navigateToPage = (page) => {
         navigation.navigate(page);
-        setMenuOpen(false);
     };
+
+    const [windowWidth, setWindowWidth] = useState(Dimensions.get('window').width);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(Dimensions.get('window').width);
+        };
+
+        Dimensions.addEventListener('change', handleResize);
+
+        return () => {
+            Dimensions.removeEventListener('change', handleResize);
+        };
+    }, []);
 
     return (
         <View style={NavbarStyles.navbar}>
             <TouchableOpacity onPress={toggleMenu}>
                 <Text style={NavbarStyles.menuIcon}>☰</Text>
             </TouchableOpacity>
-            {isMenuOpen && (
-                <View style={NavbarStyles.menuContainer}>
+            {windowWidth >= 1000 && (
+                <View style={{ flexDirection: 'row' }}>
                     <TouchableOpacity onPress={() => navigateToPage('Home')}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
                     </TouchableOpacity>
@@ -30,6 +43,24 @@ const Navbar = () => {
                         <Text style={NavbarStyles.menuItem}>Track</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigateToPage('News')}>
+                        <Text style={NavbarStyles.menuItem}>News</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            {isMenuOpen && (
+                <View
+                    style={[
+                        NavbarStyles.menuContainer,
+                        { left: 0, right: 'auto', flexDirection: 'column' },
+                    ]}
+                >
+                    <TouchableOpacity onPress={() => navigateToPage('Home')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={NavbarStyles.menuItem}>Home</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigateToPage('Track')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={NavbarStyles.menuItem}>Track</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigateToPage('News')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>News</Text>
                     </TouchableOpacity>
                 </View>
