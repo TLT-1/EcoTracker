@@ -36,13 +36,13 @@ const Navbar = () => {
             </TouchableOpacity>
             {windowWidth >= 800 && (
                 <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity onPress={() => navigateToPage('Home')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigateToPage('Track')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Track')}>
                         <Text style={NavbarStyles.menuItem}>Track</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigateToPage('News')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('News')}>
                         <Text style={NavbarStyles.menuItem}>News</Text>
                     </TouchableOpacity>
                 </View>
