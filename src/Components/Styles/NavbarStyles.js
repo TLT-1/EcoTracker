@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0, // Position at the left
         width: '100%', // Take the full width of the screen
-        height: 80, // Adjust height for a thicker navbar
+        height: 80, // Adjust height for a thicker/thinner navbar
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
