@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     footerText: {
         color: "#fff",
         fontSize: 12,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 1,
     },
 });
 

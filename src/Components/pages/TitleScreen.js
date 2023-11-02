@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, Animated, Easing } from "react-native";
 import styles from "../Styles/TitleScreenStyles";
 import Footer from '../Footer';
+import Navbar from '../Navbar';
 
 const TitleScreen = () => {
     const [scaleValue] = useState(new Animated.Value(1));
@@ -60,6 +61,7 @@ const TitleScreen = () => {
 
     return (
         <View style={styles.container}>
+            <Navbar />
             <View style={styles.titleScreen}>
                 <Image
                     source={require("../../../assets/ecoTrackTitleScreen.png")}
