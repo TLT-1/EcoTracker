@@ -34,7 +34,7 @@ const Navbar = () => {
             <TouchableOpacity onPress={toggleMenu}>
                 <Text style={NavbarStyles.menuIcon}>☰</Text>
             </TouchableOpacity>
-            {windowWidth >= 1000 && (
+            {windowWidth >= 800 && (
                 <View style={{ flexDirection: 'row' }}>
                     <TouchableOpacity onPress={() => navigateToPage('Home')}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
