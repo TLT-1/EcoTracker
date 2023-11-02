@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     navbar: {
-        backgroundColor: '#062a52',
+        backgroundColor: '#062A52',
         position: 'absolute',
         top: 0,
         left: 0, // Position at the left
@@ -23,23 +23,24 @@ const styles = StyleSheet.create({
         textShadowRadius: 2,
     },
     menuContainer: {
-        backgroundColor: '#522E06',
+        backgroundColor: '#062A52',
         position: 'absolute',
-        top: 80,
+        top: 60,
         left: 15,
         width: 100,
-        padding: 20,
-        zIndex: 1,
+        padding: 10,
+        borderRadius: 5,
+
     },
     menuItem: {
         color: 'white',
         fontSize: 20,
-        marginBottom: 10,
         textAlign: 'center',
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
         marginHorizontal: 50,
+        marginVertical: 10,
     },
 });
 
