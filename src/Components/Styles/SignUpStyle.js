@@ -61,6 +61,10 @@ const styles = StyleSheet.create({
         color: 'blue',
         textDecorationLine: 'underline', // Optional: Adds an underline for the clickable text
     },
+    
+    errorText: {
+        color: 'red',
+    },
 });
 
 export default styles;

@@ -34,7 +34,7 @@ function LogIn() {
     const [last, setLast] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const [isValid, setIsValid] = useState(false);
     
     //console.log(username, password)
 
@@ -59,8 +59,24 @@ function LogIn() {
         }
     }; 
 
-    handleLogin();
+    //handleLogin();
 
+
+    const handlePasswordChange = (text) => {
+        setPassword(text);
+
+        // Check if the password has at least 7 characters, a capital letter, and a number
+        const hasUpperCase = /[A-Z]/.test(text);
+        const hasNumber = /\d/.test(text);
+
+        setIsValid(text.length >= 7 && hasUpperCase && hasNumber);
+    };
+    const handlePress = async () => {
+        if (isValid) { // Assuming isValid is a state or prop that tracks password validity
+            await handleLogin();
+            navigation.navigate('Title');
+        } 
+    };
 
 
     return (
@@ -107,18 +123,23 @@ function LogIn() {
                 />
                 <br></br>
                 <TextInput
-                    style={styles.input}
+                    style={isValid ? styles.input : styles.input}
                     placeholder="Password"
                     value={password}
-                    onChangeText={text => setPassword(text)}
+                    onChangeText={handlePasswordChange}
                     secureTextEntry={true}
                     autoCapitalize="none"
                 />
+                {!isValid && password.length > 0 && (
+                    <Text style={styles.errorText}>
+                        Password must be at least 7 characters long, contain a capital letter and a number.
+                    </Text>
+                )}
                 <br></br>
                 <TouchableOpacity
                     style={styles.button}
                     onPress={async () => {
-                        navigation.navigate('Title');
+                        handlePress()
                     }}
                 >
                     <Text style={styles.buttonText}>Sign In</Text>
