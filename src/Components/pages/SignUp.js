@@ -53,7 +53,7 @@ function LogIn() {
                 }
             });
 
-            console.log(response.data);  // Print out the response data
+            //console.log(response.data);  // Print out the response data
         } catch (error) {
             console.error(error);
         }
@@ -71,13 +71,23 @@ function LogIn() {
 
         setIsValid(text.length >= 7 && hasUpperCase && hasNumber);
     };
-    const handlePress = async () => {
-        if (isValid) { // Assuming isValid is a state or prop that tracks password validity
+
+    
+
+
+    const handlePress = async() => {
+        // Check if any of the fields are empty
+        if (!first.trim() || !last.trim() || !email.trim()) {
+            alert('Field is empty', 'Please fill out all the fields.');
+        } else {
+            // Fields are filled, handle login and navigation
+            if (isValid) {
             await handleLogin();
             navigation.navigate('Title');
-        } 
+            }
+        }
     };
-
+    
 
     return (
 
@@ -123,7 +133,7 @@ function LogIn() {
                 />
                 <br></br>
                 <TextInput
-                    style={isValid ? styles.input : styles.input}
+                    style={styles.input}
                     placeholder="Password"
                     value={password}
                     onChangeText={handlePasswordChange}
