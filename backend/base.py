@@ -138,7 +138,51 @@ def login():
     else:
         return jsonify({"error": "Invalid input, JSON required"}), 400  # Bad Request
 
-   
+
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    first = data.get('first')
+    password = data.get('password')
+    email = data.get('email')
+    last = data.get('last')
+    
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["EcoTracker"]
+    col = db["users_ids"]
+    current_time = time.time()
+    user_id = 12345
+    custom_number1 = int(current_time) + user_id
+    formatted_time = time.strftime('%Y%m%d%H%M%S', time.localtime())
+    # Now append or prepend a custom value
+    custom_number = int(formatted_time) * 10 + user_id
+    rand_user_id = (custom_number * custom_number1)//251375121790
+
+
+    #return jsonify(response)
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        first = data.get('first')
+        password = data.get('password')
+        email = data.get('email')
+        last = data.get('last')
+        
+        # Your existing code to process the username and password goes here
+        
+        response = {
+            "first_name": first,
+            "last_name": last,
+            "email": email,
+            "password": password,
+        }
+        
+        apple = col.insert_one({"id": rand_user_id,"first_name": first, "last_name": last, "email": email, "password": password})
+        return jsonify(response)
+    else:
+        return jsonify({"error": "Invalid input, JSON required"}), 400  # Bad Request  
     
 
 

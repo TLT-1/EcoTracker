@@ -77,7 +77,7 @@ function LogIn() {
 
     const handlePress = async() => {
         // Check if any of the fields are empty
-        if (!first.trim() || !last.trim() || !email.trim()) {
+        if (!first.trim() || !last.trim() || !email.trim() || !isValid) {
             alert('Field is empty', 'Please fill out all the fields.');
         } else {
             // Fields are filled, handle login and navigation
