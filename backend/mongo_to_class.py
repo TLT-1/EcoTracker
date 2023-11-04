@@ -1,3 +1,4 @@
+from itsdangerous import exc
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import User
@@ -122,3 +123,27 @@ def user_energy_usage():
     return user_one
     
 #user_energy_usage()
+
+def all_users_email():
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+
+    db = client["EcoTracker"]
+    col = db["users_ids"]
+    #user_info()
+    info = col.find()
+    
+    li = []
+    
+    for x, user in enumerate(info):
+        try:
+            #print(user['email'])
+            email = user['email']
+            li.append(email)
+        except:
+            continue
+    
+    
+    return li

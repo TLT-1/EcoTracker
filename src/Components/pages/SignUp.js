@@ -30,11 +30,34 @@ function LogIn() {
         Animated.loop(pulseAnimation).start();
     }, [scaleValue]);
 
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/inuseemail')
+            .then(res => res.json())
+            .then(initialData => {
+                setData(initialData);
+
+                
+            })
+            
+            .catch(error => {
+                console.error("There was an error fetching the data:", error);
+            });
+    }, []);
+
+
+
+
+
+
     const [first, setFirst] = useState('');
     const [last, setLast] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(false);
+    const [isValidEmail, setIsValidEmail] = useState(false);
     
     //console.log(username, password)
 
@@ -72,22 +95,40 @@ function LogIn() {
         setIsValid(text.length >= 7 && hasUpperCase && hasNumber);
     };
 
-    
+        
+    const handleEmail = (text) => {
+        return new Promise((resolve) => {
+            setEmail(text);
+
+            if (data && Array.isArray(data.emails) && data.emails.includes(text)) {
+                alert('Email in use, Please use a different one');
+                setIsValidEmail(false); 
+                resolve(false);
+            } else {
+                setIsValidEmail(true);
+                resolve(true);
+            }
+        });
+    };
 
 
-    const handlePress = async() => {
-        // Check if any of the fields are empty
+
+
+    const handlePress = async () => {
+        
+        const emailIsValid = await handleEmail(email);
         if (!first.trim() || !last.trim() || !email.trim() || !isValid) {
             alert('Field is empty', 'Please fill out all the fields.');
         } else {
-            // Fields are filled, handle login and navigation
-            if (isValid) {
-            await handleLogin();
-            navigation.navigate('Title');
+            if (emailIsValid && isValid) { 
+                await handleLogin();
+                navigation.navigate('Title');
             }
         }
-    };
-    
+    }; 
+
+
+
 
     return (
 
@@ -128,7 +169,6 @@ function LogIn() {
                     placeholder="Email"
                     value={email}
                     onChangeText={text => setEmail(text)}
-                    secureTextEntry={true}
                     autoCapitalize="none"
                 />
                 <br></br>
@@ -148,11 +188,9 @@ function LogIn() {
                 <br></br>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={async () => {
-                        handlePress()
-                    }}
+                    onPress={async() =>{ handlePress()}}
                 >
-                    <Text style={styles.buttonText}>Sign In</Text>
+                    <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
 

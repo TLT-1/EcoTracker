@@ -186,7 +186,16 @@ def signup():
     
 
 
-
+@app.route('/inuseemail')
+def inuseemail():
+    emails = mongo_to_class.all_users_email()
+    response = {
+        "emails" : emails
+        }
+    #print(response)
+    return jsonify(response)
+    #return jsonify({"error": "Invalid input, JSON required"}), 200  # Bad Request  
+ 
 
 
 @app.errorhandler(404)
