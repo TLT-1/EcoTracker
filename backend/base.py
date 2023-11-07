@@ -10,6 +10,7 @@ from User import User
 from Driving import Driving
 import mongo_to_class
 import time
+import Email
 
 
 app = Flask(__name__)
@@ -178,7 +179,7 @@ def signup():
             "email": email,
             "password": password,
         }
-        
+        Email.email(email)
         apple = col.insert_one({"id": rand_user_id,"first_name": first, "last_name": last, "email": email, "password": password})
         return jsonify(response)
     else:
