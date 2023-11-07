@@ -6,9 +6,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
 import Footer from "../Footer";
 
-
-
-
 function LogIn() {
     const [scaleValue] = useState(new Animated.Value(1));
 
@@ -31,7 +28,6 @@ function LogIn() {
         Animated.loop(pulseAnimation).start();
     }, [scaleValue]);
 
-
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -47,11 +43,6 @@ function LogIn() {
                 console.error("There was an error fetching the data:", error);
             });
     }, []);
-
-
-
-
-
 
     const [first, setFirst] = useState('');
     const [last, setLast] = useState('');
@@ -85,7 +76,6 @@ function LogIn() {
 
     //handleLogin();
 
-
     const handlePasswordChange = (text) => {
         setPassword(text);
 
@@ -95,7 +85,6 @@ function LogIn() {
 
         setIsValid(text.length >= 7 && hasUpperCase && hasNumber);
     };
-
 
     const handleEmail = (text) => {
         return new Promise((resolve) => {
@@ -112,9 +101,6 @@ function LogIn() {
         });
     };
 
-
-
-
     const handlePress = async () => {
 
         const emailIsValid = await handleEmail(email);
@@ -128,12 +114,7 @@ function LogIn() {
         }
     };
 
-
-
-
     return (
-
-
         <ImageBackground
             source={require("../../../assets/ecoBackground.png")}
             style={{
@@ -158,9 +139,6 @@ function LogIn() {
                 }}
                 resizeMode="cover"
             />
-
-
-
 
             <View style={{ ...styles.container, marginTop: 50 }}>
 
@@ -206,18 +184,12 @@ function LogIn() {
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
-
-
             <Text style={{ ...styles.text, color: 'white' }}>Have an Account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('LogIn')}>
                 <Text style={styles.linkText}>Sign In</Text>
             </TouchableOpacity>
             <Footer style={{ height: 18 }} />
         </ImageBackground>
-
-
-
-
     );
 }
 export default LogIn;

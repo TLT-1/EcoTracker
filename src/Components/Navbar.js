@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // Don't forget to import useEffect
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import NavbarStyles from './Styles/NavbarStyles';

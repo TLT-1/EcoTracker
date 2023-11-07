@@ -29,8 +29,9 @@ import * as Linking from 'expo-linking';
 import TitleScreen from "./src/Components/pages/TitleScreen";
 import LogIn from "./src/Components/pages/LogIn";
 import SignUp from "./src/Components/pages/SignUp";
+import PP from "./src/Components/pages/PP";
 
-function HomeScreen({navigation }) {
+function HomeScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Home Screen</Text>
@@ -83,6 +84,7 @@ function App() {
                 <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
                 <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
                 <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+                <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>
