@@ -15,7 +15,7 @@ function LogIn() {
     useEffect(() => {
         const pulseAnimation = Animated.sequence([
             Animated.timing(scaleValue, {
-                toValue: 1.15,
+                toValue: 1.07,
                 duration: 1500,
                 easing: Easing.ease,
                 useNativeDriver: true,
@@ -82,7 +82,7 @@ function LogIn() {
             <View style={styles.container}>
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
-                    placeholder="Username or Email"
+                    placeholder="Email"
                     value={username}
                     onChangeText={text => setUsername(text)}
                     autoCapitalize="none"

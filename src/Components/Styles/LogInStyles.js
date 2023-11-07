@@ -12,10 +12,10 @@ const styles = StyleSheet.create({
         width: "25%", // Adjusted the percentage to make the size responsive (bc chad/rebecca said responsive is cool)
         aspectRatio: 1, // Maintain the aspect ratio for responsive scaling (bc chad/rebecca said responsive is cool)
         resizeMode: "contain",
-        top: "0%",
+        top: -50,
     },
     input: {
-        width: '150%',
+        width: '160%',
         height: 50,
         padding: 10,
         margin: 10,
@@ -38,11 +38,17 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 20,
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 1,
     },
     linkText: {
         paddingBottom: 10,
-        color: '#062A52',
+        color: 'white',
         textDecorationLine: 'underline', // Optional: Adds an underline for the clickable text
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 1,
     },
 });
 

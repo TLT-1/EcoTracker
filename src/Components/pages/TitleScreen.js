@@ -10,7 +10,7 @@ const TitleScreen = () => {
     useEffect(() => {
         const pulseAnimation = Animated.sequence([
             Animated.timing(scaleValue, {
-                toValue: 1.1,
+                toValue: 1.07,
                 duration: 1500,
                 easing: Easing.ease,
                 useNativeDriver: true,
