@@ -79,7 +79,7 @@ function LogIn() {
                 source={require("../../../assets/ecoTrackLogosu.png")}
                 style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
             />
-            <View style={styles.container}>
+            <View style={{ ...styles.container, marginBottom: 100 }}>
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
                     placeholder="Email"
@@ -87,7 +87,6 @@ function LogIn() {
                     onChangeText={text => setUsername(text)}
                     autoCapitalize="none"
                 />
-                <br></br>
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
                     placeholder="Password"
@@ -96,7 +95,6 @@ function LogIn() {
                     secureTextEntry={true}
                     autoCapitalize="none"
                 />
-                <br></br>
                 <TouchableOpacity
                     style={styles.button}
                     onPress={async () => {
