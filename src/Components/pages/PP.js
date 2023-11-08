@@ -37,7 +37,7 @@ function PP({ navigation }) {
         - Usage data, such as the date and time you access the app and your interactions with it.
         - Geolocation data, if you grant permission for the app to access your location information.
 
-        **3. How We Use Your Information*
+        **3. How We Use Your Information**
 
         EcoTrack uses the collected information to:
         - Calculate your carbon footprint based on your daily activities.
