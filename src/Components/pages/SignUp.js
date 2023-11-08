@@ -109,6 +109,7 @@ function LogIn() {
         } else {
             if (emailIsValid && isValid) {
                 await handleLogin();
+                //send email
                 navigation.navigate('Title');
             }
         }

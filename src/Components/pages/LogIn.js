@@ -31,7 +31,7 @@ function LogIn() {
         Animated.loop(pulseAnimation).start();
     }, [scaleValue]);
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     //console.log(username, password)
 
@@ -43,14 +43,22 @@ function LogIn() {
                 url: 'http://localhost:5000/login',
                 headers: { 'Content-Type': 'application/json' },
                 data: {
-                    username: username,
+                    email: email,
                     password: password,
                 }
             });
 
             //console.log(response.data);  // Print out the response data
+            if (response.data.success) {
+                navigation.navigate('Title');
+            } else {
+                // If the login is not successful, show an alert
+                alert("Login Failed", response.data.error || "Incorrect email or password");
+            }
         } catch (error) {
             console.error(error);
+            // If there is an error in the request, show an alert
+            alert("Login Error", "An error occurred during login, please try again.");
         }
     };
 
@@ -83,8 +91,8 @@ function LogIn() {
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
                     placeholder="Email"
-                    value={username}
-                    onChangeText={text => setUsername(text)}
+                    value={email}
+                    onChangeText={text => setEmail(text)}
                     autoCapitalize="none"
                 />
                 <TextInput
@@ -99,7 +107,7 @@ function LogIn() {
                     style={styles.button}
                     onPress={async () => {
                         await handleLogin();
-                        navigation.navigate('Title');
+                        
                     }}
                 >
                     <Text style={styles.buttonText}>Sign In</Text>

@@ -10,6 +10,7 @@ from User import User
 from Driving import Driving
 import mongo_to_class
 import time
+import Email
 
 
 app = Flask(__name__)
@@ -103,7 +104,9 @@ def user_energyusage():
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json
-    username = data.get('username')
+    if not data or 'email' not in data or 'password' not in data:
+        return jsonify({"error": "Invalid input, JSON required"}), 400
+    email = data.get('email')
     password = data.get('password')
     
     uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
@@ -111,32 +114,15 @@ def login():
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
     col = db["users_ids"]
-    current_time = time.time()
-    user_id = 12345
-    custom_number1 = int(current_time) + user_id
-    formatted_time = time.strftime('%Y%m%d%H%M%S', time.localtime())
-    # Now append or prepend a custom value
-    custom_number = int(formatted_time) * 10 + user_id
-    rand_user_id = (custom_number * custom_number1)//11777111770
-
+    user = col.find_one({"email": email})
 
     #return jsonify(response)
-    if request.is_json:  # Check if the request has a JSON content type
-        data = request.json
-        username = data.get('username')
-        password = data.get('password')
-        
-        # Your existing code to process the username and password goes here
-        
-        response = {
-            "username": username,
-            "password": password
-        }
-        
-        apple = col.insert_one({"id": rand_user_id,"username": username, "password": password})
-        return jsonify(response)
+    if user and password:
+        # The password matches the one in the database
+        return jsonify({"success": "Logged in successfully"}), 200
     else:
-        return jsonify({"error": "Invalid input, JSON required"}), 400  # Bad Request
+        # The user was not found or the password does not match
+        return jsonify({"error": "Invalid email or password"}), 401
 
 
 
@@ -178,7 +164,7 @@ def signup():
             "email": email,
             "password": password,
         }
-        
+        Email.email(email)
         apple = col.insert_one({"id": rand_user_id,"first_name": first, "last_name": last, "email": email, "password": password})
         return jsonify(response)
     else:
