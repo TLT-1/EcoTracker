@@ -30,6 +30,7 @@ import TitleScreen from "./src/Components/pages/TitleScreen";
 import LogIn from "./src/Components/pages/LogIn";
 import SignUp from "./src/Components/pages/SignUp";
 import PP from "./src/Components/pages/PP";
+import ToS from "./src/Components/pages/ToS";
 
 function HomeScreen({ navigation }) {
     return (
@@ -85,6 +86,7 @@ function App() {
                 <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
                 <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
                 <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
+                <Stack.Screen name="ToS" component={ToS} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>
