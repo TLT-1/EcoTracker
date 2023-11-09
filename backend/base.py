@@ -133,7 +133,10 @@ def signup():
     password = data.get('password')
     email = data.get('email')
     last = data.get('last')
+    verification_code = "1"
+    data['verification_code'] = verification_code
     
+
     uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
@@ -164,7 +167,7 @@ def signup():
             "email": email,
             "password": password,
         }
-        Email.email(email)
+        Email.email(email, verification_code)
         apple = col.insert_one({"id": rand_user_id,"first_name": first, "last_name": last, "email": email, "password": password})
         return jsonify(response)
     else:
@@ -182,7 +185,29 @@ def inuseemail():
     return jsonify(response)
     #return jsonify({"error": "Invalid input, JSON required"}), 200  # Bad Request  
  
-
+@app.route('/verify', methods=['Get','POST'])
+def verify():
+    if request.method == 'POST':
+        # Handle POST request
+        data = request.json
+        if not data:
+            return jsonify({"error": "Invalid input, JSON required"}), 400
+        code = data.get('code')
+        # Process the POST data here
+        response = {
+            "code": code
+            # Add any other response data you need here
+        }
+        return jsonify(response)
+    elif request.method == 'GET':
+        # Handle GET request
+        # You can retrieve data from the database or perform other operations
+        # For example, if you just want to send back a confirmation that the
+        # endpoint is reachable via GET:
+        code = request.args.get('code')  # Assuming 'code' is passed as a query parameter
+        # Perform any necessary verification or processing with the code
+        response = {"code": code}
+        return jsonify(response)
 
 @app.errorhandler(404)
 def not_found(e):

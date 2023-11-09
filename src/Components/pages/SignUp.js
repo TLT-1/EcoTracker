@@ -50,6 +50,8 @@ function LogIn() {
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(false);
+    const [code, setCode] = useState('1');
+
 
     //console.log(username, password)
 
@@ -65,6 +67,7 @@ function LogIn() {
                     last: last,
                     email: email,
                     password: password,
+                    code: code
                 }
             });
 
@@ -73,6 +76,23 @@ function LogIn() {
             console.error(error);
         }
     };
+    const verify = async () => {
+        try {
+            // Make POST request using axios with data
+            const response = await axios({
+                method: 'POST',
+                url: 'http://localhost:5000/verify',
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    code: code  // Make sure this is the variable containing the code you want to send
+                }
+            });
+            //console.log(response.data);  // Print out the response data
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     //handleLogin();
 
@@ -108,9 +128,11 @@ function LogIn() {
             alert('Field is empty', 'Please fill out all the fields.');
         } else {
             if (emailIsValid && isValid) {
+                await verify();
                 await handleLogin();
                 //send email
-                navigation.navigate('Title');
+                
+                navigation.navigate('Verification');
             }
         }
     };

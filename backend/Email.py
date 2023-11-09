@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 
 
 
-def email(receiver_email):
+def email(receiver_email, verification_code):
     # Set up the SMTP server
     smtp_server = "smtp.gmail.com"
     smtp_port = 587  # For starttls
@@ -16,7 +16,7 @@ def email(receiver_email):
     subject = "Welcome To EcoTracker"
 
     # Create an HTML body for the email
-    html = """
+    html = f"""
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -26,6 +26,7 @@ def email(receiver_email):
     </head>
     <body>
         <p>Hello, World!</p>
+        <p>Your verification code is: {verification_code}</p>
     </body>
     </html>
     """

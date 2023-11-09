@@ -31,37 +31,33 @@ function Verification() {
         Animated.loop(pulseAnimation).start();
     }, [scaleValue]);
 
-    const [email, setEmail] = useState('');
+    const [code, setCode] = useState('');
     const [password, setPassword] = useState('');
     //console.log(username, password)
 
+    const [data, setData] = useState([]);
+
     const handleLogin = async () => {
         try {
-            // Make POST request using axios with data
-            const response = await axios({
-                method: 'POST',
-                url: 'http://localhost:5000/login',
-                headers: { 'Content-Type': 'application/json' },
-                data: {
-                    email: email,
-                    password: password,
-                }
+            // Make GET request using axios with query parameters
+            const response = await axios.get('http://localhost:5000/verify', {
+                params: { code: code }
             });
 
-            //console.log(response.data);  // Print out the response data
-            if (response.data.success) {
-                navigation.navigate('Title');
+            console.log(response.data); // Print out the response data
+
+            // Check if the returned code from the backend matches the user input
+            if (response.data.code === code) {
+                // If they match, navigate to the next screen
+                navigation.navigate('Title'); // Replace 'NextScreen' with your actual screen/route name
             } else {
-                // If the login is not successful, show an alert
-                alert("Login Failed", response.data.error || "Incorrect email or password");
+                // Handle the case where they don't match
+                console.error('The codes do not match.');
             }
         } catch (error) {
             console.error(error);
-            // If there is an error in the request, show an alert
-            alert("Login Error", "An error occurred during login, please try again.");
         }
     };
-
     //handleLogin();
 
 
@@ -95,8 +91,8 @@ function Verification() {
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
                     placeholder=" ******** "
-                    value={email}
-                    onChangeText={text => setEmail(text)}
+                    value={code}
+                    onChangeText={text => setCode(text)}
                     autoCapitalize="none"
                 />
                 <Text style={{ ...styles.text, color: 'black'} }> Resend OTP code</Text>
