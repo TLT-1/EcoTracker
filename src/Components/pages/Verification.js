@@ -87,22 +87,20 @@ function Verification() {
                 source={require("../../../assets/ecoTrackLogosu.png")}
                 style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
             />
+
+
             <View style={{ ...styles.container, marginBottom: 100 }}>
+            <Text style={{...styles.text, color: 'black'} }>Verfication Email</Text>
+            <Text style={{ ...styles.text, color: 'black' }}>We've just sent the OTP code via Email to ...</Text>
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
-                    placeholder="Email"
+                    placeholder=" ******** "
                     value={email}
                     onChangeText={text => setEmail(text)}
                     autoCapitalize="none"
                 />
-                <TextInput
-                    style={{ ...styles.input, fontSize: 18 }}
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={text => setPassword(text)}
-                    secureTextEntry={true}
-                    autoCapitalize="none"
-                />
+                <Text style={{ ...styles.text, color: 'black'} }> Resend OTP code</Text>
+                
                 <TouchableOpacity
                     style={styles.button}
                     onPress={async () => {
@@ -110,16 +108,13 @@ function Verification() {
 
                     }}
                 >
-                    <Text style={styles.buttonText}>Sign In</Text>
+                    <Text style={styles.buttonText}>Confirm</Text>
                 </TouchableOpacity>
 
             </View>
 
 
-            <Text style={{ ...styles.text, color: 'white' }}>Don't Have an Account? </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-                <Text style={{ ...styles.linkText, color: 'white' }}>Sign Up</Text>
-            </TouchableOpacity>
+            
             <Footer style={{ height: 18 }} />
         </ImageBackground >
 
