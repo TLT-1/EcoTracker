@@ -31,6 +31,7 @@ import LogIn from "./src/Components/pages/LogIn";
 import SignUp from "./src/Components/pages/SignUp";
 import PP from "./src/Components/pages/PP";
 import ToS from "./src/Components/pages/ToS";
+import Verification from "./src/Components/pages/Verification";
 
 function HomeScreen({ navigation }) {
     return (
@@ -87,6 +88,7 @@ function App() {
                 <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
                 <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
                 <Stack.Screen name="ToS" component={ToS} options={{ headerShown: false }} />
+                <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>
