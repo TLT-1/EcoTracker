@@ -39,7 +39,7 @@ function ToS({ navigation }) {
                         <Text style={{ color: 'blue' }} onPress={() => navigation.navigate('PP')}>
                             Privacy Policy
                         </Text>
-                        {`' Please review this policy to understand how we collect, use, and protect your data.
+                        {`' please review this policy to understand how we collect, use, and protect your data.
 
         **4. User-Generated Content**
 

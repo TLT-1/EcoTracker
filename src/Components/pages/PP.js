@@ -54,8 +54,8 @@ function PP({ navigation }) {
 
         **5. Data Security**
 
-        EcoTrack takes data security seriously and employs appropriate measures to safeguard your information. However, no method of transmission over the internet or electronic storage is entirely secure, and we cannot guarantee absolute security.
-
+        EcoTrack takes data security seriously and employs appropriate measures to safeguard your information. However, no method of transmission over the internet or electronic storage is entirely secure.
+        
         **6. Your Choices**
 
         You can choose not to provide certain information or revoke your consent to collect specific data, but doing so may limit your access to certain features of the EcoTrack app.
