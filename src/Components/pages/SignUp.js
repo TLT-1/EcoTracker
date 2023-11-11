@@ -50,10 +50,12 @@ function LogIn() {
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(false);
-    const [code, setCode] = useState('1');
+    
+    const [code, setCode] = useState('2000');
 
 
     //console.log(username, password)
+    //setCode(code);
 
     const handleLogin = async () => {
         try {
@@ -87,7 +89,8 @@ function LogIn() {
                     code: code  // Make sure this is the variable containing the code you want to send
                 }
             });
-            //console.log(response.data);  // Print out the response data
+            console.log(response.data);  // Print out the response data
+            
         } catch (error) {
             console.error(error);
         }

@@ -31,32 +31,39 @@ function Verification() {
         Animated.loop(pulseAnimation).start();
     }, [scaleValue]);
 
-    const [code, setCode] = useState('');
-    const [password, setPassword] = useState('');
-    //console.log(username, password)
+    const [userInput, setUserInput] = useState(''); // State for storing user input
+    const [backendCode, setBackendCode] = useState(''); // State for storing code from the backend
+    //const navigation = useNavigation(); // Navigation hook
 
-    const [data, setData] = useState([]);
-
-    const handleLogin = async () => {
+    // Function to fetch code from the backend
+    const fetchCodeFromBackend = async () => {
         try {
-            // Make GET request using axios with query parameters
-            const response = await axios.get('http://localhost:5000/verify', {
-                params: { code: code }
-            });
-
-            console.log(response.data); // Print out the response data
-
-            // Check if the returned code from the backend matches the user input
-            if (response.data.code === code) {
-                // If they match, navigate to the next screen
-                navigation.navigate('Title'); // Replace 'NextScreen' with your actual screen/route name
-            } else {
-                // Handle the case where they don't match
-                console.error('The codes do not match.');
-            }
+            const response = await axios.get('http://localhost:5000/verify');
+            console.log(response.data)
+            setBackendCode(response.data.code); // Store the fetched code in state
         } catch (error) {
             console.error(error);
         }
+    };
+
+    // Call this function when the component mounts
+    useEffect(() => {
+        fetchCodeFromBackend();
+    }, []);
+
+    const handleLogin = () => {
+        // Compare the user-entered code with the code fetched from the backend
+        if (userInput === backendCode) {
+            // If they match, navigate to the next screen
+            //navigation.navigate('NextScreen'); // Replace 'NextScreen' with your actual screen/route name
+            console.log(backendCode)
+        } else {
+            // Handle the case where they don't match
+            console.error('The codes do not match.');
+            console.log(backendCode);
+            console.log(userInput);
+        }
+        navigation.navigate('Title');
     };
     //handleLogin();
 
@@ -91,8 +98,8 @@ function Verification() {
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
                     placeholder=" ******** "
-                    value={code}
-                    onChangeText={text => setCode(text)}
+                    value={userInput}
+                    onChangeText={text => setUserInput(text)}
                     autoCapitalize="none"
                 />
                 <Text style={{ ...styles.text, color: 'black'} }> Resend OTP code</Text>

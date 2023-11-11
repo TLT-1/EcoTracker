@@ -133,8 +133,8 @@ def signup():
     password = data.get('password')
     email = data.get('email')
     last = data.get('last')
-    verification_code = "1"
-    data['verification_code'] = verification_code
+    verification_code = data.get('code')
+    #data['verification_code'] = verification_code
     
 
     uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
@@ -158,6 +158,8 @@ def signup():
         password = data.get('password')
         email = data.get('email')
         last = data.get('last')
+        verification_code = data.get('code')
+        
         
         # Your existing code to process the username and password goes here
         
@@ -166,6 +168,7 @@ def signup():
             "last_name": last,
             "email": email,
             "password": password,
+            "code": verification_code
         }
         Email.email(email, verification_code)
         apple = col.insert_one({"id": rand_user_id,"first_name": first, "last_name": last, "email": email, "password": password})
@@ -187,6 +190,7 @@ def inuseemail():
  
 @app.route('/verify', methods=['Get','POST'])
 def verify():
+    
     if request.method == 'POST':
         # Handle POST request
         data = request.json
@@ -198,15 +202,22 @@ def verify():
             "code": code
             # Add any other response data you need here
         }
+        print(response)
         return jsonify(response)
-    elif request.method == 'GET':
+    else:
         # Handle GET request
         # You can retrieve data from the database or perform other operations
         # For example, if you just want to send back a confirmation that the
+        #data = request.json
+        #code = data.get('code')
         # endpoint is reachable via GET:
+        print(request.full_path)
+        print(request.args)
         code = request.args.get('code')  # Assuming 'code' is passed as a query parameter
+        print(code)
         # Perform any necessary verification or processing with the code
         response = {"code": code}
+        print(response)
         return jsonify(response)
 
 @app.errorhandler(404)
