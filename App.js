@@ -32,6 +32,7 @@ import SignUp from "./src/Components/pages/SignUp";
 import PP from "./src/Components/pages/PP";
 import ToS from "./src/Components/pages/ToS";
 import Verification from "./src/Components/pages/Verification";
+import UserAccount from "./src/Components/pages/UserAccount";
 
 function HomeScreen({ navigation }) {
     return (
@@ -89,6 +90,7 @@ function App() {
                 <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
                 <Stack.Screen name="ToS" component={ToS} options={{ headerShown: false }} />
                 <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
+                <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>
