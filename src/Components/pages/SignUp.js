@@ -93,7 +93,7 @@ function LogIn() {
                     code: code  // Make sure this is the variable containing the code you want to send
                 }
             });
-            console.log(response.data);  // Print out the response data
+            //console.log(response.data);  // Print out the response data
             
         } catch (error) {
             console.error(error);

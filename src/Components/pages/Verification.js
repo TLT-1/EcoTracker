@@ -56,12 +56,12 @@ function Verification() {
         if (userInput === backendCode) {
             // If they match, navigate to the next screen
             navigation.navigate('Title'); // Replace 'NextScreen' with your actual screen/route name
-            console.log(backendCode)
+            //console.log(backendCode)
         } else {
             // Handle the case where they don't match
             console.error('The codes do not match.');
-            console.log(backendCode);
-            console.log(userInput);
+            //console.log(backendCode);
+            //console.log(userInput);
         }
         //navigation.navigate('Title');
     };
