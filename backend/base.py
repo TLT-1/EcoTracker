@@ -188,41 +188,30 @@ def inuseemail():
     return jsonify(response)
     #return jsonify({"error": "Invalid input, JSON required"}), 200  # Bad Request  
  
-@app.route('/verify', methods=['Get','POST'])
-def verify():
-    
-    if request.method == 'POST':
-        # Handle POST request
-        data = request.json
-        if not data:
-            return jsonify({"error": "Invalid input, JSON required"}), 400
-        code = data.get('code')
-        # Process the POST data here
-        response = {
-            "code": code
-            # Add any other response data you need here
-        }
-        print(response)
-        return jsonify(response)
-    else:
-        # Handle GET request
-        # You can retrieve data from the database or perform other operations
-        # For example, if you just want to send back a confirmation that the
-        #data = request.json
-        #code = data.get('code')
-        # endpoint is reachable via GET:
-        print(request.full_path)
-        print(request.args)
-        code = request.args.get('code')  # Assuming 'code' is passed as a query parameter
-        print(code)
-        # Perform any necessary verification or processing with the code
-        response = {"code": code}
-        print(response)
-        return jsonify(response)
 
-@app.errorhandler(404)
-def not_found(e):
-    return jsonify({"error": "Not Found"}), 404
+
+current_code = None
+
+@app.route('/verify', methods=['POST'])
+def store_code():
+    global current_code
+    data = request.json
+    if not data or 'code' not in data:
+        return jsonify({"error": "Invalid input, 'code' required"}), 400
+    
+    current_code = data['code']  # Store the code
+    return jsonify({"message": "Code stored successfully"}), 200
+
+@app.route('/verify', methods=['GET'])
+def retrieve_code():
+    if current_code:
+        # Return the stored code
+        return jsonify({"code": current_code}), 200
+    else:
+        return jsonify({"error": "No code stored"}), 404
+    
+
+
 
 
 if __name__ == "__main__":

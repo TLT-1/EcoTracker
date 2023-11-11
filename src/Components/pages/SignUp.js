@@ -51,7 +51,11 @@ function LogIn() {
     const [isValid, setIsValid] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(false);
     
-    const [code, setCode] = useState('2000');
+    const generateRandomCode = () => {
+        return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+    };
+
+    const [code, setCode] = useState(generateRandomCode().toString());
 
 
     //console.log(username, password)

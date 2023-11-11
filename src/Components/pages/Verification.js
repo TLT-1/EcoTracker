@@ -55,7 +55,7 @@ function Verification() {
         // Compare the user-entered code with the code fetched from the backend
         if (userInput === backendCode) {
             // If they match, navigate to the next screen
-            //navigation.navigate('NextScreen'); // Replace 'NextScreen' with your actual screen/route name
+            navigation.navigate('Title'); // Replace 'NextScreen' with your actual screen/route name
             console.log(backendCode)
         } else {
             // Handle the case where they don't match
@@ -63,7 +63,7 @@ function Verification() {
             console.log(backendCode);
             console.log(userInput);
         }
-        navigation.navigate('Title');
+        //navigation.navigate('Title');
     };
     //handleLogin();
 
