@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, ImageBackground, Animated, Easing, Button, TextInput, Alert, Dimensions, TouchableOpacity } from "react-native";
 import styles from "../Styles/SignUpStyle";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
 import Footer from "../Footer";
 
@@ -138,7 +136,7 @@ function LogIn() {
                 await verify();
                 await handleLogin();
                 //send email
-                
+
                 navigation.navigate('Verification');
             }
         }

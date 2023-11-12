@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Image, ImageBackground, Animated, Easing, Button, TextInput, Alert, Dimensions, TouchableOpacity } from "react-native";
 import styles from "../Styles/LogInStyles";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Footer from '../Footer';
 import axios from 'axios';
-
-
-
 
 function LogIn() {
     const [scaleValue] = useState(new Animated.Value(1));
@@ -107,7 +102,7 @@ function LogIn() {
                     style={styles.button}
                     onPress={async () => {
                         await handleLogin();
-                        
+
                     }}
                 >
                     <Text style={styles.buttonText}>Sign In</Text>
