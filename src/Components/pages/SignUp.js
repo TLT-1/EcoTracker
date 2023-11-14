@@ -48,7 +48,7 @@ function LogIn() {
     const [password, setPassword] = useState('');
     const [isValid, setIsValid] = useState(false);
     const [isValidEmail, setIsValidEmail] = useState(false);
-    
+
     const generateRandomCode = () => {
         return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
     };
@@ -92,7 +92,7 @@ function LogIn() {
                 }
             });
             //console.log(response.data);  // Print out the response data
-            
+
         } catch (error) {
             console.error(error);
         }
@@ -171,28 +171,28 @@ function LogIn() {
             <View style={{ ...styles.container, marginTop: 50 }}>
 
                 <TextInput
-                    style={{ ...styles.input, fontSize: 18 }}
+                    style={{ ...styles.input }}
                     placeholder="First Name"
                     value={first}
                     onChangeText={text => setFirst(text)}
                     autoCapitalize="none"
                 />
                 <TextInput
-                    style={{ ...styles.input, fontSize: 18 }}
+                    style={{ ...styles.input }}
                     placeholder="Last Name"
                     value={last}
                     onChangeText={text => setLast(text)}
                     autoCapitalize="none"
                 />
                 <TextInput
-                    style={{ ...styles.input, fontSize: 18 }}
+                    style={{ ...styles.input }}
                     placeholder="Email"
                     value={email}
                     onChangeText={text => setEmail(text)}
                     autoCapitalize="none"
                 />
                 <TextInput
-                    style={{ ...styles.input, fontSize: 18 }}
+                    style={{ ...styles.input }}
                     placeholder="Password"
                     value={password}
                     onChangeText={handlePasswordChange}

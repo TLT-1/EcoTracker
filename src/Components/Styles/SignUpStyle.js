@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
         top: -50,
     },
     input: {
-        width: '160%',
+        width: 400,
         height: 50,
+        fontSize: 18,
         padding: 10,
         margin: 10,
         borderColor: '#062A52',
@@ -45,14 +46,16 @@ const styles = StyleSheet.create({
     linkText: {
         paddingBottom: 10,
         color: 'white',
-        textDecorationLine: 'underline', // Optional: Adds an underline for the clickable text
+        textDecorationLine: 'underline',
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
     },
 
     errorText: {
-        color: 'red',
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 });
 
