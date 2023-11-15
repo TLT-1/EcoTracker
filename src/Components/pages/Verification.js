@@ -93,8 +93,8 @@ function Verification() {
 
 
             <View style={{ ...styles.container, marginBottom: 100 }}>
-            <Text style={{...styles.text, color: 'black'} }>Verfication Email</Text>
-            <Text style={{ ...styles.text, color: 'black' }}>We've just sent the OTP code via Email to ...</Text>
+                <Text style={{ ...styles.text, color: 'white', fontSize: 18 }}>Verfication Email</Text>
+                <Text style={{ ...styles.text, color: 'white', fontSize: 16 }}>We've just sent the OTP code via Email to...</Text>
                 <TextInput
                     style={{ ...styles.input, fontSize: 18 }}
                     placeholder=" ******** "
@@ -102,8 +102,8 @@ function Verification() {
                     onChangeText={text => setUserInput(text)}
                     autoCapitalize="none"
                 />
-                <Text style={{ ...styles.text, color: 'black'} }> Resend OTP code</Text>
-                
+                <Text style={{ ...styles.text, color: 'white', fontSize: 16 }}> Resend OTP code</Text>
+
                 <TouchableOpacity
                     style={styles.button}
                     onPress={async () => {
@@ -117,7 +117,7 @@ function Verification() {
             </View>
 
 
-            
+
             <Footer style={{ height: 18 }} />
         </ImageBackground >
 
