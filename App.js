@@ -34,6 +34,7 @@ import ToS from "./src/Components/pages/ToS";
 import Verification from "./src/Components/pages/Verification";
 import UserAccount from "./src/Components/pages/UserAccount";
 import Contact from './src/Components/pages/Contact';
+import Driving from './src/Components/pages/Driving';
 
 function HomeScreen({ navigation }) {
     return (
@@ -93,6 +94,7 @@ function App() {
                 <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
                 <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
                 <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
+                <Stack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>
