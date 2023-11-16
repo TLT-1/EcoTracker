@@ -46,15 +46,15 @@ def user_data():
     cursor = mongo_to_class.data_init()
     user = mongo_to_class.user_info()
 
-    data = []
-    for doc in cursor:
+    #data = []
+    #for doc in cursor:
         # Assuming you want to send back both the name and the _id fields
-        entry = {
+        #entry = {
             
-            "_id": str(doc)  # Convert ObjectID to string
+           # "_id": str(doc)  # Convert ObjectID to string
              #"_id": str(doc["_id"]) # this just gets the id whereas the top one is the entire userdata array made into a string
-            }
-        data.append(entry)
+           # }
+        #data.append(entry)
 
     #return jsonify(data)
     return jsonify(user.first_name, user.last_name, user.gender, user.age, user.weight_lb)
@@ -211,8 +211,49 @@ def retrieve_code():
         return jsonify({"error": "No code stored"}), 404
     
 
+@app.route('/changename', methods=['POST'])
+def change_name():
+    data = request.json
+    old_first = data.get('old_first')
+    old_last = data.get('old_last')
+    new_first = data.get('new_first')
+    new_last = data.get('new_last')
+    #current_code = data['code'] 
+
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["EcoTracker"]
+    col = db["user_data"]
+
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        old_first = data.get('old_first')
+        old_last = data.get('old_last')
+        new_first = data.get('new_first')
+        new_last = data.get('new_last')
+        user = col.find_one({"first_name": old_first, "last_name": old_last})
+        
+        new_names = {
+            "first_name": new_first,
+            "last_name": new_last
+        }
+        result = col.update_one(
+            user,  # Query to find the document
+            {"$set": new_names}  # The update operation
+        )
+        print(new_names)
 
 
+    return jsonify({"message": "Code stored successfully"}), 200
+
+
+
+       # Email.email(email, verification_code)
+       # apple = col.insert_one({"id": rand_user_id,"first_name": first, "last_name": last, "email": email, "password": password})
+        #return jsonify(response)
+   # else:
+        #return jsonify({"error": "Invalid input, JSON required"}), 400
 
 if __name__ == "__main__":
     app.run(debug=True)
