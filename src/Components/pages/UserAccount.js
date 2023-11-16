@@ -98,10 +98,56 @@ const UserAccount = () => {
     }, [newNameFirst, newNameLast]); // Dependencies array
 
 
-    const handleEditEmail = () => {
-        // Logic to handle email change
-        alert('Edit Email Clicked');
+
+
+
+    const [newEmail, setNewEmail] = useState('');
+    const [emailModalVisible, setEmailModalVisible] = useState(false);
+
+
+    const changeEmail = async () => {
+        try {
+            const response = await axios.post('http://localhost:5000/changeemail', {
+                old_first: data_to[0], // Assuming data_to[0] contains the first name
+                old_last: data_to[1],  // Assuming data_to[1] contains the last name
+                new_email: newEmail,
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            // Check the server response for success and update state accordingly
+            if (response.data && response.data.message) {
+                Alert.alert("Success", response.data.message);
+                setUser(prevUser => ({ ...prevUser, email: newEmail }));
+                setNewEmail(''); // Clear the input field
+            }
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Error", "Failed to update email");
+        }
     };
+
+    const handleEditEmail = () => {
+        setEmailModalVisible(true);
+    };
+
+    const handleSaveEmail = () => {
+        if (!newEmail) {
+            Alert.alert("Validation", "Please enter a valid email address");
+            return;
+        }
+        changeEmail();
+        setEmailModalVisible(false);
+    };
+
+    const handleCloseEmailModal = () => {
+        setEmailModalVisible(false);
+        setNewEmail(''); // Reset the new email state when closing the modal
+    };
+
+
+
+
 
     const handleChangePassword = () => {
         // Implement navigation or modal popup for password change
@@ -139,12 +185,39 @@ const UserAccount = () => {
 
 
             </View>
+
+
+
+
             <View style={styles.infoContainer}>
                 <Text style={styles.info}>Email: {user.email}</Text>
                 <TouchableOpacity onPress={handleEditEmail}>
                     <RenderIcon />
                 </TouchableOpacity>
             </View>
+
+            {/* Email Modal */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={emailModalVisible}
+                onRequestClose={handleCloseEmailModal}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={modalStyle}>
+                        <TextInput
+                            placeholder="Enter your new email"
+                            value={newEmail}
+                            onChangeText={setNewEmail}
+                            style={textInputStyle}
+                            keyboardType="email-address"
+                        />
+                        <Button title="Save" onPress={handleSaveEmail} />
+                    </View>
+                </View>
+            </Modal>
+
+
+
             <View style={styles.infoContainer}>
                 <Text style={styles.info}>Birthday: {user.birthday}</Text>
                 
@@ -158,6 +231,25 @@ const UserAccount = () => {
     );
 };
 
+const modalStyle = {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+};
 
+const textInputStyle = {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 20,
+    width: '100%'
+};
 
 export default UserAccount;

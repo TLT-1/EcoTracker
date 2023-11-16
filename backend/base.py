@@ -242,18 +242,51 @@ def change_name():
             user,  # Query to find the document
             {"$set": new_names}  # The update operation
         )
-        print(new_names)
 
 
     return jsonify({"message": "Code stored successfully"}), 200
 
 
 
-       # Email.email(email, verification_code)
-       # apple = col.insert_one({"id": rand_user_id,"first_name": first, "last_name": last, "email": email, "password": password})
-        #return jsonify(response)
-   # else:
-        #return jsonify({"error": "Invalid input, JSON required"}), 400
+
+@app.route('/changeemail', methods=['POST'])
+def change_email():
+    data = request.json
+    old_first = data.get('old_first')
+    old_last = data.get('old_last')
+    new_email = data.get('new_email')
+    #current_code = data['code'] 
+
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["EcoTracker"]
+    col = db["users_ids"]
+    
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        old_first = data.get('old_first')
+        old_last = data.get('old_last')
+        new_email = data.get('new_email')
+        # Define the filter as a dictionary
+        user_filter = {"first_name": old_first, "last_name": old_last}
+
+        
+        # Attempt to find the user by first and last name and update their email
+        result = col.update_one(
+            user_filter,  
+            {"$set": {"email": new_email}}
+        )
+
+        # Check if the update was successful
+        if result.modified_count > 0:
+            return jsonify({"message": "Email updated successfully"}), 200
+        else:
+            return jsonify({"message": "No changes made to the email"}), 200
+    else:
+        return jsonify({"message": "Request must be JSON"}), 400
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
