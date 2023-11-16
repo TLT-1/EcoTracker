@@ -118,7 +118,7 @@ function Verification() {
 
 
 
-            <Footer style={{ height: 18 }} />
+            <Footer style={{ height: 18 }} navigation={navigation} />
         </ImageBackground >
 
     );

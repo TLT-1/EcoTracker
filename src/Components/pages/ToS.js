@@ -79,7 +79,7 @@ function ToS({ navigation }) {
                     </Text>
                 </ScrollView>
             </View>
-            <Footer />
+            <Footer navigation={navigation} />
         </View>
     );
 }

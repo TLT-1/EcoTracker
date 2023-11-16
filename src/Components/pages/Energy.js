@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
 import styles from '../Styles/TrackStyles';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 
-const Energy = () => {
+const Energy = (navigation) => {
     const [appliance, setAppliance] = useState('');
     const [watts, setWatts] = useState('');
     const [hours_day, setHoursDay] = useState('');
@@ -33,25 +35,30 @@ const Energy = () => {
     };
 
     return (
-        <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
-            <Image source={require("../../../assets/ecoEnergy.png")} style={styles.title} />
+        <View style={{ flex: 1 }}>
+            <Navbar />
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
+                <Navbar />
+                <Image source={require("../../../assets/ecoEnergy.png")} style={styles.title} />
 
-            <Text style={styles.buttonText}>Appliance:</Text>
-            <TextInput style={styles.input} value={appliance} onChangeText={setAppliance} />
+                <Text style={styles.buttonText}>Appliance:</Text>
+                <TextInput style={styles.input} value={appliance} onChangeText={setAppliance} />
 
-            <Text style={styles.buttonText}>Watts:</Text>
-            <TextInput style={styles.input} value={watts} onChangeText={setWatts} />
+                <Text style={styles.buttonText}>Watts:</Text>
+                <TextInput style={styles.input} value={watts} onChangeText={setWatts} />
 
-            <Text style={styles.buttonText}>Hours per day:</Text>
-            <TextInput style={styles.input} value={hours_day} onChangeText={setHoursDay} />
+                <Text style={styles.buttonText}>Hours per day:</Text>
+                <TextInput style={styles.input} value={hours_day} onChangeText={setHoursDay} />
 
-            <View style={styles.button}>
-                <Button title="Submit" onPress={handleSubmit} color="transparent" />
-            </View>
-            <View style={styles.button}>
-                <Button title="Clear" onPress={handleClear} color="transparent" />
-            </View>
-        </ImageBackground>
+                <View style={styles.button}>
+                    <Button title="Submit" onPress={handleSubmit} color="transparent" />
+                </View>
+                <View style={styles.button}>
+                    <Button title="Clear" onPress={handleClear} color="transparent" />
+                </View>
+            </ImageBackground>
+            <Footer style={{ height: 18 }} navigation={navigation} />
+        </View>
     );
 };
 

@@ -32,7 +32,7 @@ const Contact = () => {
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
-            <Footer />
+            <Footer navigation={navigation} />
         </View>
     );
 };

@@ -71,7 +71,7 @@ function PP({ navigation }) {
                     </Text>
                 </ScrollView>
             </View>
-            <Footer />
+            <Footer navigation={navigation} />
         </View>
     );
 }

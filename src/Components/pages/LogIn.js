@@ -115,7 +115,7 @@ function LogIn() {
             <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                 <Text style={{ ...styles.linkText, color: 'white' }}>Sign Up</Text>
             </TouchableOpacity>
-            <Footer style={{ height: 18 }} />
+            <Footer style={{ height: 18 }} navigation={navigation} />
         </ImageBackground >
 
     );

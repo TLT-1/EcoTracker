@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import FooterStyles from "./Styles/FooterStyles";
 
-const Footer = ({ style }) => {
+const Footer = ({ style, navigation }) => {
     return (
         <View style={{ ...FooterStyles.footer, ...style, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
             <TouchableOpacity onPress={() => navigation.navigate('PP')} style={{ marginLeft: 100 }}>

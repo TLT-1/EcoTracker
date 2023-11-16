@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     navbar: {
         backgroundColor: '#062A52',
-        position: 'absolute',
+        position: 'relative',
         top: 0,
         left: 0, // Position at the left
         width: '100%', // Take the full width of the screen
-        height: 80, // Adjust height for a thicker/thinner navbar
+        height: 60, // Adjust height for a thicker/thinner navbar
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     menuContainer: {
         backgroundColor: '#062A52',
         position: 'absolute',
-        top: 60,
+        top: 50,
         left: 15,
         width: 100,
         padding: 10,

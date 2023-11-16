@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         width: "20%", // Adjusted the percentage to make the size responsive (bc chad/rebecca said responsive is cool)
         aspectRatio: 1, // Maintain the aspect ratio for responsive scaling (bc chad/rebecca said responsive is cool)
         resizeMode: "contain",
+        marginBottom: -40,
     },
     input: {
         width: 400,

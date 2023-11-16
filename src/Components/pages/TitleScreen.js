@@ -88,7 +88,7 @@ const TitleScreen = () => {
                 />
 
             </ImageBackground>
-            <Footer />
+            <Footer navigation={navigation} />
         </View>
     );
 };

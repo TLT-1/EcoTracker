@@ -36,6 +36,7 @@ import UserAccount from "./src/Components/pages/UserAccount";
 import Contact from './src/Components/pages/Contact';
 import Driving from './src/Components/pages/Driving';
 import Energy from './src/Components/pages/Energy';
+import TrackNav from './src/Components/pages/TrackNav';
 
 function HomeScreen({ navigation }) {
     return (
@@ -97,6 +98,7 @@ function App() {
                 <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
                 <Stack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
                 <Stack.Screen name="Energy" component={Energy} options={{ headerShown: false }} />
+                <Stack.Screen name="TrackNav" component={TrackNav} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>
