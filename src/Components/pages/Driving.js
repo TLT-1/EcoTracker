@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
-import styles from '../Styles/DrivingStyles';
+import styles from '../Styles/TrackStyles';
 
 const Driving = () => {
     const [year, setYear] = useState('');
@@ -28,9 +28,17 @@ const Driving = () => {
             .catch(error => console.error(error));
     };
 
+    const handleClear = () => {
+        setYear('');
+        setMake('');
+        setModel('');
+        setAvgSpeed('');
+    };
+
     return (
         <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
             <Image source={require("../../../assets/ecoVehicle.png")} style={styles.title} />
+
             <Text style={styles.buttonText}>Year:</Text>
             <TextInput style={styles.input} value={year} onChangeText={setYear} />
 
@@ -45,6 +53,9 @@ const Driving = () => {
 
             <View style={styles.button}>
                 <Button title="Submit" onPress={handleSubmit} color="transparent" />
+            </View>
+            <View style={styles.button}>
+                <Button title="Clear" onPress={handleClear} color="transparent" />
             </View>
         </ImageBackground>
     );

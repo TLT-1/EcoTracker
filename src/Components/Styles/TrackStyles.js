@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start",
         backgroundColor: "transparent",
-        marginTop: -80,
+        marginTop: -100,
     },
     title: {
         width: "20%", // Adjusted the percentage to make the size responsive (bc chad/rebecca said responsive is cool)
