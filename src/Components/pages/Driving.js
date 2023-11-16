@@ -4,7 +4,7 @@ import styles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 
-const Driving = () => {
+const Driving = ({ navigation }) => {
     const [year, setYear] = useState('');
     const [make, setMake] = useState('');
     const [model, setModel] = useState('');

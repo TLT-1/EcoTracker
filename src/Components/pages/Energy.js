@@ -4,7 +4,7 @@ import styles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 
-const Energy = (navigation) => {
+const Energy = ({ navigation }) => {
     const [appliance, setAppliance] = useState('');
     const [watts, setWatts] = useState('');
     const [hours_day, setHoursDay] = useState('');

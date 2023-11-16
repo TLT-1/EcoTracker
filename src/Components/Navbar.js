@@ -39,7 +39,13 @@ const Navbar = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('TrackNav')}>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('TrackNav');
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Track' }],
+                        });
+                    }}>
                         <Text style={NavbarStyles.menuItem}>Track</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('News')}>
@@ -57,7 +63,13 @@ const Navbar = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('TrackNav')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('TrackNav');
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Track' }],
+                        });
+                    }} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>Track</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('News')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>

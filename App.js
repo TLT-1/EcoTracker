@@ -50,7 +50,6 @@ function HomeScreen({ navigation }) {
     );
 }
 
-
 function DetailsScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -76,11 +75,22 @@ function DetailsScreen({ navigation }) {
 
 
 const Stack = createNativeStackNavigator();
+const TrackNavStack = createNativeStackNavigator();
 
 const prefix = Linking.createURL('/');
 const linking = {
     prefixes: [prefix],
 };
+
+function TrackNavStackScreen() {
+    return (
+        <TrackNavStack.Navigator initialRouteName="TrackNav">
+            <TrackNavStack.Screen name="TrackNav" component={TrackNav} options={{ headerShown: false }} />
+            <TrackNavStack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
+            <TrackNavStack.Screen name="Energy" component={Energy} options={{ headerShown: false }} />
+        </TrackNavStack.Navigator>
+    );
+}
 
 function App() {
     return (
@@ -96,9 +106,8 @@ function App() {
                 <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
                 <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
                 <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-                <Stack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
-                <Stack.Screen name="Energy" component={Energy} options={{ headerShown: false }} />
-                <Stack.Screen name="TrackNav" component={TrackNav} options={{ headerShown: false }} />
+
+                <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
 
             </Stack.Navigator>
         </NavigationContainer>
