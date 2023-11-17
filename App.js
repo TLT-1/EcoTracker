@@ -106,7 +106,6 @@ function App() {
                 <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
                 <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
                 <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-
                 <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
 
             </Stack.Navigator>
