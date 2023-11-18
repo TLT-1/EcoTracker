@@ -34,9 +34,9 @@ const UserAccount = () => {
             .then(res => res.json())
             .then(thirdData => {
                 // Process your thirdData here
-                const email = thirdData.emails[0];
+                const backend_email = thirdData.emails[0];
                 //console.log(thirdData.emails[0])
-                setEmailData(email);
+                setEmailData(backend_email);
                 //console.log(email)
             })
             .catch(error => {
@@ -130,13 +130,13 @@ const UserAccount = () => {
 
             // Check the server response for success and update state accordingly
             if (response.data && response.data.message) {
-                Alert.alert("Success", response.data.message);
+                alert("Success", response.data.message);
                 setUser(prevUser => ({ ...prevUser, email: newEmail }));
                 setNewEmail(''); // Clear the input field
             }
         } catch (error) {
             console.error(error);
-            Alert.alert("Error", "Failed to update email");
+            alert("Error", "Failed to update email");
         }
     };
 
@@ -144,13 +144,25 @@ const UserAccount = () => {
         setEmailModalVisible(true);
     };
 
+    const isValidEmail = email => {
+        // This is a simple regex for basic email validation
+        const emailRegex = /\S+@\S+\.\S+/;
+        return emailRegex.test(email);
+    };
+
     const handleSaveEmail = () => {
-        if (!newEmail) {
-            Alert.alert("Validation", "Please enter a valid email address");
+        // Check if the email is not empty and is valid
+        if (!newEmail || !isValidEmail(newEmail)) {
+            handleCloseEmailModal();
+            //this doesnt 
+            alert("Validation Error", "Please enter a valid email address");
             return;
         }
+
+        // If the email is valid, proceed with the changeEmail process
         changeEmail();
-        setEmailModalVisible(false);
+        setEmailModalVisible(false); // Close the modal
+        setNewEmail(''); // Reset the new email state when closing the modal
     };
 
     const handleCloseEmailModal = () => {
