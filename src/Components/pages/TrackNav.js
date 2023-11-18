@@ -15,7 +15,8 @@ function TrackOptions({ navigation }) {
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={[styles.container, { marginTop: 0 }]}>
                 <View style={{ marginTop: 100, alignItems: 'center' }}>
-                    <Text style={[styles.buttonText, { marginBottom: 50 }]}>Choose An Option To Track</Text>                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
+                    <Text style={[styles.buttonText, { marginBottom: 50 }]}>Choose An Option To Track</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
                         <Text style={styles.buttonText}>Driving</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Energy')}>
