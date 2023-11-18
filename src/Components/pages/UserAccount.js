@@ -108,8 +108,8 @@ const UserAccount = () => {
     const changeEmail = async () => {
         try {
             const response = await axios.post('http://localhost:5000/changeemail', {
-                old_first: data_to[0], // Assuming data_to[0] contains the first name
-                old_last: data_to[1],  // Assuming data_to[1] contains the last name
+                old_first: data_to[0], 
+                old_last: data_to[1],  
                 new_email: newEmail,
             }, {
                 headers: { 'Content-Type': 'application/json' }
@@ -151,7 +151,7 @@ const UserAccount = () => {
 
     const handleChangePassword = () => {
         // Implement navigation or modal popup for password change
-        alert('Change Password Clicked');
+        navigation.navigate('Details')
     };
 
     const RenderIcon = () => <Text style={styles.icon}>🖉</Text>;
