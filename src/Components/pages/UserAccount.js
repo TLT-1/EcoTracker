@@ -14,6 +14,7 @@ const UserAccount = () => {
     });
     const [data, setData] = useState([]);
     const [data_to, setData_to] = useState([]);
+    const [email_data, setEmailData] = useState('');
 
 
     useEffect(() => {
@@ -21,18 +22,30 @@ const UserAccount = () => {
             .then(res => res.json())
             .then(initialData => {
                 setData(initialData);
-
                 // Now fetch the second piece of data using the id from the initial data
-                return fetch('http://localhost:5000/' + initialData.id + '/info/usersdata');
+                return fetch(`http://localhost:5000/${initialData.id}/info/usersdata`);
             })
             .then(res => res.json())
             .then(secondaryData => {
                 setData_to(secondaryData);
+                // Fetch the third piece of data using the id from the initial data
+                return fetch(`http://localhost:5000/inuseemail`);
+            })
+            .then(res => res.json())
+            .then(thirdData => {
+                // Process your thirdData here
+                const email = thirdData.emails[0];
+                //console.log(thirdData.emails[0])
+                setEmailData(email);
+                //console.log(email)
             })
             .catch(error => {
                 console.error("There was an error fetching the data:", error);
             });
     }, []);
+
+
+
 
 
     const changeName = async () => {
@@ -190,7 +203,7 @@ const UserAccount = () => {
 
 
             <View style={styles.infoContainer}>
-                <Text style={styles.info}>Email: {user.email}</Text>
+                <Text style={styles.info}>Email: {email_data}</Text>
                 <TouchableOpacity onPress={handleEditEmail}>
                     <RenderIcon />
                 </TouchableOpacity>
