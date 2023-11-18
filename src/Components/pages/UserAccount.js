@@ -10,11 +10,13 @@ const UserAccount = () => {
     const [user, setUser] = useState({
         name: 'John Doe', // Hardcoded for demonstration
         email: 'john.doe@example.com',
-        birthday: '1/4/04',
+        birthday: '1/4/01',
     });
     const [data, setData] = useState([]);
     const [data_to, setData_to] = useState([]);
     const [email_data, setEmailData] = useState('');
+    const [dob_data, setDobData] = useState('');
+
 
 
     useEffect(() => {
@@ -28,6 +30,7 @@ const UserAccount = () => {
             .then(res => res.json())
             .then(secondaryData => {
                 setData_to(secondaryData);
+                console.log(secondaryData);
                 // Fetch the third piece of data using the id from the initial data
                 return fetch(`http://localhost:5000/inuseemail`);
             })
@@ -244,7 +247,7 @@ const UserAccount = () => {
 
 
             <View style={styles.infoContainer}>
-                <Text style={styles.info}>Birthday: {user.birthday}</Text>
+                <Text style={styles.info}>Birthday: {data_to[5]}</Text>
                 
             </View>
             <Button

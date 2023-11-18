@@ -60,6 +60,7 @@ function Verification() {
         } else {
             // Handle the case where they don't match
             console.error('The codes do not match.');
+            alert('Wrong code');
             //console.log(backendCode);
             //console.log(userInput);
         }

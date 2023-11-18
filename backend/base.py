@@ -57,7 +57,7 @@ def user_data():
         #data.append(entry)
 
     #return jsonify(data)
-    return jsonify(user.first_name, user.last_name, user.gender, user.age, user.weight_lb)
+    return jsonify(user.first_name, user.last_name, user.gender, user.age, user.weight_lb, user.dob)
 
 
 

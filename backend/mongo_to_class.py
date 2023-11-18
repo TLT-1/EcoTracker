@@ -48,9 +48,10 @@ def user_info():
     user_one_gender = data[0]['gender']
     user_one_age = data[0]['age']
     user_one_weight_lb = data[0]['weight_lb']
+    user_one_dob = data[0]['dob']
     #print(f"{user_one_id} {user_one_first_name} {user_one_last_name} {user_one_gender} {user_one_age} {user_one_weight_lb}")
 
-    user_one = User.User(user_one_id, user_one_first_name, user_one_last_name, user_one_gender, user_one_age, user_one_weight_lb)
+    user_one = User.User(user_one_id, user_one_first_name, user_one_last_name, user_one_gender, user_one_age, user_one_weight_lb, user_one_dob)
     
     return user_one
     #print(user_one.name())
