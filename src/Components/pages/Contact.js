@@ -21,14 +21,14 @@ const Contact = () => {
                 }}
             >
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 40, fontWeight: 'bold', marginBottom: 10 }}>
+                    <Text style={{ fontSize: 60, fontWeight: 'bold', marginBottom: 10 }}>
                         Contact Us
                     </Text>
-                    <Text style={{ marginBottom: 10, fontSize: 24, fontWeight: '700' }}>
+                    <Text style={{ marginBottom: 10, fontSize: 32, fontWeight: '700' }}>
                         For any inquiries or feedback, please email us at:
                     </Text>
                     <TouchableOpacity onPress={handleEmailPress}>
-                        <Text style={{ color: 'white', fontSize: 20 }}>EcoTracker2023@gmail.com</Text>
+                        <Text style={{ color: 'white', fontSize: 28 }}>EcoTracker2023@gmail.com</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
