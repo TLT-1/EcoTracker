@@ -11,6 +11,7 @@ from Driving import Driving
 import mongo_to_class
 import time
 import Email
+import PasswordResetEmail
 
 
 app = Flask(__name__)
@@ -286,6 +287,17 @@ def change_email():
     else:
         return jsonify({"message": "Request must be JSON"}), 400
 
+@app.route('/sendPasswordEmail', methods=['POST'])
+def sendPasswordEmail():
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        email = data.get('email')
+        PasswordResetEmail.email(email)
+        return jsonify({"message": "Email updated successfully"}), 200
+    else:
+        return jsonify({"message": "Email did not send"}), 400
+        
+        
 
 
 if __name__ == "__main__":

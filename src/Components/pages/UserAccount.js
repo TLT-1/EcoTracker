@@ -177,9 +177,22 @@ const UserAccount = () => {
 
 
 
-    const handleChangePassword = () => {
+    const handleChangePassword = async () => {
         // Implement navigation or modal popup for password change
-        navigation.navigate('Details')
+        try {
+            const response = await axios.post('http://localhost:5000/sendPasswordEmail', {
+                email: email_data
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            // Check the server response for success and update state accordingly
+            
+        } catch (error) {
+            console.error(error);
+            alert("Error", "Failed to update email");
+        }
+        navigation.navigate('PasswordResetTemp')
     };
 
     const RenderIcon = () => <Text style={styles.icon}>🖉</Text>;

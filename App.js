@@ -38,6 +38,7 @@ import Driving from './src/Components/pages/Driving';
 import Energy from './src/Components/pages/Energy';
 import PasswordReset from './src/Components/pages/PasswordReset';
 import TrackNav from './src/Components/pages/TrackNav';
+import PasswordResetTemp from './src/Components/pages/PasswordResetTemp';
 
 function HomeScreen({ navigation }) {
     return (
@@ -108,6 +109,7 @@ function App() {
                 <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
                 <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
                 <Stack.Screen name="PasswordReset" component={PasswordReset} options={{ headerShown: false }} />
+                <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
 
                 <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
 

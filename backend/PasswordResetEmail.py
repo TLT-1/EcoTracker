@@ -25,8 +25,8 @@ def email(receiver_email):
         <title>Document</title>
     </head>
     <body>
-        <p>Hello, World!</p>
-        <p>Your password has been reset</p>
+        <p>Go Here to reset password</p>
+        <a href="http://localhost:19006/PasswordReset">Click me</a>
     </body>
     </html>
     """
