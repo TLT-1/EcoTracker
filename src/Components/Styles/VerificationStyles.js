@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
+        marginBottom: 3,
     },
     linkText: {
         paddingBottom: 10,

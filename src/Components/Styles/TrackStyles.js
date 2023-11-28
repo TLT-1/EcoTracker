@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start",
         backgroundColor: "transparent",
-        marginTop: -100,
+        marginTop: -70,
     },
     title: {
         width: "20%", // Adjusted the percentage to make the size responsive (bc chad/rebecca said responsive is cool)
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
+        marginBottom: 3,
     },
 });
 

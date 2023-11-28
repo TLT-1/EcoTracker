@@ -38,7 +38,6 @@ const Energy = ({ navigation }) => {
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
-                <Navbar />
                 <Image source={require("../../../assets/ecoEnergy.png")} style={styles.title} />
 
                 <Text style={styles.buttonText}>Appliance:</Text>

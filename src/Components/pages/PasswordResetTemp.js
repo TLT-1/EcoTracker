@@ -64,8 +64,8 @@ function PasswordResetTemp() {
 
 
             <View style={{ ...styles.container, marginBottom: 100 }}>
-                <Text style={{ ...styles.text, color: 'white', fontSize: 18 }}>Password Reset</Text>
-                <Text style={{ ...styles.text, color: 'white', fontSize: 16 }}>We've just sent the PASSWORD RESET to your Email</Text>
+                <Text style={{ ...styles.buttonText, color: 'white', fontSize: 24, marginBottom: 10 }}>Password Reset!</Text>
+                <Text style={{ ...styles.buttonText, color: 'white', fontSize: 20 }}>We've just sent the PASSWORD RESET to your Email</Text>
 
 
                 <TouchableOpacity
