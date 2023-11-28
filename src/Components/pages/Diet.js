@@ -4,19 +4,17 @@ import styles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 
-const Energy = ({ navigation }) => {
-    const [appliance, setAppliance] = useState('');
-    const [watts, setWatts] = useState('');
-    const [hoursDay, setHoursDay] = useState('');
+const Diet = ({ navigation }) => {
+    const [dietLevel, setDietLevel] = useState('');
+    const [food, setFood] = useState('');
 
     const handleSubmit = () => {
         const data = {
-            appliance,
-            watts,
-            hoursDay
+            dietLevel,
+            food
         };
 
-        fetch('/api/energy', {
+        fetch('/api/diet', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,25 +27,21 @@ const Energy = ({ navigation }) => {
     };
 
     const handleClear = () => {
-        setAppliance('');
-        setWatts('');
-        setHoursDay('');
+        setDietLevel('');
+        setFood('');
     };
 
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
-                <Image source={require("../../../assets/ecoEnergy.png")} style={styles.title} />
+                <Image source={require("../../../assets/ecoDiet.png")} style={styles.title} />
 
-                <Text style={styles.buttonText}>Appliance:</Text>
-                <TextInput style={styles.input} value={appliance} onChangeText={setAppliance} />
+                <Text style={styles.buttonText}>Diet Level:</Text>
+                <TextInput style={styles.input} value={dietLevel} onChangeText={setDietLevel} />
 
-                <Text style={styles.buttonText}>Watts:</Text>
-                <TextInput style={styles.input} value={watts} onChangeText={setWatts} />
-
-                <Text style={styles.buttonText}>Hours per day:</Text>
-                <TextInput style={styles.input} value={hours_day} onChangeText={setHoursDay} />
+                <Text style={styles.buttonText}>Food:</Text>
+                <TextInput style={styles.input} value={food} onChangeText={setFood} />
 
                 <View style={styles.button}>
                     <Button title="Submit" onPress={handleSubmit} color="transparent" />
@@ -61,4 +55,4 @@ const Energy = ({ navigation }) => {
     );
 };
 
-export default Energy;
+export default Diet;
