@@ -40,7 +40,7 @@ const Driving = ({ navigation }) => {
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
                 <Image source={require("../../../assets/ecoVehicle.png")} style={styles.title} />
 
                 <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>

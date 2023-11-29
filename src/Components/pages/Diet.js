@@ -34,7 +34,7 @@ const Diet = ({ navigation }) => {
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
                 <Image source={require("../../../assets/ecoDiet.png")} style={styles.title} />
 
                 <Text style={styles.buttonText}>Diet Level:</Text>

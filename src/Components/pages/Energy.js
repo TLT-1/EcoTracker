@@ -37,9 +37,8 @@ const Energy = ({ navigation }) => {
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
                 <Image source={require("../../../assets/ecoEnergy.png")} style={styles.title} />
-
                 <Text style={styles.buttonText}>Appliance:</Text>
                 <TextInput style={styles.input} value={appliance} onChangeText={setAppliance} />
 
