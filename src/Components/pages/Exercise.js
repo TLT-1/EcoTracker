@@ -4,19 +4,19 @@ import styles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 
-const Energy = ({ navigation }) => {
-    const [appliance, setAppliance] = useState('');
-    const [watts, setWatts] = useState('');
-    const [hoursDay, setHoursDay] = useState('');
+const Exercise = ({ navigation }) => {
+    const [activity, setActivity] = useState('');
+    const [freqPerWeek, setFreqPerWeek] = useState('');
+    const [durationPerDayMin, setDurationPerDayMin] = useState('');
 
     const handleSubmit = () => {
         const data = {
-            appliance,
-            watts,
-            hoursDay
+            activity,
+            freqPerWeek,
+            durationPerDayMin
         };
 
-        fetch('/api/energy', {
+        fetch('/api/exercise', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -29,25 +29,25 @@ const Energy = ({ navigation }) => {
     };
 
     const handleClear = () => {
-        setAppliance('');
-        setWatts('');
-        setHoursDay('');
+        setActivity('');
+        setFreqPerWeek('');
+        setDurationPerDayMin('');
     };
 
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
-                <Image source={require("../../../assets/ecoEnergy.png")} style={styles.title} />
+                <Image source={require("../../../assets/ecoExercise.png")} style={styles.title} />
 
-                <Text style={styles.buttonText}>Appliance:</Text>
-                <TextInput style={styles.input} value={appliance} onChangeText={setAppliance} />
+                <Text style={styles.buttonText}>Activity:</Text>
+                <TextInput style={styles.input} value={activity} onChangeText={setActivity} />
 
-                <Text style={styles.buttonText}>Watts:</Text>
-                <TextInput style={styles.input} value={watts} onChangeText={setWatts} />
+                <Text style={styles.buttonText}>Frequency Per Week:</Text>
+                <TextInput style={styles.input} value={freqPerWeek} onChangeText={setFreqPerWeek} />
 
-                <Text style={styles.buttonText}>Hours per day:</Text>
-                <TextInput style={styles.input} value={hoursDay} onChangeText={setHoursDay} />
+                <Text style={styles.buttonText}>Duration Per Day (min):</Text>
+                <TextInput style={styles.input} value={durationPerDayMin} onChangeText={setDurationPerDayMin} />
 
                 <View style={styles.button}>
                     <Button title="Submit" onPress={handleSubmit} color="transparent" />
@@ -61,4 +61,4 @@ const Energy = ({ navigation }) => {
     );
 };
 
-export default Energy;
+export default Exercise;

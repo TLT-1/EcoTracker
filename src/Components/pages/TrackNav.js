@@ -7,6 +7,7 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import styles from '../Styles/TrackStyles';
 import Diet from './Diet';
+import Exercise from './Exercise';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,9 @@ function TrackOptions({ navigation }) {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Diet')}>
                         <Text style={styles.buttonText}>Diet</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Exercise')}>
+                        <Text style={styles.buttonText}>Exercise</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
@@ -55,6 +59,11 @@ function TrackNav() {
                 <Stack.Screen
                     name="Diet"
                     component={Diet}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Exercise"
+                    component={Exercise}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>

@@ -37,6 +37,7 @@ import Contact from './src/Components/pages/Contact';
 import Driving from './src/Components/pages/Driving';
 import Energy from './src/Components/pages/Energy';
 import Diet from './src/Components/pages/Diet';
+import Exercise from './src/Components/pages/Exercise';
 import PasswordReset from './src/Components/pages/PasswordReset';
 import TrackNav from './src/Components/pages/TrackNav';
 import PasswordResetTemp from './src/Components/pages/PasswordResetTemp';
@@ -92,6 +93,7 @@ function TrackNavStackScreen() {
             <TrackNavStack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
             <TrackNavStack.Screen name="Energy" component={Energy} options={{ headerShown: false }} />
             <TrackNavStack.Screen name="Diet" component={Diet} options={{ headerShown: false }} />
+            <TrackNavStack.Screen name="Exercise" component={Exercise} options={{ headerShown: false }} />
         </TrackNavStack.Navigator>
     );
 }
