@@ -17,10 +17,6 @@ const App = () => {
 
 export default App; */
 
-
-
-
-
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -41,6 +37,7 @@ import Exercise from './src/Components/pages/Exercise';
 import PasswordReset from './src/Components/pages/PasswordReset';
 import TrackNav from './src/Components/pages/TrackNav';
 import PasswordResetTemp from './src/Components/pages/PasswordResetTemp';
+import Snowfall from 'react-snowfall';
 
 function HomeScreen({ navigation }) {
     return (
@@ -100,25 +97,29 @@ function TrackNavStackScreen() {
 
 function App() {
     return (
-        <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Overview' }} />
-                <Stack.Screen name="Details" component={DetailsScreen} />
-                <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
-                <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
-                <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
-                <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
-                <Stack.Screen name="ToS" component={ToS} options={{ headerShown: false }} />
-                <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
-                <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
-                <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-                <Stack.Screen name="PasswordReset" component={PasswordReset} options={{ headerShown: false }} />
-                <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
+        <>
+            <Snowfall style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} snowflakeCount={250} />
 
-                <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
+            <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+                <Stack.Navigator initialRouteName="Home">
+                    <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Overview' }} />
+                    <Stack.Screen name="Details" component={DetailsScreen} />
+                    <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
+                    <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+                    <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
+                    <Stack.Screen name="ToS" component={ToS} options={{ headerShown: false }} />
+                    <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
+                    <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
+                    <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
+                    <Stack.Screen name="PasswordReset" component={PasswordReset} options={{ headerShown: false }} />
+                    <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
 
-            </Stack.Navigator>
-        </NavigationContainer>
+                    <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
+
+                </Stack.Navigator>
+            </NavigationContainer>
+        </>
     );
 }
 
