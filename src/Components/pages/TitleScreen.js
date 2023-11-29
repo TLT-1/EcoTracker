@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, ImageBackground, Animated, Easing } from
 import styles from "../Styles/TitleScreenStyles";
 import Footer from '../Footer';
 import Navbar from '../Navbar';
+import Snowfall from 'react-snowfall';
 
 const TitleScreen = () => {
     const [scaleValue] = useState(new Animated.Value(1));
@@ -82,6 +83,7 @@ const TitleScreen = () => {
                 />
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
             </ImageBackground>
+            <Snowfall style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} snowflakeCount={250} />
             <Footer navigation={navigation} />
         </View>
     );
