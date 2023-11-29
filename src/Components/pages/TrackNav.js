@@ -15,7 +15,7 @@ function TrackOptions({ navigation }) {
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={[styles.container, { marginTop: 0, overflow: 'hidden' }]}>
+            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={[styles.container, { marginTop: 0, overflow: 'hidden' }]}>
                 <View style={{ marginTop: 100, alignItems: 'center' }}>
                     <Text style={[styles.buttonText, { marginBottom: 50 }]}>Choose An Option To Track</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
@@ -31,7 +31,7 @@ function TrackOptions({ navigation }) {
                         <Text style={styles.buttonText}>Exercise</Text>
                     </TouchableOpacity>
                 </View>
-                <Image source={require("../../../assets/ecoTrees.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
             </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>

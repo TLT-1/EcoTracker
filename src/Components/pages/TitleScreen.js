@@ -63,10 +63,8 @@ const TitleScreen = () => {
         <View style={styles.container}>
             <Navbar />
             <ImageBackground
-                source={require("../../../assets/ecoTrackTitleScreen.png")}
-                style={{ ...styles.titleScreen, overflow: 'hidden' }}
-            >
-
+                source={require("../../../assets/ecoTrackTitleScreenChristmas.png")}
+                style={{ ...styles.titleScreen, overflow: 'hidden' }}>
 
                 {/* 
                 <div>
@@ -78,15 +76,11 @@ const TitleScreen = () => {
                 </div>
                 */ }
 
-
-
-
-
                 <Animated.Image
                     source={require("../../../assets/ecoTrackLogosu.png")}
                     style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
                 />
-                <Image source={require("../../../assets/ecoTreesY.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
             </ImageBackground>
             <Footer navigation={navigation} />
         </View>
