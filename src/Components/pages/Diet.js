@@ -49,6 +49,7 @@ const Diet = ({ navigation }) => {
                 <View style={styles.button}>
                     <Button title="Clear" onPress={handleClear} color="transparent" />
                 </View>
+                <Image source={require("../../../assets/ecoTrees.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
             </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>

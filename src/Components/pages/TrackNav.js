@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Driving from '../pages/Driving';
 import Energy from '../pages/Energy';
@@ -31,6 +31,7 @@ function TrackOptions({ navigation }) {
                         <Text style={styles.buttonText}>Exercise</Text>
                     </TouchableOpacity>
                 </View>
+                <Image source={require("../../../assets/ecoTrees.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
             </ImageBackground>
             <Footer navigation={navigation} />
         </View>

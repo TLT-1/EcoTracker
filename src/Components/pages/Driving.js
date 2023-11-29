@@ -43,24 +43,28 @@ const Driving = ({ navigation }) => {
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={styles.container}>
                 <Image source={require("../../../assets/ecoVehicle.png")} style={styles.title} />
 
-                <Text style={styles.buttonText}>Year:</Text>
-                <TextInput style={styles.input} value={year} onChangeText={setYear} />
+                <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>
+                    <Text style={styles.buttonText}>Year:</Text>
+                    <TextInput style={styles.input} value={year} onChangeText={setYear} />
 
-                <Text style={styles.buttonText}>Make:</Text>
-                <TextInput style={styles.input} value={make} onChangeText={setMake} />
+                    <Text style={styles.buttonText}>Make:</Text>
+                    <TextInput style={styles.input} value={make} onChangeText={setMake} />
 
-                <Text style={styles.buttonText}>Model:</Text>
-                <TextInput style={styles.input} value={model} onChangeText={setModel} />
+                    <Text style={styles.buttonText}>Model:</Text>
+                    <TextInput style={styles.input} value={model} onChangeText={setModel} />
 
-                <Text style={styles.buttonText}>Average Speed:</Text>
-                <TextInput style={styles.input} value={avgSpeed} onChangeText={setAvgSpeed} />
+                    <Text style={styles.buttonText}>Average Speed:</Text>
+                    <TextInput style={styles.input} value={avgSpeed} onChangeText={setAvgSpeed} />
 
-                <View style={styles.button}>
-                    <Button title="Submit" onPress={handleSubmit} color="transparent" />
+                    <View style={styles.button}>
+                        <Button title="Submit" onPress={handleSubmit} color="transparent" />
+                    </View>
+                    <View style={styles.button}>
+                        <Button title="Clear" onPress={handleClear} color="transparent" />
+                    </View>
                 </View>
-                <View style={styles.button}>
-                    <Button title="Clear" onPress={handleClear} color="transparent" />
-                </View>
+
+                <Image source={require("../../../assets/ecoTrees.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
             </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
