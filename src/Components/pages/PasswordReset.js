@@ -33,10 +33,9 @@ function PasswordReset() {
 
     const handleLogin = async () => {
         try {
-            // Make POST request using axios with data
             const response = await axios({
                 method: 'POST',
-                url: 'http://localhost:5000/login',
+                url: 'http://localhost:5000/changepassword',
                 headers: { 'Content-Type': 'application/json' },
                 data: {
                     email: email,
@@ -44,23 +43,39 @@ function PasswordReset() {
                 }
             });
 
-            //console.log(response.data);  // Print out the response data
             if (response.data.success) {
-                navigation.navigate('Title');
+                // If password change is successful, navigate to the Title screen
+                navigation.navigate('UserAccount');
             } else {
-                // If the login is not successful, show an alert
-                alert("Login Failed", response.data.error || "Incorrect email or password");
+                // If the change is not successful, show an alert with the provided error message or a default message
+                alert("Change Password Failed", response.data.error || "An unknown error occurred.");
             }
         } catch (error) {
             console.error(error);
-            // If there is an error in the request, show an alert
-            alert("Login Error", "An error occurred during login, please try again.");
+            // If there is an error in making the request, show an alert with the error message
+            alert("Change Password Error", error.response?.data?.error || "An error occurred during the password change, please try again.");
         }
     };
 
+
     //handleLogin();
 
+    const handleSubmit = (e) => {
+        e.preventDefault(); // Prevents the default form submit action
 
+        // Check if passwords match
+        if (password === passwordConfirm) {
+            // Proceed with the login or registration process
+           // navigation.navigate('UserAccount');
+            handleLogin();
+            navigation.navigate('UserAccount');
+
+            console.log('Passwords match. Proceed with the next steps.');
+        } else {
+            // If passwords don't match, alert the user
+            alert('Passwords do not match. Please try again.');
+        }
+    };
 
     return (
         <ImageBackground
@@ -109,10 +124,7 @@ function PasswordReset() {
                 />
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={async () => {
-                        await handleLogin();
-
-                    }}
+                    onPress={handleSubmit}
                 >
                     <Text style={styles.buttonText}>Change Password</Text>
                 </TouchableOpacity>

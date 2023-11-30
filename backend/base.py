@@ -299,6 +299,42 @@ def sendPasswordEmail():
         
         
 
+@app.route('/changepassword', methods=['POST'])
+def change_password():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["EcoTracker"]
+    col = db["users_ids"]
+    
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        email = data.get('email')
+        password = data.get('password')
+        # Define the filter as a dictionary
+        user_filter = {"email": email}
+
+        
+        # Attempt to find the user by first and last name and update their email
+        result = col.update_one(
+            user_filter,  
+            {"$set": {"password": password}}
+        )
+
+        # Check if the update was successful
+        if result.modified_count > 0:
+            return jsonify({"message": "Email updated successfully"}), 200
+        else:
+            return jsonify({"message": "No changes made to the email"}), 200
+    else:
+        return jsonify({"message": "Request must be JSON"}), 400
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
