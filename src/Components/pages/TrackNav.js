@@ -5,7 +5,7 @@ import Driving from '../pages/Driving';
 import Energy from '../pages/Energy';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import styles from '../Styles/TrackStyles';
+import useResponsiveStyles from '../Styles/TrackStyles';
 import Diet from './Diet';
 import Exercise from './Exercise';
 import Snowfall from 'react-snowfall';
@@ -13,11 +13,14 @@ import Snowfall from 'react-snowfall';
 const Stack = createStackNavigator();
 
 function TrackOptions({ navigation }) {
+    const styles = useResponsiveStyles();
+
     return (
+
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={[styles.container, { marginTop: 0, overflow: 'hidden' }]}>
-                <View style={{ marginTop: 100, alignItems: 'center' }}>
+            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={[styles.container, { overflow: 'hidden' }]}>
+                <View style={{ marginTop: -300, alignItems: 'center' }}>
                     <Text style={[styles.buttonText, { marginBottom: 50 }]}>Choose An Option To Track</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
                         <Text style={styles.buttonText}>Driving</Text>

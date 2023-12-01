@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
-import styles from '../Styles/TrackStyles';
+import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
+
 
 const Driving = ({ navigation }) => {
     const [year, setYear] = useState('');
     const [make, setMake] = useState('');
     const [model, setModel] = useState('');
     const [avgSpeed, setAvgSpeed] = useState('');
+
+    const styles = useResponsiveStyles();
 
     const handleSubmit = () => {
         const data = {
@@ -54,7 +57,7 @@ const Driving = ({ navigation }) => {
                     <Text style={styles.buttonText}>Model:</Text>
                     <TextInput style={styles.input} value={model} onChangeText={setModel} />
 
-                    <Text style={styles.buttonText}>Average Speed:</Text>
+                    <Text style={styles.buttonText}>Average Speed (mph):</Text>
                     <TextInput style={styles.input} value={avgSpeed} onChangeText={setAvgSpeed} />
 
                     <View style={styles.button}>
@@ -65,7 +68,7 @@ const Driving = ({ navigation }) => {
                     </View>
                 </View>
 
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: '17%' }} />
             </ImageBackground>
             <Snowfall style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />

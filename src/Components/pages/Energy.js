@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
-import styles from '../Styles/TrackStyles';
+import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
@@ -9,6 +9,8 @@ const Energy = ({ navigation }) => {
     const [appliance, setAppliance] = useState('');
     const [watts, setWatts] = useState('');
     const [hoursDay, setHoursDay] = useState('');
+
+    const styles = useResponsiveStyles();
 
     const handleSubmit = () => {
         const data = {
