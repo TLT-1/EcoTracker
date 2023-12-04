@@ -16,7 +16,7 @@ const Driving = ({ navigation }) => {
 
     const styles = useResponsiveStyles();
 
-    console.log(year, make, model);
+    //console.log(year, make, model);
     const handleSubmit = async () => {
         try {
             // Make POST request using axios with data
