@@ -12,6 +12,7 @@ import mongo_to_class
 import time
 import Email
 import PasswordResetEmail
+from bson import ObjectId
 
 
 app = Flask(__name__)
@@ -327,12 +328,63 @@ def change_password():
 
         # Check if the update was successful
         if result.modified_count > 0:
-            return jsonify({"message": "Email updated successfully"}), 200
+            return jsonify({"message": "Password updated successfully"}), 200
         else:
-            return jsonify({"message": "No changes made to the email"}), 200
+            return jsonify({"message": "No changes made to the password"}), 200
     else:
         return jsonify({"message": "Request must be JSON"}), 400
 
+
+@app.route('/driving', methods=['POST'])
+def driving():
+    data = request.json
+    user_id = data.get('user_id')
+    year = data.get('year')
+    make = data.get('make')
+    model = data.get('model')
+    avg_speed = data.get('avg_speed')
+
+
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["EcoTracker"]
+    col = db["user_data"]
+    
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        user_id = data.get('user_id')
+        year = data.get('year')
+        make = data.get('make')
+        model = data.get('model')
+        avg_speed = data.get('avg_speed')
+        # Define the filter as a dictionary
+        user_filter = {"_id": ObjectId(user_id)}
+
+        #print(year, make, model)
+        # Attempt to find the user by first and last name and update their email
+        update_dict = {
+        "$set": {
+            "driving.year": year,
+            "driving.make": make,
+            "driving.model": model,
+            "driving.avg_speed_mph": avg_speed,
+            }
+        }
+         
+    # Attempt to find the user by first and last name and update the document
+        result = col.update_one(
+            user_filter,
+            update_dict
+        )
+
+        # Check if the update was successful
+        if result.modified_count > 0:
+            return jsonify({"message": "driving updated successfully"}), 200
+        else:
+            return jsonify({"message": "No changes made to the email"}), 400
+    else:
+        return jsonify({"message": "Request must be JSON"}), 400
 
 
 

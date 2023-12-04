@@ -4,6 +4,8 @@ import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
+import axios from 'axios';
+
 
 
 const Driving = ({ navigation }) => {
@@ -14,24 +16,28 @@ const Driving = ({ navigation }) => {
 
     const styles = useResponsiveStyles();
 
-    const handleSubmit = () => {
-        const data = {
-            year,
-            make,
-            model,
-            avg_speed: avgSpeed
-        };
+    console.log(year, make, model);
+    const handleSubmit = async () => {
+        try {
+            // Make POST request using axios with data
+            const response = await axios({
+                method: 'POST',
+                url: 'http://localhost:5000/driving',
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    user_id: '652d78b1a3e79a6fa01d4140',
+                    year: year,
+                    make: make,
+                    model: model,
+                    avg_speed: avgSpeed
+                }
+            });
 
-        fetch('/api/driving', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
+            //console.log(response.data);  // Print out the response data
+            handleClear();
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleClear = () => {
@@ -49,19 +55,19 @@ const Driving = ({ navigation }) => {
 
                 <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>
                     <Text style={styles.buttonText}>Year:</Text>
-                    <TextInput style={styles.input} value={year} onChangeText={setYear} />
+                    <TextInput style={styles.input} value={year} onChangeText={text => setYear(text)} />
 
                     <Text style={styles.buttonText}>Make:</Text>
-                    <TextInput style={styles.input} value={make} onChangeText={setMake} />
+                    <TextInput style={styles.input} value={make} onChangeText={text => setMake(text)} />
 
                     <Text style={styles.buttonText}>Model:</Text>
-                    <TextInput style={styles.input} value={model} onChangeText={setModel} />
+                    <TextInput style={styles.input} value={model} onChangeText={text => setModel(text)} />
 
                     <Text style={styles.buttonText}>Average Speed (mph):</Text>
-                    <TextInput style={styles.input} value={avgSpeed} onChangeText={setAvgSpeed} />
+                    <TextInput style={styles.input} value={avgSpeed} onChangeText={text => setAvgSpeed(text)} />
 
                     <View style={styles.button}>
-                        <Button title="Submit" onPress={handleSubmit} color="transparent" />
+                        <Button title="Submit" onPress={async () => { handleSubmit() }} color="transparent" />
                     </View>
                     <View style={styles.button}>
                         <Button title="Clear" onPress={handleClear} color="transparent" />
