@@ -52,9 +52,9 @@ const Energy = ({ navigation }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
-        { label: 'Item 1', value: 'item1' },
-        { label: 'Item 2', value: 'item2' },
-        { label: 'Item 3', value: 'item3' },
+        { label: 'oven', value: 'item1' },
+        { label: 'stove', value: 'item2' },
+        { label: 'microwave', value: 'item3' },
         // ... more items
     ]);
 
