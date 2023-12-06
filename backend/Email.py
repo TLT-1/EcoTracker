@@ -2,8 +2,6 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-
-
 def email(receiver_email, verification_code):
     # Set up the SMTP server
     smtp_server = "smtp.gmail.com"
@@ -13,24 +11,63 @@ def email(receiver_email, verification_code):
     # Create the message
     sender_email = "ecotracker2023@gmail.com"
     
-    subject = "Welcome To EcoTracker"
+    subject = "Welcome To EcoTrack"
 
     # Create an HTML body for the email
     html = f"""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <p>Hello, World!</p>
-        <p>Your verification code is: {verification_code}</p>
-    </body>
-    </html>
-    """
-
+<!DOCTYPE html>
+<html lang="en" style="margin: 0; padding: 0;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }}
+        .container {{
+            width: 80%;
+            margin: auto;
+            position: relative;
+        }}
+        .header {{
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }}
+        .image-container {{
+            position: relative;
+        }}
+        .image-container img {{
+            width: 100%;
+            display: block;
+        }}
+        .text-container {{
+            color: black;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+        }}
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+    <div class="container">
+        <div class="header">
+            <h1>Welcome To EcoTrack!</h1>
+        </div>
+        <div class="text-container">
+            <p>Your Verification Code Is: {verification_code}</p>
+        </div>
+        <div class="image-container">
+            <img src="https://i.ibb.co/2Y1WkxF/eco-Track-Title-Screen.png" alt="Background Image">
+        </div>
+    </div>
+</body>
+</html>
+"""
 
     # Set up the MIME structure
     message = MIMEMultipart("alternative")
