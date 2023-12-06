@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
+import { View, Text, TextInput, Button, Image, ImageBackground, FlatList } from 'react-native'
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
+import DropDownPicker from 'react-native-dropdown-picker';
+
 
 
 const Energy = ({ navigation }) => {
@@ -42,6 +44,26 @@ const Energy = ({ navigation }) => {
         setHoursDay('');
     };
 
+
+
+    
+
+
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Item 1', value: 'item1' },
+        { label: 'Item 2', value: 'item2' },
+        { label: 'Item 3', value: 'item3' },
+        // ... more items
+    ]);
+
+
+
+
+
+
+
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
@@ -62,6 +84,22 @@ const Energy = ({ navigation }) => {
                 <View style={styles.button}>
                     <Button title="Clear" onPress={handleClear} color="transparent" />
                 </View>
+
+
+
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <DropDownPicker
+                        open={open}
+                        value={value}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                    />
+                </View>
+
+
+
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
             </ImageBackground>
             <Snowfall style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} snowflakeCount={250} />
