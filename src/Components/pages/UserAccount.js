@@ -4,7 +4,9 @@ import styles from "../Styles/UserAccountStyles";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios';
+import Navbar from "../Navbar";
 import Footer from "../Footer";
+import Snowfall from "react-snowfall";
 
 const UserAccount = () => {
     const [user, setUser] = useState({
@@ -124,8 +126,8 @@ const UserAccount = () => {
     const changeEmail = async () => {
         try {
             const response = await axios.post('http://localhost:5000/changeemail', {
-                old_first: data_to[0], 
-                old_last: data_to[1],  
+                old_first: data_to[0],
+                old_last: data_to[1],
                 new_email: newEmail,
             }, {
                 headers: { 'Content-Type': 'application/json' }
@@ -187,7 +189,7 @@ const UserAccount = () => {
             });
 
             // Check the server response for success and update state accordingly
-            
+
         } catch (error) {
             console.error(error);
             alert("Error", "Failed to update email");
@@ -198,76 +200,80 @@ const UserAccount = () => {
     const RenderIcon = () => <Text style={styles.icon}>🖉</Text>;
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>User Account</Text>
-            <View style={styles.infoContainer}>
-                <Text style={styles.info}>Name: {data_to[0]} { data_to[1]}</Text>
-                <TouchableOpacity onPress={handleEditName}>
-                    <RenderIcon />
-                </TouchableOpacity>
+        <View style={{ flex: 1 }}>
+            <Navbar />
+            <ImageBackground
+                source={require("../../../assets/ecoBackgroundChristmas.png")}
+                style={{ flex: 1, overflow: 'hidden' }}>
+                <Text style={styles.title}>User Account</Text>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.info}>Name: {data_to[0]} {data_to[1]}</Text>
+                    <TouchableOpacity onPress={handleEditName}>
+                        <RenderIcon />
+                    </TouchableOpacity>
 
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={handleCloseModal}>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ margin: 20, backgroundColor: 'white', borderRadius: 20, padding: 35, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84, elevation: 5 }}>
+                                <TextInput
+                                    placeholder="Enter your new name"
+                                    value={newName}
+                                    onChangeText={setNewName}
+                                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 20, width: '100%' }}
+                                />
+                                <Button title="Save" onPress={handleSaveName} />
+                            </View>
+                        </View>
+                    </Modal>
+
+
+                </View>
+
+
+                <View style={styles.infoContainer}>
+                    <Text style={styles.info}>Email: {email_data}</Text>
+                    <TouchableOpacity onPress={handleEditEmail}>
+                        <RenderIcon />
+                    </TouchableOpacity>
+                </View>
+
+                {/* Email Modal */}
                 <Modal
                     animationType="slide"
                     transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={handleCloseModal}>
+                    visible={emailModalVisible}
+                    onRequestClose={handleCloseEmailModal}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ margin: 20, backgroundColor: 'white', borderRadius: 20, padding: 35, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84, elevation: 5 }}>
+                        <View style={modalStyle}>
                             <TextInput
-                                placeholder="Enter your new name"
-                                value={newName}
-                                onChangeText={setNewName}
-                                style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 20, width: '100%' }}
+                                placeholder="Enter your new email"
+                                value={newEmail}
+                                onChangeText={setNewEmail}
+                                style={textInputStyle}
+                                keyboardType="email-address"
                             />
-                            <Button title="Save" onPress={handleSaveName} />
+                            <Button title="Save" onPress={handleSaveEmail} />
                         </View>
                     </View>
                 </Modal>
 
 
-            </View>
+                <View style={styles.infoContainer}>
+                    <Text style={styles.info}>Birthday: {data_to[5]}</Text>
 
-
-
-
-            <View style={styles.infoContainer}>
-                <Text style={styles.info}>Email: {email_data}</Text>
-                <TouchableOpacity onPress={handleEditEmail}>
-                    <RenderIcon />
-                </TouchableOpacity>
-            </View>
-
-            {/* Email Modal */}
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={emailModalVisible}
-                onRequestClose={handleCloseEmailModal}>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={modalStyle}>
-                        <TextInput
-                            placeholder="Enter your new email"
-                            value={newEmail}
-                            onChangeText={setNewEmail}
-                            style={textInputStyle}
-                            keyboardType="email-address"
-                        />
-                        <Button title="Save" onPress={handleSaveEmail} />
-                    </View>
                 </View>
-            </Modal>
-
-
-
-            <View style={styles.infoContainer}>
-                <Text style={styles.info}>Birthday: {data_to[5]}</Text>
-                
-            </View>
-            <Button
-                title="Change Password"
-                onPress={handleChangePassword}
-                style={styles.button}
-            />
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
+                        <Text style={{ color: 'white' }}>Change Password</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
+            <Snowfall snowflakeCount={250} />
+            <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );
 };
