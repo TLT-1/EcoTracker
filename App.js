@@ -54,24 +54,27 @@ function HomeScreen({ navigation }) {
 
 function DetailsScreen({ navigation }) {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Details Screen</Text>
-            <Button
-                title="Go to Details... again"
-                onPress={() => navigation.navigate('Details')}
-            />
-            <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-            <Button title="Go back" onPress={() => navigation.goBack()} />
-            <Button
-                title="Go back to first screen in stack"
-                onPress={() => navigation.popToTop()}
-            />
-            <Button title="Go to Title" onPress={() => navigation.navigate('Title')} />
-            {/*<Button
+        <>
+            <Snowfall snowflakeCount={250} />
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Details Screen</Text>
+                <Button
+                    title="Go to Details... again"
+                    onPress={() => navigation.navigate('Details')}
+                />
+                <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+                <Button title="Go back" onPress={() => navigation.goBack()} />
+                <Button
+                    title="Go back to first screen in stack"
+                    onPress={() => navigation.popToTop()}
+                />
+                <Button title="Go to Title" onPress={() => navigation.navigate('Title')} />
+                {/*<Button
             title="Go to Details... again"
             onPress={() => navigation.push('Details')}
             /> */}
-        </View>
+            </View>
+        </>
     );
 }
 
@@ -86,20 +89,23 @@ const linking = {
 
 function TrackNavStackScreen() {
     return (
-        <TrackNavStack.Navigator initialRouteName="TrackNav">
-            <TrackNavStack.Screen name="TrackNav" component={TrackNav} options={{ headerShown: false }} />
-            <TrackNavStack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
-            <TrackNavStack.Screen name="Energy" component={Energy} options={{ headerShown: false }} />
-            <TrackNavStack.Screen name="Diet" component={Diet} options={{ headerShown: false }} />
-            <TrackNavStack.Screen name="Exercise" component={Exercise} options={{ headerShown: false }} />
-        </TrackNavStack.Navigator>
+        <>
+            <Snowfall snowflakeCount={250} />
+            <TrackNavStack.Navigator initialRouteName="TrackNav">
+                <TrackNavStack.Screen name="TrackNav" component={TrackNav} options={{ headerShown: false }} />
+                <TrackNavStack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
+                <TrackNavStack.Screen name="Energy" component={Energy} options={{ headerShown: false }} />
+                <TrackNavStack.Screen name="Diet" component={Diet} options={{ headerShown: false }} />
+                <TrackNavStack.Screen name="Exercise" component={Exercise} options={{ headerShown: false }} />
+            </TrackNavStack.Navigator>
+        </>
     );
 }
 
 function App() {
     return (
         <>
-            <Snowfall style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} snowflakeCount={250} />
+            <Snowfall snowflakeCount={250} />
 
             <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                 <Stack.Navigator initialRouteName="Home">
