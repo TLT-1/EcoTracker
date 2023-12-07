@@ -27,6 +27,7 @@ import LogIn from "./src/Components/pages/LogIn";
 import SignUp from "./src/Components/pages/SignUp";
 import PP from "./src/Components/pages/PP";
 import ToS from "./src/Components/pages/ToS";
+import News from './src/Components/pages/News';
 import Verification from "./src/Components/pages/Verification";
 import UserAccount from "./src/Components/pages/UserAccount";
 import Contact from './src/Components/pages/Contact';
@@ -114,6 +115,7 @@ function App() {
                     <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
                     <Stack.Screen name="PasswordReset" component={PasswordReset} options={{ headerShown: false }} />
                     <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
+                    <Stack.Screen name="News" component={News} options={{ headerShown: false }} />
 
                     <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
 
