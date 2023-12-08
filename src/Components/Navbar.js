@@ -36,7 +36,7 @@ const Navbar = () => {
             </TouchableOpacity>
             {windowWidth >= 800 && (
                 <View style={{ flexDirection: 'row' }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Title')}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
@@ -60,7 +60,7 @@ const Navbar = () => {
                         { left: 0, right: 'auto', flexDirection: 'column' },
                     ]}
                 >
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Title')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>Home</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
