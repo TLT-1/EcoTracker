@@ -13,6 +13,8 @@ const Driving = ({ navigation }) => {
     const [make, setMake] = useState('');
     const [model, setModel] = useState('');
     const [avgSpeed, setAvgSpeed] = useState('');
+    const [miles, setMiles] = useState('');
+    const [carbon, setCarbon] = useState('');
 
     const styles = useResponsiveStyles();
 
@@ -65,6 +67,13 @@ const Driving = ({ navigation }) => {
 
                     <Text style={styles.buttonText}>Average Speed (mph):</Text>
                     <TextInput style={styles.input} value={avgSpeed} onChangeText={text => setAvgSpeed(text)} />
+
+
+                    <Text style={styles.buttonText}>Miles driven:</Text>
+                    <TextInput style={styles.input} value={miles} onChangeText={text => setMiles(text) } />
+                    <Text style={styles.buttonText}>Carbon Used:{carbon }</Text>
+
+
 
                     <View style={styles.button}>
                         <Button title="Submit" onPress={async () => { handleSubmit() }} color="transparent" />

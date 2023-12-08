@@ -55,7 +55,6 @@ const Energy = ({ navigation }) => {
         { label: 'oven', value: 'item1' },
         { label: 'stove', value: 'item2' },
         { label: 'microwave', value: 'item3' },
-        // ... more items
     ]);
 
 
@@ -72,12 +71,12 @@ const Energy = ({ navigation }) => {
                 <Text style={styles.buttonText}>Appliance:</Text>
                 <TextInput style={styles.input} value={appliance} onChangeText={text => setAppliance(text)} />
 
-                <Text style={styles.buttonText}>Watts:</Text>
-                <TextInput style={styles.input} value={watts} onChangeText={text => setWatts(text)} />
 
                 <Text style={styles.buttonText}>Hours per day:</Text>
                 <TextInput style={styles.input} value={hoursDay} onChangeText={text => setHoursDay(text)} />
 
+                <Text style={styles.buttonText}>Watts:{watts }</Text>
+                
                 <View style={styles.button}>
                     <Button title="Submit" onPress={async () => { handleSubmit() }} color="transparent" />
                 </View>
