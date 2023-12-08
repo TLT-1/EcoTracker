@@ -15,8 +15,20 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 10,
     },
+    buttonContainer: {
+        width: '10%',
+        paddingHorizontal: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#062A52',
+        borderRadius: 15,
+    },
     button: {
-        marginTop: 20,
+        backgroundColor: '#062A52',
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5,
     },
     infoContainer: {
         flexDirection: 'row',
