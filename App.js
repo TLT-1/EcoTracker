@@ -19,6 +19,7 @@ export default App; */
 
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
+import { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as Linking from 'expo-linking';
@@ -42,13 +43,16 @@ import Snowfall from 'react-snowfall';
 
 function HomeScreen({ navigation }) {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-            <Button
-                title="Go to Details"
-                onPress={() => navigation.navigate('Details')}
-            />
-        </View>
+        <>
+            <Snowfall snowflakeCount={250} />
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Home Screen</Text>
+                <Button
+                    title="Go to Details"
+                    onPress={() => navigation.navigate('Details')}
+                />
+            </View>
+        </>
     );
 }
 
@@ -103,8 +107,21 @@ function TrackNavStackScreen() {
 }
 
 function App() {
+    const [key, setKey] = useState(Math.random());
+
+    useEffect(() => {
+        const handlePopState = () => {
+            setKey(Math.random());  // Force a re-render by changing the state
+        };
+
+        window.addEventListener('popstate', handlePopState);
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, []);
     return (
-        <>
+        <View key={key} style={{ flex: 1 }}>
             <Snowfall snowflakeCount={250} />
 
             <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
@@ -127,8 +144,9 @@ function App() {
 
                 </Stack.Navigator>
             </NavigationContainer>
-        </>
+        </View>
     );
 }
+
 
 export default App;
