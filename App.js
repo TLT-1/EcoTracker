@@ -120,6 +120,7 @@ function App() {
             window.removeEventListener('popstate', handlePopState);
         };
     }, []);
+    
     return (
         <View key={key} style={{ flex: 1 }}>
             <Snowfall snowflakeCount={250} />
