@@ -7,7 +7,7 @@ import Snowfall from 'react-snowfall';
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const Energy = ({ navigation }) => {
+const Test = ({ navigation }) => {
     const [appliance, setAppliance] = useState('');
     const [hoursDay, setHoursDay] = useState('');
     const [energyUsed, setEnergyUsed] = useState(null);
@@ -137,4 +137,4 @@ const Energy = ({ navigation }) => {
     );
 };
 
-export default Energy;
+export default Test;
