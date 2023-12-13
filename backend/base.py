@@ -13,6 +13,7 @@ import time
 import Email
 import PasswordResetEmail
 from bson import ObjectId
+from CarbonInterface import calculate_carbon_emissions
 
 
 app = Flask(__name__)
@@ -337,20 +338,14 @@ def change_password():
 
 @app.route('/driving', methods=['POST'])
 def driving():
-    data = request.json
-    user_id = data.get('user_id')
-    year = data.get('year')
-    make = data.get('make')
-    model = data.get('model')
-    avg_speed = data.get('avg_speed')
-
-
+    # MongoDB connection URI
     uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
-    #Create a new client and connect to the server
+    
+    # Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
     col = db["user_data"]
-    
+
     if request.is_json:  # Check if the request has a JSON content type
         data = request.json
         user_id = data.get('user_id')
@@ -358,33 +353,36 @@ def driving():
         make = data.get('make')
         model = data.get('model')
         avg_speed = data.get('avg_speed')
-        # Define the filter as a dictionary
-        user_filter = {"_id": ObjectId(user_id)}
+        miles_driven = data.get('miles_driven')
 
-        #print(year, make, model)
-        # Attempt to find the user by first and last name and update their email
+        # Calculate carbon emissions (You need to implement this function)
+        carbon_emissions = calculate_carbon_emissions(make, model, miles_driven)
+        #carbon_g = carbon_emissions['data']['attributes']['carbon_g']
+        # Define the filter and update dictionary for MongoDB
+        user_filter = {"_id": ObjectId(user_id)}
         update_dict = {
-        "$set": {
-            "driving.year": year,
-            "driving.make": make,
-            "driving.model": model,
-            "driving.avg_speed_mph": avg_speed,
+            "$set": {
+                "driving.year": year,
+                "driving.make": make,
+                "driving.model": model,
+                "driving.avg_speed_mph": avg_speed,
+                "driving.miles_driven": miles_driven,
+                "driving.carbon_emissions": carbon_emissions
             }
         }
-         
-    # Attempt to find the user by first and last name and update the document
-        result = col.update_one(
-            user_filter,
-            update_dict
-        )
+
+        # Update the user data
+        result = col.update_one(user_filter, update_dict)
 
         # Check if the update was successful
         if result.modified_count > 0:
-            return jsonify({"message": "driving updated successfully"}), 200
+            return jsonify({"message": "driving updated successfully", "carbon_emissions": carbon_emissions}), 200
         else:
             return jsonify({"message": "No changes made to the driving"}), 400
     else:
         return jsonify({"message": "Request must be JSON"}), 400
+
+# Implement the calculate_carbon_emissions function based on your requirements
 
 
 

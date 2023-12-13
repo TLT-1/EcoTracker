@@ -57,18 +57,21 @@ def create_vehicle_estimate(api_key, vehicle_model_id, distance_value):
     else:
         raise ValueError(f"Failed to create vehicle estimate: {response.text}")
 
-
-make_name = 'subaru'
-model_name = 'Wrx'
-distance_value = 17  # miles
+    
 
 
-try:
-    make_id = get_vehicle_make_id(api_key, make_name)
-    model_id = get_vehicle_model_id(api_key, make_id, model_name)
-    estimate = create_vehicle_estimate(api_key, model_id, distance_value)
-    print(json.dumps(estimate, indent=4))
-except ValueError as e:
-    print(e)
+
+
+def calculate_carbon_emissions(make_name, model_name, distance_value):
+
+    try:
+        make_id = get_vehicle_make_id(api_key, make_name)
+        model_id = get_vehicle_model_id(api_key, make_id, model_name)
+        estimate = create_vehicle_estimate(api_key, model_id, distance_value)
+        #print(json.dumps(estimate, indent=4))
+        carbon_g = estimate['data']['attributes']['carbon_g']
+        return carbon_g
+    except ValueError as e:
+        print(e)
 
 

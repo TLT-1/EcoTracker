@@ -119,7 +119,7 @@ const Energy = ({ navigation }) => {
                 />
 
                 <Text style={styles.buttonText}>
-                    Energy: {energyUsed !== null ? `${energyUsed} watt-hours` : ''}
+                    Watts: {energyUsed !== null ? `${energyUsed} watt-hours` : ''}
                 </Text>
 
                 <View style={styles.button}>

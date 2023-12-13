@@ -6,48 +6,58 @@ import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
 
-
-
-const Driving = ({ navigation }) => {
-    const [year, setYear] = useState('');
-    const [make, setMake] = useState('');
-    const [model, setModel] = useState('');
-    const [avgSpeed, setAvgSpeed] = useState('');
-    const [miles, setMiles] = useState('');
-    const [carbon, setCarbon] = useState('');
-
+const Driving = () => {
+    const [formData, setFormData] = useState({
+        user_id: '652d78b1a3e79a6fa01d4140',
+        year: '',
+        make: '',
+        model: '',
+        avg_speed: '',
+        miles_driven: ''
+    });
     const styles = useResponsiveStyles();
 
-    //console.log(year, make, model);
-    const handleSubmit = async () => {
-        try {
-            // Make POST request using axios with data
-            const response = await axios({
-                method: 'POST',
-                url: 'http://localhost:5000/driving',
-                headers: { 'Content-Type': 'application/json' },
-                data: {
-                    user_id: '652d78b1a3e79a6fa01d4140',
-                    year: year,
-                    make: make,
-                    model: model,
-                    avg_speed: avgSpeed
+    const [carbonEmissions, setCarbonEmissions] = useState(null);
+    const [error, setError] = useState('');
+
+    const handleSubmit = () => {
+        fetch('http://localhost:5000/driving', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "driving updated successfully") {
+                    setCarbonEmissions(data.carbon_emissions);
+                } else {
+                    setError(data.message);
                 }
+            })
+            .catch((error) => {
+                setError('Network or server error');
             });
-
-            //console.log(response.data);  // Print out the response data
-            handleClear();
-        } catch (error) {
-            console.error(error);
-        }
     };
 
+    const handleChange = (name, value) => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
     const handleClear = () => {
-        setYear('');
-        setMake('');
-        setModel('');
-        setAvgSpeed('');
+        setFormData({
+            ...formData, // this preserves any other fields in the state that you might add later
+            year: '',
+            make: '',
+            model: '',
+            avg_speed: '',
+            miles_driven: ''
+        });
     };
+
 
     return (
         <View style={{ flex: 1 }}>
@@ -57,26 +67,32 @@ const Driving = ({ navigation }) => {
 
                 <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>
                     <Text style={styles.buttonText}>Year:</Text>
-                    <TextInput style={styles.input} value={year} onChangeText={text => setYear(text)} />
+                    <TextInput style={styles.input} value={formData.year}
+                        onChangeText={(text) => handleChange('year', text)} />
 
                     <Text style={styles.buttonText}>Make:</Text>
-                    <TextInput style={styles.input} value={make} onChangeText={text => setMake(text)} />
+                    <TextInput style={styles.input} value={formData.make}
+                        onChangeText={(text) => handleChange('make', text)} />
 
                     <Text style={styles.buttonText}>Model:</Text>
-                    <TextInput style={styles.input} value={model} onChangeText={text => setModel(text)} />
+                    <TextInput style={styles.input} onChangeText={(text) => handleChange('model', text)}
+                        style={styles.input} />
 
                     <Text style={styles.buttonText}>Average Speed (mph):</Text>
-                    <TextInput style={styles.input} value={avgSpeed} onChangeText={text => setAvgSpeed(text)} />
+                    <TextInput style={styles.input} value={formData.avg_speed}
+                        onChangeText={(text) => handleChange('avg_speed', text)} />
 
 
                     <Text style={styles.buttonText}>Miles driven:</Text>
-                    <TextInput style={styles.input} value={miles} onChangeText={text => setMiles(text) } />
-                    <Text style={styles.buttonText}>Carbon Used:{carbon }</Text>
+                    <TextInput style={styles.input} value={formData.miles_driven}
+                        onChangeText={(text) => handleChange('miles_driven', text)} />
+
+                    <Text style={styles.buttonText}>Carbon Used: {carbonEmissions} kg CO2</Text>
 
 
 
                     <View style={styles.button}>
-                        <Button title="Submit" onPress={async () => { handleSubmit() }} color="transparent" />
+                        <Button title="Submit" onPress={handleSubmit} color="transparent" />
                     </View>
                     <View style={styles.button}>
                         <Button title="Clear" onPress={handleClear} color="transparent" />
@@ -88,7 +104,11 @@ const Driving = ({ navigation }) => {
             <Snowfall snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
+
+
     );
 };
+
+
 
 export default Driving;

@@ -1,140 +1,114 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
-import DropDownPicker from 'react-native-dropdown-picker';
 
-const Test = ({ navigation }) => {
-    const [appliance, setAppliance] = useState('');
-    const [hoursDay, setHoursDay] = useState('');
-    const [energyUsed, setEnergyUsed] = useState(null);
-    const [submitRequested, setSubmitRequested] = useState(false);
-
+const Test = () => {
+    const [formData, setFormData] = useState({
+        user_id: '652d78b1a3e79a6fa01d4140',
+        year: '',
+        make: '',
+        model: '',
+        avg_speed: '',
+        miles_driven: ''
+    });
     const styles = useResponsiveStyles();
 
-    const wattageMapping = {
-        oven: 2400,
-        stove: 1500,
-        microwave: 1200,
-        // Add more appliances and their respective wattage here
-    };
+    const [carbonEmissions, setCarbonEmissions] = useState(null);
+    const [error, setError] = useState('');
 
-    const getWattsForAppliance = (applianceKey) => {
-        return wattageMapping[applianceKey] || null;
-    };
-
-    const calculateEnergy = () => {
-        const applianceWatts = getWattsForAppliance(appliance);
-        if (hoursDay && !isNaN(hoursDay) && applianceWatts) {
-            const calculatedEnergy = parseFloat(applianceWatts) * parseFloat(hoursDay);
-            setEnergyUsed(calculatedEnergy);
-        } else {
-            alert('Please enter valid hours and select an appliance.');
-            setEnergyUsed(null);
-        }
-    };
-
-    useEffect(() => {
-        if (submitRequested && energyUsed !== null) {
-            handleSubmit();
-            setSubmitRequested(false);
-        }
-    }, [energyUsed, submitRequested]);
-
-    const handleSubmit = async () => {
-        if (!appliance) {
-            alert('Please select an appliance.');
-            return;
-        }
-        if (energyUsed === null) {
-            alert('Please calculate the energy before submitting.');
-            return;
-        }
-
-        try {
-            const response = await axios({
-                method: 'POST',
-                url: 'http://localhost:5000/energy',
-                headers: { 'Content-Type': 'application/json' },
-                data: {
-                    user_id: '652d78b1a3e79a6fa01d4140',
-                    appliance: appliance,
-                    watts: energyUsed,
-                    hoursDay: hoursDay,
+    const handleSubmit = () => {
+        fetch('http://localhost:5000/driving', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "driving updated successfully") {
+                    setCarbonEmissions(data.carbon_emissions);
+                } else {
+                    setError(data.message);
                 }
+            })
+            .catch((error) => {
+                setError('Network or server error');
             });
-            console.log(response.data);
-            handleClear();
-        } catch (error) {
-            console.error(error);
-        }
     };
 
+    const handleChange = (name, value) => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+    };
     const handleClear = () => {
-        setAppliance('');
-        setHoursDay('');
-        setEnergyUsed(null);
+        setFormData({
+            ...formData, // this preserves any other fields in the state that you might add later
+            year: '',
+            make: '',
+            model: '',
+            avg_speed: '',
+            miles_driven: ''
+        });
     };
 
-    const handleButtonPress = () => {
-        setSubmitRequested(true);
-        calculateEnergy();
-    };
-
-    const [open, setOpen] = useState(false);
-    const [items, setItems] = useState([
-        { label: 'Oven', value: 'oven' },
-        { label: 'Stove', value: 'stove' },
-        { label: 'Microwave', value: 'microwave' },
-    ]);
 
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={{ ...styles.container, overflow: 'hidden' }}>
-                <Image source={require("../../../assets/ecoEnergy.png")} style={styles.title} />
+                <Image source={require("../../../assets/ecoVehicle.png")} style={styles.title} />
 
-                <Text style={styles.buttonText}>Appliance:</Text>
-                <View style={styles.buttonText}>
-                    <DropDownPicker
-                        open={open}
-                        value={appliance}
-                        items={items}
-                        setOpen={setOpen}
-                        setValue={setAppliance}
-                        setItems={setItems}
-                        onChangeValue={(value) => setAppliance(value)}
-                    />
+                <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>
+                    <Text style={styles.buttonText}>Year:</Text>
+                    <TextInput style={styles.input} value={formData.year}
+                onChangeText={(text) => handleChange('year', text)} />
+
+                    <Text style={styles.buttonText}>Make:</Text>
+                    <TextInput style={styles.input} value={formData.make}
+                onChangeText={(text) => handleChange('make', text)} />
+
+                    <Text style={styles.buttonText}>Model:</Text>
+                    <TextInput style={styles.input} onChangeText={(text) => handleChange('model', text)}
+                style={styles.input} />
+
+                    <Text style={styles.buttonText}>Average Speed (mph):</Text>
+                    <TextInput style={styles.input} value={formData.avg_speed}
+                onChangeText={(text) => handleChange('avg_speed', text)} />
+
+
+                    <Text style={styles.buttonText}>Miles driven:</Text>
+                    <TextInput style={styles.input} value={formData.miles_driven}
+                        onChangeText={(text) => handleChange('miles_driven', text)} />
+
+                    <Text style={styles.buttonText}>Carbon Used: {carbonEmissions} kg CO2</Text>
+
+
+
+                    <View style={styles.button}>
+                        <Button title="Submit" onPress={ handleSubmit} color="transparent" />
+                    </View>
+                    <View style={styles.button}>
+                        <Button title="Clear" onPress={handleClear} color="transparent" />
+                    </View>
                 </View>
 
-                <Text style={styles.buttonText}>Hours per day:</Text>
-                <TextInput
-                    style={styles.input}
-                    value={hoursDay}
-                    onChangeText={text => setHoursDay(text)}
-                    keyboardType="numeric"
-                />
-
-                <Text style={styles.buttonText}>
-                    Energy: {energyUsed !== null ? `${energyUsed} watt-hours` : ''}
-                </Text>
-
-                <View style={styles.button}>
-                    <Button title="Submit" onPress={handleButtonPress} color="transparent" />
-                </View>
-                <View style={styles.button}>
-                    <Button title="Clear" onPress={handleClear} color="transparent" />
-                </View>
-
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: '17%' }} />
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
+
+
     );
 };
+
+
 
 export default Test;
