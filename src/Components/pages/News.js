@@ -24,7 +24,8 @@ function News() {
                     }
                 });
 
-                const excludedDomains = ['subscriber.politicopro.com', 'www.vox.com', 'www.sciencedaily.com', 'www.forbes.com', 'www.planetizen.com', 'press.un.org', 'www.rigzone.com', 'www.globenewswire.com', 'www.marketscreener.com', 'www.defense.gov', 'removed.com',];
+                const excludedDomains = ['subscriber.politicopro.com', 'www.vox.com', 'www.sciencedaily.com', 'www.forbes.com', 'www.planetizen.com', 'press.un.org', 'www.rigzone.com', 'www.globenewswire.com', 'www.marketscreener.com', 'www.defense.gov', 'removed.com',
+                    'www.bangkokpost.com', 'theconversation.com', 'www.cnn.com', 'inthesetimes.com', 'electrek.co', 'allafrica.com', 'www.cnbc.com', 'www.nationalobserver.com', 'www.businessinsider.com', 'www.latimes.com'];
 
                 const filteredArticles = response.data.articles.filter(article => {
                     const articleDomain = new URL(article.url).hostname;
@@ -55,6 +56,7 @@ function News() {
                 <Image
                     style={styles.image}
                     source={{ uri: item.urlToImage ? item.urlToImage : "https://i.ibb.co/2Y1WkxF/eco-Track-Title-Screen.png" }}
+                    resizeMode="cover"
                 />
                 <Text style={styles.title}>{item.title}</Text>
             </TouchableOpacity>
@@ -62,19 +64,18 @@ function News() {
     };
 
     return (
-        <View style={{ flex: 1, justifyContent: 'space-between' }}>
+        <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={{ flex: 1, ...styles.container, overflow: 'hidden' }}>
                 {news.length > 0 ? (
-                    <ScrollView>
+                    <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
                         <Text style={{ fontSize: 50, fontWeight: 'bold', color: 'white', textAlign: 'center' }}>Current News</Text>
                         <FlatList
                             data={news}
                             renderItem={renderItem}
                             keyExtractor={item => item.url}
                             numColumns={2}
-                            contentContainerStyle={styles.listContainer}
-
+                            contentContainerStyle={{ paddingHorizontal: '10%', justifyContent: 'center', marginLeft: 190 }}
                         />
                     </ScrollView>
                 ) : (
@@ -123,22 +124,21 @@ function News() {
 const styles = StyleSheet.create({
     listContainer: {
         alignItems: 'center',
-        paddingLeft: 200,
     },
     newsItem: {
         margin: 10,
         padding: 10,
         backgroundColor: '#fff',
         borderRadius: 10,
-        width: '40%',
-        alignSelf: 'center',
+        width: '42%',
+        alignSelf: 'stretch',
         borderColor: "#062a52",
         borderWidth: 2,
         boxShadow: '10px 5px 10px 5px rgba(0.5, 0.5, 0.5, 0.75)',
     },
     image: {
         width: '100%',
-        height: 200,
+        height: 250,
     },
     title: {
         fontSize: 18,
