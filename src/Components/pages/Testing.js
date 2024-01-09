@@ -1,114 +1,75 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
-import useResponsiveStyles from '../Styles/TrackStyles';
-import Navbar from '../Navbar';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, Image, ImageBackground, Animated, Easing, Touchable, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
+
+
+import styles from "../Styles/TitleScreenStyles";
 import Footer from '../Footer';
+import Navbar from '../Navbar';
 import Snowfall from 'react-snowfall';
-import axios from 'axios';
 
 const Test = () => {
-    const [formData, setFormData] = useState({
-        user_id: '652d78b1a3e79a6fa01d4140',
-        year: '',
-        make: '',
-        model: '',
-        avg_speed: '',
-        miles_driven: ''
-    });
-    const styles = useResponsiveStyles();
+    const [scaleValue] = useState(new Animated.Value(1));
 
-    const [carbonEmissions, setCarbonEmissions] = useState(null);
-    const [error, setError] = useState('');
+    useEffect(() => {
+        const pulseAnimation = Animated.sequence([
+            Animated.timing(scaleValue, {
+                toValue: 1.07,
+                duration: 1500,
+                easing: Easing.ease,
+                useNativeDriver: true,
+            }),
+            Animated.timing(scaleValue, {
+                toValue: 1,
+                duration: 1500,
+                easing: Easing.ease,
+                useNativeDriver: true,
+            }),
+        ]);
 
-    const handleSubmit = () => {
-        fetch('http://localhost:5000/driving', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === "driving updated successfully") {
-                    setCarbonEmissions(data.carbon_emissions);
-                } else {
-                    setError(data.message);
-                }
-            })
-            .catch((error) => {
-                setError('Network or server error');
-            });
-    };
+        Animated.loop(pulseAnimation).start();
+    }, [scaleValue]);
 
-    const handleChange = (name, value) => {
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            [name]: value
-        }));
-    };
-    const handleClear = () => {
-        setFormData({
-            ...formData, // this preserves any other fields in the state that you might add later
-            year: '',
-            make: '',
-            model: '',
-            avg_speed: '',
-            miles_driven: ''
-        });
-    };
+
 
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={{ ...styles.container, overflow: 'hidden' }}>
-                <Image source={require("../../../assets/ecoVehicle.png")} style={styles.title} />
+            <ImageBackground
+                source={require("../../../assets/ecoTrackTitleScreenChristmas.png")}
+                style={styles.titleScreen}>
 
-                <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>
-                    <Text style={styles.buttonText}>Year:</Text>
-                    <TextInput style={styles.input} value={formData.year}
-                onChangeText={(text) => handleChange('year', text)} />
+                <Animated.Image
+                    source={require("../../../assets/ecoTrackLogosu.png")}
+                    style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
+                />
 
-                    <Text style={styles.buttonText}>Make:</Text>
-                    <TextInput style={styles.input} value={formData.make}
-                onChangeText={(text) => handleChange('make', text)} />
-
-                    <Text style={styles.buttonText}>Model:</Text>
-                    <TextInput style={styles.input} onChangeText={(text) => handleChange('model', text)}
-                style={styles.input} />
-
-                    <Text style={styles.buttonText}>Average Speed (mph):</Text>
-                    <TextInput style={styles.input} value={formData.avg_speed}
-                onChangeText={(text) => handleChange('avg_speed', text)} />
-
-
-                    <Text style={styles.buttonText}>Miles driven:</Text>
-                    <TextInput style={styles.input} value={formData.miles_driven}
-                        onChangeText={(text) => handleChange('miles_driven', text)} />
-
-                    <Text style={styles.buttonText}>Carbon Used: {carbonEmissions} kg CO2</Text>
-
-
-
-                    <View style={styles.button}>
-                        <Button title="Submit" onPress={ handleSubmit} color="transparent" />
-                    </View>
-                    <View style={styles.button}>
-                        <Button title="Clear" onPress={handleClear} color="transparent" />
+                <View style={styles.contentContainer}>
+                    <Text style={styles.title}>
+                        Track and Reduce Your{'\n'}Carbon Footprint
+                    </Text>
+                    <Text style={styles.subtitle}>
+                        Monitor your daily activities and get personalized insights and{'\n'}recommended to lower your impact.
+                    </Text>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                            <Text style={styles.buttonText}>Learn more</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={() => { }}>
+                            <Text style={styles.buttonText}>Start tracking</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
 
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: '17%' }} />
+                <Image
+                    source={require("../../../assets/ecoTreesSnow.png")}
+                    style={styles.treesImage}
+                />
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
-            <Footer style={{ height: 18 }} navigation={navigation} />
+            <Footer navigation={navigation} />
         </View>
-
-
     );
 };
-
-
 
 export default Test;
