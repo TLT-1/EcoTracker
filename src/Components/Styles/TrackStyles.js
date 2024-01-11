@@ -16,7 +16,6 @@ export default function useResponsiveStyles() {
             width: "17%",
             aspectRatio: 1,
             resizeMode: "contain",
-
         },
         input: {
             width: windowWidth * 0.13,

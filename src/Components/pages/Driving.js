@@ -62,8 +62,8 @@ const Driving = () => {
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={{ ...styles.container, overflow: 'hidden' }}>
-                <Image source={require("../../../assets/ecoVehicle.png")} style={styles.title} />
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
+                <Image source={require("../../../assets/ecoVehicle.png")} style={{ ...styles.title, marginTop: -50 }} />
 
                 <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>
                     <Text style={styles.buttonText}>Year:</Text>
@@ -75,8 +75,8 @@ const Driving = () => {
                         onChangeText={(text) => handleChange('make', text)} />
 
                     <Text style={styles.buttonText}>Model:</Text>
-                    <TextInput style={styles.input} onChangeText={(text) => handleChange('model', text)}
-                        style={styles.input} />
+                    <TextInput style={styles.input} value={formData.model}
+                        onChangeText={(text) => handleChange('model', text)} />
 
                     <Text style={styles.buttonText}>Average Speed (mph):</Text>
                     <TextInput style={styles.input} value={formData.avg_speed}
