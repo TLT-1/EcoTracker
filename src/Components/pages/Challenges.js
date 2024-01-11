@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ImageBackground, FlatList, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; // install @expo/vector-icons
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Challenges = ({ navigation }) => {
     const challenges = [
@@ -39,6 +41,32 @@ const Challenges = ({ navigation }) => {
         },
     ];
     const [completedChallenges, setCompletedChallenges] = useState({});
+
+    // useEffect(() => {
+    //     // Load the completed challenges from async storage when the component mounts
+    //     AsyncStorage.getItem('completedChallenges').then(data => {
+    //         if (data) {
+    //             setCompletedChallenges(JSON.parse(data));
+    //         }
+    //     });
+    // }, []);
+
+    // useEffect(() => {
+    //     // Save the completed challenges to async storage whenever it changes
+    //     AsyncStorage.setItem('completedChallenges', JSON.stringify(completedChallenges));
+    // }, [completedChallenges]);
+
+    useEffect(() => {
+        const now = new Date();
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        const timeUntilTomorrow = tomorrow - now;
+
+        const timer = setTimeout(() => {
+            setCompletedChallenges({});
+        }, timeUntilTomorrow);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const renderItem = ({ item }) => {
         // Determine if the current challenge is completed
