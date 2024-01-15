@@ -45,8 +45,8 @@ const Exercise = ({ navigation }) => {
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={{ ...styles.container, overflow: 'hidden' }}>
-                <Image source={require("../../../assets/ecoExercise.png")} style={styles.title} />
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
+                <Image source={require("../../../assets/ecoExercise.png")} style={{ ...styles.title, marginTop: -200 }} />
 
                 <Text style={styles.buttonText}>Activity:</Text>
                 <TextInput style={styles.input} value={activity} onChangeText={text => setActivity(text)} />

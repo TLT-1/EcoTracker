@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
     },
     logo: {
-        width: "60%", // Adjusted for a more responsive size, considering the parent's width
+        width: "30%", // Adjusted for a more responsive size, considering the parent's width
         height: screenHeight * 0.3, // Height proportional to the screen height
         resizeMode: "contain",
         marginTop: screenHeight * 0.1, // Push down from the top, proportionally

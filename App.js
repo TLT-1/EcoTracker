@@ -36,6 +36,7 @@ import Driving from './src/Components/pages/Driving';
 import Energy from './src/Components/pages/Energy';
 import Diet from './src/Components/pages/Diet';
 import Exercise from './src/Components/pages/Exercise';
+import Challenges from './src/Components/pages/Challenges';
 import PasswordReset from './src/Components/pages/PasswordReset';
 import TrackNav from './src/Components/pages/TrackNav';
 import PasswordResetTemp from './src/Components/pages/PasswordResetTemp';
@@ -121,7 +122,7 @@ function App() {
             window.removeEventListener('popstate', handlePopState);
         };
     }, []);
-    
+
     return (
         <View key={key} style={{ flex: 1 }}>
             <Snowfall snowflakeCount={250} />
@@ -141,6 +142,7 @@ function App() {
                     <Stack.Screen name="PasswordReset" component={PasswordReset} options={{ headerShown: false }} />
                     <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
                     <Stack.Screen name="News" component={News} options={{ headerShown: false }} />
+                    <Stack.Screen name="Challenges" component={Challenges} options={{ headerShown: false }} />
                     <Stack.Screen name="Test" component={Test} options={{ headerShown: false }} />
 
                     <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />

@@ -51,6 +51,9 @@ const Navbar = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('News')}>
                         <Text style={NavbarStyles.menuItem}>News</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Challenges')}>
+                        <Text style={NavbarStyles.menuItem}>Challenges</Text>
+                    </TouchableOpacity>
                 </View>
             )}
             {isMenuOpen && (
