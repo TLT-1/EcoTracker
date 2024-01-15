@@ -1,11 +1,16 @@
 // ProductCard.js
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
-const ProductCard = ({ productName, productDesc, imageUrl, onLikePress }) => {
+const windowWidth = Dimensions.get('window').width;
+const cardMargin = 20; // Adjust the margin as needed
+const cardWidth = (windowWidth / 3) - (cardMargin * 2); // Three cards per row with margins
+
+
+const ProductCard = ({ bestsellerLabel, productName, productDesc, imageUrl, onLikePress }) => {
     return (
         <View style={styles.cardContainer}>
-            <Text style={styles.bestsellerLabel}>Bestseller</Text>
+            <Text style={styles.bestsellerLabel}>{bestsellerLabel}</Text>
             <Image source={{ uri: imageUrl }} style={styles.productImage} />
             <Text style={styles.productName}>{productName}</Text>
             <Text style={styles.productDesc}>{productDesc}</Text>
@@ -20,7 +25,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         backgroundColor: '#FFFFFF',
         borderRadius: 8,
-        padding: 16,
+        padding: 16, // Adjust padding if necessary to reduce size
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 3,
@@ -28,10 +33,11 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
         shadowOpacity: 0.1,
-        marginVertical: 10,
-        alignSelf: 'center', // Center the card in the parent view
-        width: '45%', // Each card takes up roughly half the container width minus some margin
-        margin: '2.5%', // Add some margin around each card
+        flex: 1,
+        flexBasis: '30%',
+        flexGrow: 0,
+        flexShrink: 1,
+        margin: 10,
     },
     bestsellerLabel: {
         position: 'absolute',
@@ -45,7 +51,7 @@ const styles = StyleSheet.create({
         zIndex: 1, // Make sure it's above the image
     },
     productImage: {
-        width: '90%', // Slightly less than full width to add padding
+        width: '100%', // Slightly less than full width to add padding
         height: undefined, // Height will be calculated based on the aspect ratio
         aspectRatio: 1, // Adjust this value based on your image's aspect ratio
         resizeMode: 'contain',
@@ -65,5 +71,4 @@ const styles = StyleSheet.create({
         // Additional styles if needed
     },
 });
-
 export default ProductCard;

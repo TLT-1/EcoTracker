@@ -67,25 +67,60 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                     </View>
                 </ImageBackground>
 
+                <View style={styles.line } />
+
                 <Text style={styles.titleto}>
                     Popular Eco-Friendly{'\n'}Products
                 </Text>
                 <View style={styles.productSection}>
                     <ProductCard
+                        bestsellerLabel="Best Seller"
                         productName="Reusable Water Bottle"
                         productDesc="1,000 plastic bottles avoided"
                         imageUrl="http://placekitten.com/200/200"
                         onLikePress={handleLikePress}
                     />
                     <ProductCard
+                        bestsellerLabel="New"
+                        productName="Compostable Food Containers"
+                        productDesc="50 pounds of waste diverted"
+                        imageUrl="http://placekitten.com/200/200"
+                        onLikePress={handleLikePress}
+                    />
+                    <ProductCard
+                        bestsellerLabel="Old"
+                        productName="Solar Power Bank"
+                        productDesc="2,000mAh of clean energy"
+                        imageUrl="http://placekitten.com/200/200"
+                        onLikePress={handleLikePress}
+                    />
+                </View>
+
+                
+                <View style={styles.line} />
+
+                <Text style={styles.titleto}>
+                    Your Carbon Footprint
+                </Text>
+                <View style={styles.productSection}>
+                    <ProductCard
+                        bestsellerLabel="Best Seller"
                         productName="Reusable Water Bottle"
                         productDesc="1,000 plastic bottles avoided"
                         imageUrl="http://placekitten.com/200/200"
                         onLikePress={handleLikePress}
                     />
                     <ProductCard
-                        productName="Reusable Water Bottle"
-                        productDesc="1,000 plastic bottles avoided"
+                        bestsellerLabel="New"
+                        productName="Compostable Food Containers"
+                        productDesc="50 pounds of waste diverted"
+                        imageUrl="http://placekitten.com/200/200"
+                        onLikePress={handleLikePress}
+                    />
+                    <ProductCard
+                        bestsellerLabel="Old"
+                        productName="Solar Power Bank"
+                        productDesc="2,000mAh of clean energy"
                         imageUrl="http://placekitten.com/200/200"
                         onLikePress={handleLikePress}
                     />

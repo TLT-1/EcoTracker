@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 10,
         backgroundColor: 'lightgrey',
+        padding: 10,
     },
     titleto: {
         fontSize: 24,
@@ -83,11 +84,11 @@ const styles = StyleSheet.create({
         marginBottom: 20, // Space from the bottom of the ScrollView
     },
     productSection: {
-        flexDirection: 'row', // Arrange items in a row
-        justifyContent: 'space-around', // Space out the cards evenly
-        flexWrap: 'wrap', // Allow items to wrap to next line if not enough space
-        padding: 20,
-        width: '35%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center', // Center the cards in the row
+        alignItems: 'flex-start',  // Allow items to wrap to next line if not enough space
+        padding: 50,
     },
 });
 
