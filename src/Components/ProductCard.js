@@ -1,4 +1,4 @@
-// ProductCard.js
+﻿// ProductCard.js
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 
@@ -7,15 +7,15 @@ const cardMargin = 20; // Adjust the margin as needed
 const cardWidth = (windowWidth / 3) - (cardMargin * 2); // Three cards per row with margins
 
 
-const ProductCard = ({ bestsellerLabel, productName, productDesc, imageUrl, onLikePress }) => {
+const ProductCard = ({ bestsellerLabel, productName, productDesc, imageSrc, onLikePress }) => {
     return (
         <View style={styles.cardContainer}>
             <Text style={styles.bestsellerLabel}>{bestsellerLabel}</Text>
-            <Image source={{ uri: imageUrl }} style={styles.productImage} />
+            <Image source={imageSrc} style={styles.productImage} />
             <Text style={styles.productName}>{productName}</Text>
             <Text style={styles.productDesc}>{productDesc}</Text>
             <TouchableOpacity onPress={onLikePress} style={styles.likeButton}>
-                <Text>cool</Text>
+                <Text>👍</Text>
             </TouchableOpacity>
         </View>
     );

@@ -90,6 +90,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',  // Allow items to wrap to next line if not enough space
         padding: 50,
     },
+    infoCardContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        padding: 20,
+    },
 });
 
 export default styles;

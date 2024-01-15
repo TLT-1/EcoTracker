@@ -4,9 +4,14 @@ import { StyleSheet, ScrollView, Text, View, Image, ImageBackground, Animated, E
 
 import styles from "../Styles/TitleScreenStyles";
 import ProductCard from '../ProductCard';
+import InfoCard from '../InfoCard';
+import GraphCard from '../GraphCard';
 import Footer from '../Footer';
 import Navbar from '../Navbar';
 import Snowfall from 'react-snowfall';
+import CarbonFootprintInfo from '../CarbonFootprintInfo';
+import Testimonials from '../Testimonials';
+import CommunitySignUp from '../CommunitySignUp';
 
 const Test = ({ navigation }) => { // Make sure to receive the navigation prop if it's being used
     const [scaleValue] = useState(new Animated.Value(1));
@@ -77,21 +82,21 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                         bestsellerLabel="Best Seller"
                         productName="Reusable Water Bottle"
                         productDesc="1,000 plastic bottles avoided"
-                        imageUrl="http://placekitten.com/200/200"
+                        imageSrc={require('../../../assets/reusableWaterbottle.png')}
                         onLikePress={handleLikePress}
                     />
                     <ProductCard
                         bestsellerLabel="New"
                         productName="Compostable Food Containers"
                         productDesc="50 pounds of waste diverted"
-                        imageUrl="http://placekitten.com/200/200"
+                        imageSrc={require('../../../assets/CompostableFoodContainers.png')}
                         onLikePress={handleLikePress}
                     />
                     <ProductCard
                         bestsellerLabel="Old"
                         productName="Solar Power Bank"
                         productDesc="2,000mAh of clean energy"
-                        imageUrl="http://placekitten.com/200/200"
+                        imageSrc={require('../../../assets/SolarPowerBank.png')}
                         onLikePress={handleLikePress}
                     />
                 </View>
@@ -102,29 +107,28 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                 <Text style={styles.titleto}>
                     Your Carbon Footprint
                 </Text>
-                <View style={styles.productSection}>
-                    <ProductCard
-                        bestsellerLabel="Best Seller"
-                        productName="Reusable Water Bottle"
-                        productDesc="1,000 plastic bottles avoided"
-                        imageUrl="http://placekitten.com/200/200"
-                        onLikePress={handleLikePress}
+                <View style={styles.infoCardContainer}>
+                    <InfoCard
+                        title="Today's Emissions"
+                        value="14.5kg CO2e"
+                        comparison="+2% compared to yesterday"
                     />
-                    <ProductCard
-                        bestsellerLabel="New"
-                        productName="Compostable Food Containers"
-                        productDesc="50 pounds of waste diverted"
-                        imageUrl="http://placekitten.com/200/200"
-                        onLikePress={handleLikePress}
-                    />
-                    <ProductCard
-                        bestsellerLabel="Old"
-                        productName="Solar Power Bank"
-                        productDesc="2,000mAh of clean energy"
-                        imageUrl="http://placekitten.com/200/200"
-                        onLikePress={handleLikePress}
+                    <InfoCard
+                        title="Total Savings"
+                        value="150kg CO2e"
+                        comparison="-10% compared to last month"
                     />
                 </View>
+                <GraphCard />
+                <View style={styles.line} />
+
+                <CarbonFootprintInfo  />
+                <View style={styles.line} />
+
+                <Testimonials />
+                <View style={styles.line} />
+
+                <CommunitySignUp />
 
                 <Snowfall snowflakeCount={250} />
                 <View style={{ height: 500, backgroundColor: 'green' }} /> {/* This is your spacer View */}
