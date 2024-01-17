@@ -86,6 +86,10 @@ const Navbar = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Challenges')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>Challenges</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('UserAccount')}
+                        style={{ alignItems: 'center', justifyContent: 'center', paddingLeft: 20, paddingRight: 20 }}>
+                        <Icon name="user" size={30} color="#fff" />
+                    </TouchableOpacity>
                 </View>
             )}
         </View>
