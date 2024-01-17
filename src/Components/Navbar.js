@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import NavbarStyles from './Styles/NavbarStyles';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Navbar = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -54,6 +55,10 @@ const Navbar = () => {
                     <TouchableOpacity onPress={() => navigation.navigate('Challenges')}>
                         <Text style={NavbarStyles.menuItem}>Challenges</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('UserAccount')}
+                        style={{ alignItems: 'center', justifyContent: 'center', paddingLeft: 20, paddingRight: 20 }}>
+                        <Icon name="user" size={30} color="#fff" />
+                    </TouchableOpacity>
                 </View>
             )}
             {isMenuOpen && (
@@ -77,6 +82,9 @@ const Navbar = () => {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('News')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={NavbarStyles.menuItem}>News</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Challenges')} style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={NavbarStyles.menuItem}>Challenges</Text>
                     </TouchableOpacity>
                 </View>
             )}

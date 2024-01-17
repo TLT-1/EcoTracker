@@ -42,19 +42,19 @@ const Challenges = ({ navigation }) => {
     ];
     const [completedChallenges, setCompletedChallenges] = useState({});
 
-    // useEffect(() => {
-    //     // Load the completed challenges from async storage when the component mounts
-    //     AsyncStorage.getItem('completedChallenges').then(data => {
-    //         if (data) {
-    //             setCompletedChallenges(JSON.parse(data));
-    //         }
-    //     });
-    // }, []);
+    useEffect(() => {
+        // Load the completed challenges from async storage when the component mounts
+        AsyncStorage.getItem('completedChallenges').then(data => {
+            if (data) {
+                setCompletedChallenges(JSON.parse(data));
+            }
+        });
+    }, []);
 
-    // useEffect(() => {
-    //     // Save the completed challenges to async storage whenever it changes
-    //     AsyncStorage.setItem('completedChallenges', JSON.stringify(completedChallenges));
-    // }, [completedChallenges]);
+    useEffect(() => {
+        // Save the completed challenges to async storage whenever it changes
+        AsyncStorage.setItem('completedChallenges', JSON.stringify(completedChallenges));
+    }, [completedChallenges]);
 
     useEffect(() => {
         const now = new Date();
