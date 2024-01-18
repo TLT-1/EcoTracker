@@ -29,13 +29,14 @@ export default function useResponsiveStyles() {
             backgroundColor: 'white',
         },
         button: {
-            width: windowWidth * 0.04,
+            width: windowWidth * 0.06,
             height: windowHeight * 0.04,
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#062A52',
             borderRadius: 15,
             marginTop: windowHeight * 0.005,
+            marginBottom: 5
         },
         buttonText: {
             color: "white",

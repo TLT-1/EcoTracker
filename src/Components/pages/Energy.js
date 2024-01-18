@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-nat
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import Fact from '../Fact';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -14,6 +15,7 @@ const Energy = ({ navigation }) => {
     const [submitRequested, setSubmitRequested] = useState(false);
 
     const styles = useResponsiveStyles();
+    const [isModalVisible, setModalVisible] = useState(true);
 
     const wattageMapping = {
         oven: 2400,
@@ -130,6 +132,7 @@ const Energy = ({ navigation }) => {
                 </View>
 
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />

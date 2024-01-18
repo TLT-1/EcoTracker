@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-nat
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import Fact from '../Fact';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
 
@@ -13,6 +14,7 @@ const Exercise = ({ navigation }) => {
     const [durationPerDayMin, setDurationPerDayMin] = useState('');
 
     const styles = useResponsiveStyles();
+    const [isModalVisible, setModalVisible] = useState(true);
 
     const handleSubmit = async () => {
         try {
@@ -64,6 +66,7 @@ const Exercise = ({ navigation }) => {
                     <Button title="Clear" onPress={handleClear} color="transparent" />
                 </View>
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />

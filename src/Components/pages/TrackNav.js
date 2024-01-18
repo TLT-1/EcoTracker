@@ -8,6 +8,7 @@ import Footer from '../Footer';
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Diet from './Diet';
 import Exercise from './Exercise';
+import Water from './Water';
 import Snowfall from 'react-snowfall';
 import Fact from '../Fact';
 
@@ -34,6 +35,9 @@ function TrackOptions({ navigation }) {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Exercise')}>
                         <Text style={styles.buttonText}>Exercise</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Water')}>
+                        <Text style={styles.buttonText}>Water</Text>
                     </TouchableOpacity>
                 </View>
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
@@ -75,6 +79,11 @@ function TrackNav() {
                 <Stack.Screen
                     name="Exercise"
                     component={Exercise}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Water"
+                    component={Water}
                     options={{ headerShown: false }}
                 />
             </Stack.Navigator>

@@ -36,12 +36,14 @@ import Driving from './src/Components/pages/Driving';
 import Energy from './src/Components/pages/Energy';
 import Diet from './src/Components/pages/Diet';
 import Exercise from './src/Components/pages/Exercise';
+import Water from './src/Components/pages/Water';
 import Challenges from './src/Components/pages/Challenges';
 import PasswordReset from './src/Components/pages/PasswordReset';
 import TrackNav from './src/Components/pages/TrackNav';
 import PasswordResetTemp from './src/Components/pages/PasswordResetTemp';
 import Test from './src/Components/pages/Testing';
 import Snowfall from 'react-snowfall';
+
 
 function HomeScreen({ navigation }) {
     return (
@@ -103,6 +105,7 @@ function TrackNavStackScreen() {
                 <TrackNavStack.Screen name="Energy" component={Energy} options={{ headerShown: false }} />
                 <TrackNavStack.Screen name="Diet" component={Diet} options={{ headerShown: false }} />
                 <TrackNavStack.Screen name="Exercise" component={Exercise} options={{ headerShown: false }} />
+                <TrackNavStack.Screen name="Water" component={Water} options={{ headerShown: false }} />
             </TrackNavStack.Navigator>
         </>
     );
