@@ -23,7 +23,7 @@ function TrackOptions({ navigation }) {
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={[styles.container, { overflow: 'hidden' }]}>
                 <View style={{ marginTop: -300, alignItems: 'center' }}>
-                    <Text style={[styles.buttonText, { marginBottom: 50 }]}>Choose An Option To Track</Text>
+                    <Text style={[styles.buttonText, { fontSize: 24, marginBottom: 50 }]}>Choose An Option To Track</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
                         <Text style={styles.buttonText}>Driving</Text>
                     </TouchableOpacity>
