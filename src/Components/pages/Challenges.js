@@ -5,6 +5,7 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isToday } from 'date-fns';
 
 
 const Challenges = ({ navigation }) => {
@@ -12,7 +13,7 @@ const Challenges = ({ navigation }) => {
         {
             id: '1',
             title: 'Drink Water',
-            description: 'Drink 8 glasses of water every day to stay hydrated.',
+            description: 'Drink at least 8 glasses of water every day to stay hydrated.',
         },
         {
             id: '2',
@@ -42,36 +43,38 @@ const Challenges = ({ navigation }) => {
     ];
     const [completedChallenges, setCompletedChallenges] = useState({});
 
-    useEffect(() => {
-        // Load the completed challenges from async storage when the component mounts
-        AsyncStorage.getItem('completedChallenges').then(data => {
-            if (data) {
-                setCompletedChallenges(JSON.parse(data));
+    const setCompletedChallengesWithStorage = async (value) => {
+        try {
+            await AsyncStorage.setItem('@completedChallenges', JSON.stringify(value));
+            await AsyncStorage.setItem('@date', new Date().toString());
+            setCompletedChallenges(value);
+        } catch (e) {
+            // saving error
+        }
+    };
+
+    const loadCompletedChallenges = async () => {
+        try {
+            const value = await AsyncStorage.getItem('@completedChallenges');
+            const date = await AsyncStorage.getItem('@date');
+            if (value !== null && date !== null && isToday(new Date(date))) {
+                setCompletedChallenges(JSON.parse(value));
+            } else {
+                setCompletedChallenges({});
+                AsyncStorage.setItem('@date', new Date().toString());
             }
-        });
-    }, []);
+        } catch (e) {
+            // loading error
+        }
+    };
 
     useEffect(() => {
-        // Save the completed challenges to async storage whenever it changes
-        AsyncStorage.setItem('completedChallenges', JSON.stringify(completedChallenges));
-    }, [completedChallenges]);
-
-    useEffect(() => {
-        const now = new Date();
-        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-        const timeUntilTomorrow = tomorrow - now;
-
-        const timer = setTimeout(() => {
-            setCompletedChallenges({});
-        }, timeUntilTomorrow);
-
-        return () => clearTimeout(timer);
+        loadCompletedChallenges();
     }, []);
 
     const renderItem = ({ item }) => {
         // Determine if the current challenge is completed
         const isCompleted = !!completedChallenges[item.id];
-
 
         return (
             <View style={styles.item}>
@@ -81,17 +84,19 @@ const Challenges = ({ navigation }) => {
                 </View>
                 <TouchableOpacity
                     style={{ marginLeft: 30 }}
-                    onPress={() => {
-                        setCompletedChallenges({
+                    onPress={async () => {
+                        const newCompletedChallenges = {
                             ...completedChallenges,
                             [item.id]: !isCompleted // Toggle the completion status of the challenge
-                        });
+                        };
+                        await setCompletedChallengesWithStorage(newCompletedChallenges);
                     }}>
                     <MaterialIcons name="check-circle" size={32} color={isCompleted ? 'green' : 'grey'} />
                 </TouchableOpacity>
             </View>
         );
     };
+
     const styles = {
         container: {
             flex: 1,
