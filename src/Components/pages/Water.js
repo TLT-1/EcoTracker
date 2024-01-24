@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-nati
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import Snowfall from 'react-snowfall';
+// import Snowfall from 'react-snowfall';
 import Fact from '../Fact';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isToday } from 'date-fns';

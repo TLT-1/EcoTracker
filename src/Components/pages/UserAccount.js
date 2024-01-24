@@ -203,7 +203,7 @@ const UserAccount = () => {
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground
-                source={require("../../../assets/ecoBackgroundChristmas.png")}
+                source={require("../../../assets/ecoBackground.png")}
                 style={{ flex: 1, overflow: 'hidden' }}>
                 <Text style={styles.title}>User Account</Text>
                 <View style={styles.infoContainer}>

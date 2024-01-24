@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ImageBackground, FlatList, TouchableOpacity } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons'; // install @expo/vector-icons
+import { MaterialIcons } from '@expo/vector-icons';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
