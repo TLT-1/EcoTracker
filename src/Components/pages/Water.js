@@ -47,7 +47,7 @@ const Water = ({ navigation }) => {
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: -100 }}>
                     <Text style={{ fontSize: 26, color: "white" }}>Recommended Water Intake: {recommendedIntake} Cups Per Day (~1 Gallon)</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 20 }}>
                         <TouchableOpacity onPress={() => setWaterIntakeWithStorage(Math.max(0, waterIntake - 1))}>
