@@ -18,7 +18,9 @@ const Water = ({ navigation }) => {
     const setWaterIntakeWithStorage = async (value) => {
         try {
             await AsyncStorage.setItem('@waterIntake', value.toString());
-            await AsyncStorage.setItem('@date', new Date().toString());
+            const today = new Date();
+            const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toString();
+            await AsyncStorage.setItem('@date', dateOnly);
             setWaterIntake(value);
         } catch (e) {
             // saving error
@@ -27,13 +29,18 @@ const Water = ({ navigation }) => {
 
     const loadWaterIntake = async () => {
         try {
-            const value = await AsyncStorage.getItem('@waterIntake');
-            const date = await AsyncStorage.getItem('@date');
-            if (value !== null && date !== null && isToday(new Date(date))) {
-                setWaterIntake(parseInt(value));
-            } else {
+            const storedDate = new Date(await AsyncStorage.getItem('@date'));
+            const today = new Date();
+            const currentDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+            if (storedDate.toString() !== currentDateOnly.toString()) {
+                // If the stored date is different from the current date, reset the water intake
                 setWaterIntake(0);
-                AsyncStorage.setItem('@date', new Date().toString());
+            } else {
+                const value = await AsyncStorage.getItem('@waterIntake');
+                if (value !== null) {
+                    setWaterIntake(parseInt(value));
+                }
             }
         } catch (e) {
             // loading error

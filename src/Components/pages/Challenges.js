@@ -46,7 +46,9 @@ const Challenges = ({ navigation }) => {
     const setCompletedChallengesWithStorage = async (value) => {
         try {
             await AsyncStorage.setItem('@completedChallenges', JSON.stringify(value));
-            await AsyncStorage.setItem('@date', new Date().toString());
+            const today = new Date();
+            const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toString();
+            await AsyncStorage.setItem('@date', dateOnly);
             setCompletedChallenges(value);
         } catch (e) {
             // saving error
@@ -55,13 +57,18 @@ const Challenges = ({ navigation }) => {
 
     const loadCompletedChallenges = async () => {
         try {
-            const value = await AsyncStorage.getItem('@completedChallenges');
-            const date = await AsyncStorage.getItem('@date');
-            if (value !== null && date !== null && isToday(new Date(date))) {
-                setCompletedChallenges(JSON.parse(value));
-            } else {
+            const storedDate = new Date(await AsyncStorage.getItem('@date'));
+            const today = new Date();
+            const currentDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+            if (storedDate.toString() !== currentDateOnly.toString()) {
+                // If the stored date is different from the current date, reset the completed challenges
                 setCompletedChallenges({});
-                AsyncStorage.setItem('@date', new Date().toString());
+            } else {
+                const value = await AsyncStorage.getItem('@completedChallenges');
+                if (value !== null) {
+                    setCompletedChallenges(JSON.parse(value));
+                }
             }
         } catch (e) {
             // loading error
