@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
         marginBottom: 20, // Space from the bottom of the ScrollView
     },
     productSection: {
+        backgroundColor: 'green',
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center', // Center the cards in the row
@@ -91,10 +92,15 @@ const styles = StyleSheet.create({
         padding: 50,
     },
     infoCardContainer: {
+        backgroundColor: 'green',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
         padding: 20,
+
+    },
+    idk: {
+        backgroundColor: 'green',
     },
 });
 

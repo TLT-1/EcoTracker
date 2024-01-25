@@ -7,6 +7,8 @@ import Fact from '../Fact';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
+import GraphCard from '../GraphCard';
+
 
 const Energy = ({ navigation }) => {
     const [appliance, setAppliance] = useState('');
@@ -135,6 +137,7 @@ const Energy = ({ navigation }) => {
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
+            <GraphCard />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );
