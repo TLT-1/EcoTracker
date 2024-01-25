@@ -1,23 +1,33 @@
 ﻿// ProductCard.js
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions, Linking } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const cardMargin = 20; // Adjust the margin as needed
 const cardWidth = (windowWidth / 3) - (cardMargin * 2); // Three cards per row with margins
+const openURL = (url) => {
+    Linking.canOpenURL(url).then((supported) => {
+        if (supported) {
+            Linking.openURL(url);
+        } else {
+            console.log("Don't know how to open URI: " + url);
+        }
+    });
+};
 
-
-const ProductCard = ({ bestsellerLabel, productName, productDesc, imageSrc, onLikePress }) => {
+const ProductCard = ({ bestsellerLabel, productName, productDesc, imageSrc, onLikePress, url }) => {
     return (
-        <View style={styles.cardContainer}>
-            <Text style={styles.bestsellerLabel}>{bestsellerLabel}</Text>
-            <Image source={imageSrc} style={styles.productImage} />
-            <Text style={styles.productName}>{productName}</Text>
-            <Text style={styles.productDesc}>{productDesc}</Text>
-            <TouchableOpacity onPress={onLikePress} style={styles.likeButton}>
-                <Text>👍</Text>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={() => openURL(url)} style={styles.cardContainer}>
+            <View style={styles.cardContainer}>
+                <Text style={styles.bestsellerLabel}>{bestsellerLabel}</Text>
+                <Image source={imageSrc} style={styles.productImage} />
+                <Text style={styles.productName}>{productName}</Text>
+                <Text style={styles.productDesc}>{productDesc}</Text>
+                <TouchableOpacity onPress={onLikePress} style={styles.likeButton}>
+                    <Text>👍</Text>
+                </TouchableOpacity>
+            </View>
+        </TouchableOpacity>
     );
 };
 

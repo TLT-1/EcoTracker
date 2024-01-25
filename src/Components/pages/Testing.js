@@ -82,7 +82,7 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                         bestsellerLabel="Best Seller"
                         productName="Reusable Water Bottle"
                         productDesc="1,000 plastic bottles avoided"
-                        imageSrc={require('../../../assets/reusableWaterbottle.png')}
+                        imageSrc={require('../../../assets/reusablewaterbottle.png')}
                         onLikePress={handleLikePress}
                     />
                     <ProductCard

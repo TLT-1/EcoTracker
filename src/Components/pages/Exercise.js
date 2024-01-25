@@ -6,6 +6,7 @@ import Footer from '../Footer';
 import Fact from '../Fact';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
+import GraphCard from '../GraphCard';
 
 
 const Exercise = ({ navigation }) => {
@@ -69,6 +70,7 @@ const Exercise = ({ navigation }) => {
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
+            <GraphCard />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );
