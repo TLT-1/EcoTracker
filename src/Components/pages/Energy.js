@@ -95,6 +95,19 @@ const Energy = ({ navigation }) => {
         { label: 'Microwave', value: 'microwave' },
     ]);
 
+    const graphData = {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+
+        datasets: [{
+            data: [900, 543, 798, 400, 988, 300, 357],
+            // ... other dataset properties
+        }]
+    };
+
+    const customChartConfig = {
+        // Optional custom chart configuration here
+    };
+
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
@@ -136,7 +149,9 @@ const Energy = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <GraphCard />
+            <Snowfall snowflakeCount={250} />
+            <GraphCard title="Weekly Watts Used" data={graphData} chartConfig={customChartConfig} />;
+
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );

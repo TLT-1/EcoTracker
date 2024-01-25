@@ -51,6 +51,21 @@ const Water = ({ navigation }) => {
         loadWaterIntake();
     }, []);
 
+
+    const graphData = {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+
+        datasets: [{
+            data: [2, 15, 20, 8, 9, 3,13],
+            // ... other dataset properties
+        }]
+    };
+
+    const customChartConfig = {
+        // Optional custom chart configuration here
+    };
+
+
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
@@ -81,7 +96,8 @@ const Water = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <GraphCard />
+            <GraphCard title="Monthly Carbon Emissions" data={graphData} chartConfig={customChartConfig} />;
+
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );

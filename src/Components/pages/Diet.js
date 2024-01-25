@@ -42,6 +42,18 @@ const Diet = ({ navigation }) => {
         setFood('');
     };
 
+    const graphData = {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        datasets: [{
+            data: [20, 45, 28, 80, 99, 43],
+            // ... other dataset properties
+        }]
+    };
+
+    const customChartConfig = {
+        // Optional custom chart configuration here
+    };
+
     return (
         <View style={{ flex: 1 }}>
             <Navbar />

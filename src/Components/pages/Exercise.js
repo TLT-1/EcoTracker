@@ -45,6 +45,20 @@ const Exercise = ({ navigation }) => {
         setDurationPerDayMin('');
     };
 
+
+    const graphData = {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+
+        datasets: [{
+            data: [0, 45, 128, 300, 39, 43],
+            // ... other dataset properties
+        }]
+    };
+
+    const customChartConfig = {
+        // Optional custom chart configuration here
+    };
+
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
@@ -71,7 +85,9 @@ const Exercise = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <GraphCard />
+            <Snowfall snowflakeCount={250} />
+            <GraphCard title="Weekly Exercise Duration" data={graphData} chartConfig={customChartConfig} />;
+
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );
