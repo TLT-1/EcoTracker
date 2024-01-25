@@ -89,7 +89,7 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
             // ... other dataset properties
         }]
     };
-    
+
     const customChartConfig = {
         // Optional custom chart configuration here
     };
@@ -99,101 +99,101 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
     return (
         <>
             <Navbar />
-            <ScrollView contentContainerStyle={styles.container}>
-                <ImageBackground
-                    source={require("../../../assets/ecoTrackTitleScreenChristmas.png")}
-                    style={styles.titleScreen}>
+            <ImageBackground source={require("../../../assets/ecoBackground.png")}>
+                <Snowfall snowflakeCount={250} />
+                <ScrollView contentContainerStyle={styles.container}>
+                    <ImageBackground
+                        source={require("../../../assets/ecoTrackTitleScreenChristmas.png")}
+                        style={{ ...styles.titleScreen, marginTop: -60 }}>
 
-                    <Animated.Image
-                        source={require("../../../assets/ecoTrackLogosu.png")}
-                        style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
-                    />
+                        <Animated.Image
+                            source={require("../../../assets/ecoTrackLogosu.png")}
+                            style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
+                        />
 
-                    <View style={styles.contentContainer}>
-                        <Text style={styles.title}>
-                            Track and Reduce Your{'\n'}Carbon Footprint
-                        </Text>
-                        <Text style={styles.subtitle}>
-                            Monitor your daily activities and get personalized insights and{'\n'}recommended to lower your impact.
-                        </Text>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Learn more</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Start tracking</Text>
-                            </TouchableOpacity>
+                        <View style={styles.contentContainer}>
+                            <Text style={styles.title}>
+                                Track and Reduce Your{'\n'}Carbon Footprint
+                            </Text>
+                            <Text style={styles.subtitle}>
+                                Monitor your daily activities and get personalized insights and{'\n'}recommended to lower your impact.
+                            </Text>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity style={styles.button} onPress={() => { }}>
+                                    <Text style={styles.buttonText}>Learn more</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.button} onPress={() => { }}>
+                                    <Text style={styles.buttonText}>Start tracking</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
+                    </ImageBackground>
+
+
+                    <Text style={styles.titleto}>
+                        Popular Eco-Friendly{'\n'}Products
+                    </Text>
+                    <View style={styles.productSection}>
+                        <ProductCard
+                            bestsellerLabel="Best Seller"
+                            productName="Reusable Water Bottle"
+                            productDesc="1,000 plastic bottles avoided"
+                            imageSrc={require('../../../assets/reusablewaterbottle.png')}
+                            onLikePress={handleLikePress}
+                            url="https://www.amazon.com/BJPKPK-Stainless-Insulated-Bottles-Goldenrod/dp/B08GG5TZXG/ref=sr_1_7?keywords=reusable+water+bottle&sr=8-7"
+                        />
+                        <ProductCard
+                            bestsellerLabel="New"
+                            productName="Compostable Food Containers"
+                            productDesc="50 pounds of waste diverted"
+                            imageSrc={require('../../../assets/CompostableFoodContainers.png')}
+                            onLikePress={handleLikePress}
+                            url="https://www.amazon.com/HOMETALL-Containers-Leakproof-Meal-Prep-Dishwasher/dp/B0BNQ1WDBZ/ref=sr_1_16?keywords=tupperware&sr=8-16"
+
+                        />
+                        <ProductCard
+                            bestsellerLabel="Old"
+                            productName="Solar Power Bank"
+                            productDesc="2,000mAh of clean energy"
+                            imageSrc={require('../../../assets/SolarPowerBank.png')}
+                            onLikePress={handleLikePress}
+                            url="https://www.amazon.com/Feeke-Solar-Charger-Power-Bank-Built-Flashlight-Electronic/dp/B0C4JSYZJN/ref=sr_1_2_sspa?keywords=solar+power+bank&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
+
+                        />
                     </View>
-                    <Snowfall snowflakeCount={250} />
-
-                </ImageBackground>
-
-                <View style={styles.line} />
-
-                <Text style={styles.titleto}>
-                    Popular Eco-Friendly{'\n'}Products
-                </Text>
-                <View style={styles.productSection}>
-                    <ProductCard
-                        bestsellerLabel="Best Seller"
-                        productName="Reusable Water Bottle"
-                        productDesc="1,000 plastic bottles avoided"
-                        imageSrc={require('../../../assets/reusablewaterbottle.png')}
-                        onLikePress={handleLikePress}
-                        url="https://www.amazon.com/BJPKPK-Stainless-Insulated-Bottles-Goldenrod/dp/B08GG5TZXG/ref=sr_1_7?keywords=reusable+water+bottle&sr=8-7"
-                    />
-                    <ProductCard
-                        bestsellerLabel="New"
-                        productName="Compostable Food Containers"
-                        productDesc="50 pounds of waste diverted"
-                        imageSrc={require('../../../assets/CompostableFoodContainers.png')}
-                        onLikePress={handleLikePress}
-                        url="https://www.amazon.com/HOMETALL-Containers-Leakproof-Meal-Prep-Dishwasher/dp/B0BNQ1WDBZ/ref=sr_1_16?keywords=tupperware&sr=8-16"
-
-                    />
-                    <ProductCard
-                        bestsellerLabel="Old"
-                        productName="Solar Power Bank"
-                        productDesc="2,000mAh of clean energy"
-                        imageSrc={require('../../../assets/SolarPowerBank.png')}
-                        onLikePress={handleLikePress}
-                        url="https://www.amazon.com/Feeke-Solar-Charger-Power-Bank-Built-Flashlight-Electronic/dp/B0C4JSYZJN/ref=sr_1_2_sspa?keywords=solar+power+bank&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1"
-
-                    />
-                </View>
 
 
-                <View style={styles.line} />
+                    <View style={styles.line} />
 
-                <Text style={styles.titleto}>
-                    Your Carbon Footprint
-                </Text>
-                <View style={styles.infoCardContainer}>
-                    <InfoCard
-                        title="Today's Emissions"
-                        value="14.5kg CO2e"
-                        comparison="+2% compared to yesterday"
-                    />
-                    <InfoCard
-                        title="Total Savings"
-                        value="150kg CO2e"
-                        comparison="-10% compared to last month"
-                    />
-                </View>
-                <GraphCard title="Monthly Carbon Emissions" data={graphData} chartConfig={customChartConfig} />;
-                <View style={styles.line} />
+                    <Text style={styles.titleto}>
+                        Your Carbon Footprint
+                    </Text>
+                    <View style={styles.infoCardContainer}>
+                        <InfoCard
+                            title="Today's Emissions"
+                            value="14.5kg CO2e"
+                            comparison="+2% compared to yesterday"
+                        />
+                        <InfoCard
+                            title="Total Savings"
+                            value="150kg CO2e"
+                            comparison="-10% compared to last month"
+                        />
+                    </View>
+                    <GraphCard title="Monthly Carbon Emissions" data={graphData} chartConfig={customChartConfig} />
+                    <View style={styles.line} />
 
-                <CarbonFootprintInfo />
-                <View style={styles.line} />
+                    <CarbonFootprintInfo />
+                    <View style={styles.line} />
 
-                <Testimonials />
-                <View style={styles.line} />
+                    <Testimonials />
+                    <View style={styles.line} />
 
-                <CommunitySignUp />
+                    <CommunitySignUp />
 
-                <View style={{ height: 500, backgroundColor: 'green' }} /> {/* This is your spacer View */}
-            </ScrollView>
+                    <View style={{ height: 50 }} /> {/* This is your spacer View */}
+                </ScrollView>
+            </ImageBackground>
             <Footer navigation={navigation} />
         </>
     );

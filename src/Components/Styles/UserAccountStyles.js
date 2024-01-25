@@ -11,7 +11,7 @@ export default StyleSheet.create({
         paddingTop: 100, // adjust this value as needed
     },
     title: {
-        fontSize: 24,
+        fontSize: 34,
         fontWeight: 'bold',
         marginBottom: 20,
     },
@@ -19,7 +19,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        width: '25%',
+        width: '20%',
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 10,
@@ -55,7 +55,7 @@ export default StyleSheet.create({
         paddingHorizontal: 10,
     },
     buttonContainer: {
-        width: '10%',
+        width: '7%',
         marginBottom: 20,
     },
     button: {

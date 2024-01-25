@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "flex-start",
-        backgroundColor: "green", // Eventually set this to 'transparent' or your desired color
+        backgroundColor: "transparent", // Eventually set this to 'transparent' or your desired color
     },
     scrollViewContent: {
         flexGrow: 1,
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         color: 'white',
+        margin: 20,
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -68,14 +69,18 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 10,
         backgroundColor: 'lightgrey',
-        padding: 10,
+        padding: 5,
+        margin: 30,
     },
     titleto: {
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
         marginTop: 32,
-        color: 'black',// Space from the preceding element
+        color: 'white',// Space from the preceding element
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: { width: -1, height: 1 },
+        textShadowRadius: 10,
     },
     productSectionww: {
         width: '100%', // Full width
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
         marginBottom: 20, // Space from the bottom of the ScrollView
     },
     productSection: {
-        backgroundColor: 'green',
+        backgroundColor: 'transparent',
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center', // Center the cards in the row
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
         padding: 50,
     },
     infoCardContainer: {
-        backgroundColor: 'green',
+        backgroundColor: 'transparent',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
 
     },
     idk: {
-        backgroundColor: 'green',
+        backgroundColor: 'transparent',
     },
 });
 

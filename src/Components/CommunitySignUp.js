@@ -31,20 +31,22 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center', // Center the text
         marginBottom: 10, // Add some margin at the bottom
+        color: '#fff',
     },
     subHeader: {
         fontSize: 16,
         textAlign: 'center', // Center the text
         marginBottom: 20, // Add some margin at the bottom
+        color: '#fff',
     },
     button: {
-        backgroundColor: '#000', // Button color
+        backgroundColor: '#fff', // Button color
         paddingVertical: 10, // Vertical padding
         paddingHorizontal: 20, // Horizontal padding
         borderRadius: 25, // Rounded corners
     },
     buttonText: {
-        color: '#fff', // Text color
+        color: '#000', // Text color
         fontSize: 16,
         fontWeight: 'bold',
     },
