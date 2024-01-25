@@ -175,9 +175,19 @@ const UserAccount = () => {
         setNewEmail(''); // Reset the new email state when closing the modal
     };
 
+    const [profilePic, setProfilePic] = useState(null);
 
+    const handleFileChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
 
+            reader.onload = (e) => {
+                setProfilePic(e.target.result);
+            };
 
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    };
 
     const handleChangePassword = async () => {
         // Implement navigation or modal popup for password change
@@ -200,11 +210,16 @@ const UserAccount = () => {
     const RenderIcon = () => <Text style={styles.icon}>🖉</Text>;
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <Navbar />
             <ImageBackground
                 source={require("../../../assets/ecoBackground.png")}
-                style={{ flex: 1, overflow: 'hidden' }}>
+                style={styles.background}>
+                <div style={styles.profilePicContainer}>
+                    <img style={styles.profilePic} src={profilePic} alt="" />
+                    <input style={styles.fileInput} type="file" onChange={handleFileChange} />
+                    {!profilePic && <div style={styles.chooseImageText}>Choose Image</div>}
+                </div>
                 <Text style={styles.title}>User Account</Text>
                 <View style={styles.infoContainer}>
                     <Text style={styles.info}>Name: {data_to[0]} {data_to[1]}</Text>
@@ -217,22 +232,19 @@ const UserAccount = () => {
                         transparent={true}
                         visible={modalVisible}
                         onRequestClose={handleCloseModal}>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ margin: 20, backgroundColor: 'white', borderRadius: 20, padding: 35, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84, elevation: 5 }}>
+                        <View style={styles.modalContainer}>
+                            <View style={styles.modalContent}>
                                 <TextInput
                                     placeholder="Enter your new name"
                                     value={newName}
                                     onChangeText={setNewName}
-                                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 20, width: '100%' }}
+                                    style={styles.input}
                                 />
                                 <Button title="Save" onPress={handleSaveName} />
                             </View>
                         </View>
                     </Modal>
-
-
                 </View>
-
 
                 <View style={styles.infoContainer}>
                     <Text style={styles.info}>Email: {email_data}</Text>
@@ -247,13 +259,13 @@ const UserAccount = () => {
                     transparent={true}
                     visible={emailModalVisible}
                     onRequestClose={handleCloseEmailModal}>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={modalStyle}>
+                    <View style={styles.modalContainer}>
+                        <View style={styles.modalContent}>
                             <TextInput
                                 placeholder="Enter your new email"
                                 value={newEmail}
                                 onChangeText={setNewEmail}
-                                style={textInputStyle}
+                                style={styles.input}
                                 keyboardType="email-address"
                             />
                             <Button title="Save" onPress={handleSaveEmail} />
@@ -261,42 +273,20 @@ const UserAccount = () => {
                     </View>
                 </Modal>
 
-
                 <View style={styles.infoContainer}>
                     <Text style={styles.info}>Birthday: {data_to[5]}</Text>
-
                 </View>
+
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
-                        <Text style={{ color: 'white' }}>Change Password</Text>
+                        <Text style={styles.buttonText}>Change Password</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
-            <Footer style={{ height: 18 }} navigation={navigation} />
+            <Footer style={styles.footer} navigation={navigation} />
         </View>
     );
-};
-
-const modalStyle = {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
-};
-
-const textInputStyle = {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-    width: '100%'
 };
 
 export default UserAccount;

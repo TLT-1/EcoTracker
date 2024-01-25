@@ -46,7 +46,9 @@ const Challenges = ({ navigation }) => {
     const setCompletedChallengesWithStorage = async (value) => {
         try {
             await AsyncStorage.setItem('@completedChallenges', JSON.stringify(value));
-            await AsyncStorage.setItem('@date', new Date().toString());
+            const today = new Date();
+            const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toString();
+            await AsyncStorage.setItem('@date', dateOnly);
             setCompletedChallenges(value);
         } catch (e) {
             // saving error
@@ -61,7 +63,9 @@ const Challenges = ({ navigation }) => {
                 setCompletedChallenges(JSON.parse(value));
             } else {
                 setCompletedChallenges({});
-                AsyncStorage.setItem('@date', new Date().toString());
+                const today = new Date();
+                const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toString();
+                AsyncStorage.setItem('@date', dateOnly);
             }
         } catch (e) {
             // loading error

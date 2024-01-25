@@ -17,7 +17,9 @@ const Water = ({ navigation }) => {
     const setWaterIntakeWithStorage = async (value) => {
         try {
             await AsyncStorage.setItem('@waterIntake', value.toString());
-            await AsyncStorage.setItem('@date', new Date().toString());
+            const today = new Date();
+            const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toString();
+            await AsyncStorage.setItem('@date', dateOnly);
             setWaterIntake(value);
         } catch (e) {
             // saving error
@@ -32,7 +34,9 @@ const Water = ({ navigation }) => {
                 setWaterIntake(parseInt(value));
             } else {
                 setWaterIntake(0);
-                AsyncStorage.setItem('@date', new Date().toString());
+                const today = new Date();
+                const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toString();
+                AsyncStorage.setItem('@date', dateOnly);
             }
         } catch (e) {
             // loading error
