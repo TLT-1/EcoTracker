@@ -62,6 +62,18 @@ const Driving = () => {
         });
     };
 
+    const graphData = {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        datasets: [{
+            data: [2093, 2152, 4921, 0, 1790, 398, 19282],
+            // ... other dataset properties
+        }]
+    };
+
+    const customChartConfig = {
+        // Optional custom chart configuration here
+    };
+
 
     return (
         <View style={{ flex: 1 }}>
@@ -107,7 +119,8 @@ const Driving = () => {
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
             <Snowfall snowflakeCount={250} />
-                <GraphCard />
+            <GraphCard title="Driving Carbon Emissions" data={graphData} chartConfig={customChartConfig} />;
+
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
 

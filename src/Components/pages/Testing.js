@@ -40,6 +40,13 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
     const handleLikePress = () => {
         // Handle the like button press
     };
+    const graphData = {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        datasets: [{
+            data: [20, 45, 28, 80, 99, 43],
+            // ... other dataset properties
+        }]
+    };
 
     return (
         <>
@@ -119,7 +126,7 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                         comparison="-10% compared to last month"
                     />
                 </View>
-                <GraphCard />
+                
                 <View style={styles.line} />
 
                 <CarbonFootprintInfo  />

@@ -80,6 +80,22 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
         // Handle the like button press
     };
 
+
+
+    const graphData = {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        datasets: [{
+            data: [20, 45, 28, 80, 99, 43],
+            // ... other dataset properties
+        }]
+    };
+    
+    const customChartConfig = {
+        // Optional custom chart configuration here
+    };
+
+
+
     return (
         <>
             <Navbar />
@@ -163,7 +179,7 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
                         comparison="-10% compared to last month"
                     />
                 </View>
-                <GraphCard />
+                <GraphCard title="Monthly Carbon Emissions" data={graphData} chartConfig={customChartConfig} />;
                 <View style={styles.line} />
 
                 <CarbonFootprintInfo />

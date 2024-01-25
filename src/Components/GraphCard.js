@@ -1,39 +1,31 @@
-// Import the components from the libraries
+// GraphCard.js
 import React from 'react';
-import { View, Text, Dimensions, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
-const GraphCard = () => {
-    const screenWidth = Dimensions.get('window').width;
-    const chartConfig = {
-        backgroundGradientFrom: "#fff",
-        backgroundGradientFromOpacity: 0,
-        backgroundGradientTo: "#fff",
-        backgroundGradientToOpacity: 0.5,
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`,
-        strokeWidth: 2, // optional, default 3
-        useShadowColorFromDataset: false, // optional
-        fillShadowGradient: 'grey', // THIS WILL FILL THE AREA UNDER THE LINE
-        fillShadowGradientOpacity: 0.5, // OPTIONAL for the gradient
+const GraphCard = ({ title, data, chartConfig }) => {
+    // Default chartConfig
+    const defaultConfig = {
+        backgroundColor: '#FFFFFF',
+        backgroundGradientFrom: '#FFFFFF',
+        backgroundGradientTo: '#FFFFFF',
+        decimalPlaces: 2, // specify the number of decimal places you want
+        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // make sure this is a function
+        labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+        // ...other properties
     };
 
-    const data = {
-        labels: ["January", "February", "March", "April", "May", "June"],
-        datasets: [{
-            data: [20, 45, 28, 80, 99, 43],
-            color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-            strokeWidth: 2 // optional
-        }]
-    };
+    // Merge defaultConfig with the custom chartConfig, if provided
+    const combinedChartConfig = { ...defaultConfig, ...chartConfig };
 
     return (
         <View style={styles.graphContainer}>
-            <Text style={styles.title}>Monthly Emission Trends</Text>
+            <Text style={styles.title}>{title}</Text>
             <LineChart
                 data={data}
-                width={1000}
+                width={1000} // Subtracting the horizontal paddings/margins
                 height={220}
-                chartConfig={chartConfig}
+                chartConfig={combinedChartConfig}
                 bezier // This will make the line chart curved
             />
         </View>
