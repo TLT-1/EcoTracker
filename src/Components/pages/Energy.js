@@ -99,8 +99,8 @@ const Energy = ({ navigation }) => {
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
+                <Snowfall snowflakeCount={250} />
                 <Image source={require("../../../assets/ecoEnergy.png")} style={{ ...styles.title, marginTop: -200 }} />
-
                 <Text style={styles.buttonText}>Appliance:</Text>
                 <View style={styles.buttonText}>
                     <DropDownPicker
@@ -136,7 +136,6 @@ const Energy = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <Snowfall snowflakeCount={250} />
             <GraphCard />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>

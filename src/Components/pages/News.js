@@ -70,6 +70,7 @@ function News() {
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ flex: 1, ...styles.container, overflow: 'hidden' }}>
+                <Snowfall snowflakeCount={250} />
                 {news.length > 0 ? (
                     <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
                         <Text style={{ fontSize: 50, fontWeight: 'bold', color: 'white', textAlign: 'center' }}>Current News</Text>
@@ -117,7 +118,6 @@ function News() {
                     <button onClick={closeModal} style={{ position: 'absolute', top: 0, right: 0 }}>X</button>
                 </Modal>
             </ImageBackground>
-            <Snowfall style={{}} snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
 

@@ -22,6 +22,7 @@ function TrackOptions({ navigation }) {
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={[styles.container, { overflow: 'hidden' }]}>
+                <Snowfall snowflakeCount={250} />
                 <View style={{ marginTop: -300, alignItems: 'center' }}>
                     <Text style={[styles.buttonText, { fontSize: 24, marginBottom: 50 }]}>Choose An Option To Track</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
@@ -43,7 +44,6 @@ function TrackOptions({ navigation }) {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <Snowfall style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );

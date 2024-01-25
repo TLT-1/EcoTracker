@@ -215,6 +215,8 @@ const UserAccount = () => {
             <ImageBackground
                 source={require("../../../assets/ecoBackground.png")}
                 style={styles.background}>
+                <Snowfall snowflakeCount={250} />
+
                 <div style={styles.profilePicContainer}>
                     <img style={styles.profilePic} src={profilePic} alt="" />
                     <input style={styles.fileInput} type="file" onChange={handleFileChange} />
@@ -283,7 +285,6 @@ const UserAccount = () => {
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
-            <Snowfall snowflakeCount={250} />
             <Footer style={styles.footer} navigation={navigation} />
         </View>
     );
