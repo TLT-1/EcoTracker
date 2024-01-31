@@ -76,7 +76,7 @@ const Diet = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <GraphCard />
+            {/* <GraphCard /> */}
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );

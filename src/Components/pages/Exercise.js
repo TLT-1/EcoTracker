@@ -85,7 +85,6 @@ const Exercise = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <Snowfall snowflakeCount={250} />
             <GraphCard title="Weekly Exercise Duration" data={graphData} chartConfig={customChartConfig} />;
 
             <Footer style={{ height: 18 }} navigation={navigation} />
