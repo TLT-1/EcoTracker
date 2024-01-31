@@ -33,17 +33,14 @@ const Water = ({ navigation }) => {
             const today = new Date();
             const currentDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
-            if (storedDate.toString() !== currentDateOnly.toString()) {
+            if (storedDate.getFullYear() !== currentDateOnly.getFullYear() ||
+                storedDate.getMonth() !== currentDateOnly.getMonth() ||
+                storedDate.getDate() !== currentDateOnly.getDate()) {
                 // If the stored date is different from the current date, reset the water intake
                 setWaterIntake(0);
-            } else {
-                const value = await AsyncStorage.getItem('@waterIntake');
-                if (value !== null) {
-                    setWaterIntake(parseInt(value));
-                }
             }
         } catch (e) {
-            // loading error
+            // handle error
         }
     };
 
@@ -56,7 +53,7 @@ const Water = ({ navigation }) => {
         labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
 
         datasets: [{
-            data: [2, 15, 20, 8, 9, 3,13],
+            data: [2, 15, 20, 8, 9, 3, 13],
             // ... other dataset properties
         }]
     };
@@ -96,8 +93,13 @@ const Water = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <GraphCard title="Monthly Carbon Emissions" data={graphData} chartConfig={customChartConfig} />;
-
+            <View style={{ ...styles.graphCardContainer, position: 'absolute', bottom: 10, left: -10, padding: 10, }}>
+                <GraphCard
+                    title="Monthly Carbon Emissions"
+                    data={graphData}
+                    chartConfig={customChartConfig}
+                />
+            </View>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );

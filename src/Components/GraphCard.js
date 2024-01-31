@@ -3,6 +3,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+
 const GraphCard = ({ title, data, chartConfig }) => {
     // Default chartConfig
     const defaultConfig = {
@@ -23,8 +26,8 @@ const GraphCard = ({ title, data, chartConfig }) => {
             <Text style={styles.title}>{title}</Text>
             <LineChart
                 data={data}
-                width={1000} // Subtracting the horizontal paddings/margins
-                height={220}
+                width={screenWidth * 0.25}
+                height={screenHeight * 0.18}
                 chartConfig={combinedChartConfig}
                 bezier // This will make the line chart curved
             />
