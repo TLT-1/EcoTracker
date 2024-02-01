@@ -149,7 +149,7 @@ const Energy = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <View style={{ ...styles.graphCardContainer, position: 'absolute', bottom: 10, left: -10, padding: 10, }}>
+            <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
                 <GraphCard
                     title="Monthly Carbon Emissions"
                     data={graphData}
