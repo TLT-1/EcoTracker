@@ -26,8 +26,8 @@ const GraphCard = ({ title, data, chartConfig }) => {
             <Text style={styles.title}>{title}</Text>
             <LineChart
                 data={data}
-                width={screenWidth * 0.25}
-                height={screenHeight * 0.18}
+                width={screenWidth * 0.28}
+                height={screenHeight * 0.22}
                 chartConfig={combinedChartConfig}
                 bezier // This will make the line chart curved
             />
