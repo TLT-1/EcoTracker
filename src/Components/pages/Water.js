@@ -95,7 +95,7 @@ const Water = ({ navigation }) => {
             </ImageBackground>
             <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
                 <GraphCard
-                    title="Monthly Carbon Emissions"
+                    title="Weekly Water Consumption"
                     data={graphData}
                     chartConfig={customChartConfig}
                 />
