@@ -5,6 +5,8 @@ const Leaderboard = ({ users }) => {
     // Sort users by score in descending order
     const sortedUsers = users.sort((a, b) => b.score - a.score);
 
+    const topUsers = sortedUsers.slice(0, 3); // displays top 3 users
+
     // Function to return the medal icon based on the rank
     const getMedalIcon = (rank) => {
         switch (rank) {
@@ -56,8 +58,13 @@ const Leaderboard = ({ users }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>LEADERBOARD</Text>
-            <FlatList
+            {/* <FlatList
                 data={sortedUsers}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => index.toString()}
+            /> */}
+            <FlatList
+                data={topUsers}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
             />
@@ -68,14 +75,16 @@ const Leaderboard = ({ users }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        padding: 50,
+        padding: 10,
+        marginTop: 50,
+        width: '40%',
         borderRadius: 8,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowRadius: 5,
         shadowOpacity: 0.2,
         elevation: 6,
-        margin: 10,
+        margin: 5,
     },
     title: {
         fontSize: 22,
@@ -90,7 +99,7 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 16,
         borderRadius: 12, // More pronounced rounded corners
-        marginVertical: 6,
+        marginVertical: 4,
         marginHorizontal: 12,
         borderWidth: 1, // A subtle border
         borderColor: '#dddddd',

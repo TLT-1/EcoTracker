@@ -28,7 +28,8 @@ function News() {
                     'www.bangkokpost.com', 'theconversation.com', 'www.cnn.com', 'inthesetimes.com', 'electrek.co', 'allafrica.com', 'www.cnbc.com', 'www.nationalobserver.com', 'www.businessinsider.com', 'www.latimes.com', 'voxeurop.eu', 'economictimes.indiatimes.com',
                     'wattsupwiththat.com', 'www.vice.com', 'theecologist.org', 'www.newsweek.com', 'truthout.org', 'www.project-syndicate.org', 'variety.com', 'news.sky.com', 'sustainability.stanford.edu', 'time.com', 'www.scientificamerican.com', 'divinity.yale.edu',
                     'news.yale.edu', 'iasexamportal.com', 'newrepublic.com', 'wwd.com', 'skepticalscience.com', 'www.rawstory.com', 'pr.euractiv.com', 'newatlas.com', 'goodinternet.substack.com', 'www.foxnews.com', 'www.irishtimes.com', 'www.wallpaper.com', 'www.news24.com',
-                    'www.gamesradar.com'];
+                    'www.gamesradar.com', 'www.counterpunch.org', 'www.nzherald.co.nz', 'www.advocate.com', 'sustainability.yale.edu', 'www.ecb.europa.eu', 'call-for-papers.sas.upenn.edu', 'www.livemint.com', 'www.thenation.com', 'www.straitstimes.com', 'www.psychologytoday.com',
+                    'bleedingcool.com', 'www.cbc.ca', 'www.thestar.com.my'];
 
                 const filteredArticles = response.data.articles.filter(article => {
                     const articleDomain = new URL(article.url).hostname;
