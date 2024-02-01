@@ -121,7 +121,7 @@ const Driving = () => {
             </ImageBackground>
             <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
                 <GraphCard
-                    title="Monthly Carbon Emissions"
+                    title="Weekly Carbon Emissions"
                     data={graphData}
                     chartConfig={customChartConfig}
                 />

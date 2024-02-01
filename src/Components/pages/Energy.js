@@ -151,7 +151,7 @@ const Energy = ({ navigation }) => {
             </ImageBackground>
             <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
                 <GraphCard
-                    title="Monthly Carbon Emissions"
+                    title="Weekly Watts Used"
                     data={graphData}
                     chartConfig={customChartConfig}
                 />
