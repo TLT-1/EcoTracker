@@ -76,7 +76,13 @@ const Diet = ({ navigation }) => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            {/* <GraphCard /> */}
+            <View style={{ ...styles.graphCardContainer, position: 'absolute', bottom: 10, left: -10, padding: 10, }}>
+                <GraphCard
+                    title="Monthly Carbon Emissions"
+                    data={graphData}
+                    chartConfig={customChartConfig}
+                />
+            </View>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );

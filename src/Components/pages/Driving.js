@@ -119,9 +119,13 @@ const Driving = () => {
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: '17%' }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <Snowfall snowflakeCount={250} />
-            <GraphCard title="Driving Carbon Emissions" data={graphData} chartConfig={customChartConfig} />;
-
+            <View style={{ ...styles.graphCardContainer, position: 'absolute', bottom: 10, left: -10, padding: 10, }}>
+                <GraphCard
+                    title="Monthly Carbon Emissions"
+                    data={graphData}
+                    chartConfig={customChartConfig}
+                />
+            </View>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
 
