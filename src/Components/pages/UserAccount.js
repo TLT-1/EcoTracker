@@ -7,6 +7,7 @@ import axios from 'axios';
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Snowfall from "react-snowfall";
+import Leaderboard from './Leaderboard';
 
 const UserAccount = () => {
     const [user, setUser] = useState({
@@ -18,6 +19,14 @@ const UserAccount = () => {
     const [data_to, setData_to] = useState([]);
     const [email_data, setEmailData] = useState('');
     const [dob_data, setDobData] = useState('');
+
+    const users = [
+        { name: 'Alice', score: 100 },
+        { name: 'Bob', score: 90 },
+        { name: 'Claire', score: 110 },
+        { name: 'Claire', score: 110 },
+        // ... more users
+    ];
 
 
 
@@ -284,6 +293,7 @@ const UserAccount = () => {
                         <Text style={styles.buttonText}>Change Password</Text>
                     </TouchableOpacity>
                 </View>
+                <Leaderboard users={users} />
             </ImageBackground>
             <Footer style={styles.footer} navigation={navigation} />
         </View>
