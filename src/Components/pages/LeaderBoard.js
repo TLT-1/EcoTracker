@@ -37,7 +37,7 @@ const Leaderboard = ({ users }) => {
     const renderItem = ({ item, index }) => (
         <View style={styles.userRow}>
             <Text style={styles.rank}>{index + 1}</Text>
-            {index < 3 && ( 
+            {index < 3 && (
                 <Image
                     source={getMedalIcon(index + 1)}
                     style={styles.medalIcon}
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         padding: 10,
         marginTop: 50,
-        width: '40%',
+        width: '150%',
         borderRadius: 8,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },

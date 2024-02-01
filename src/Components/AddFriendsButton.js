@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Button, Modal, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import InviteButton from "./InviteBotton";
+import InviteButton from "./InviteButton";
 
 const friendsList = [
     { id: '1', name: 'Alice' },
@@ -26,8 +26,9 @@ const AddFriendsButton = () => {
             <InviteButton />
 
             {/* Add Friends Button */}
-            <Button title="Add Friends" onPress={() => setModalVisible(true)} />
-
+            <TouchableOpacity style={styles.button} onPress={() => setModalVisible(true)}>
+                <Text style={styles.buttonText}>ADD FRIENDS</Text>
+            </TouchableOpacity>
             {/* Add Friends Modal */}
             <Modal
                 animationType="slide"
@@ -45,12 +46,14 @@ const AddFriendsButton = () => {
                             renderItem={({ item }) => (
                                 <TouchableOpacity style={styles.friendItem} onPress={() => handleAddFriend(item.id)}>
                                     <Text style={styles.friendName}>{item.name}</Text>
-                                    <Text style={styles.addButton }>{addedFriends.includes(item.id) ? 'Added' : 'Add'}</Text>
+                                    <Text style={styles.addButton}>{addedFriends.includes(item.id) ? 'Added' : 'Add'}</Text>
                                 </TouchableOpacity>
                             )}
                             keyExtractor={(item) => item.id}
                         />
-                        <Button title="Close" onPress={() => setModalVisible(!modalVisible)} />
+                        <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={styles.closeButtonText}>Close</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 22,
+        marginLeft: 20,
     },
     modalView: {
         margin: 20,
@@ -97,7 +100,7 @@ const styles = StyleSheet.create({
         marginRight: 10, // Add space between the name and the button
     },
     addButton: {
-        backgroundColor: 'blue', // Set the button background color to blue
+        backgroundColor: '#062A52', // Set the button background color to blue
         color: 'white', // Set the text color to white
         paddingHorizontal: 15, // Horizontal padding for the button
         paddingVertical: 8, // Vertical padding for the button
@@ -107,6 +110,34 @@ const styles = StyleSheet.create({
     addButtonText: {
         color: 'white', // Set the button text color to white
         textAlign: 'center', // Center the text inside the button
+    },
+    button: {
+        backgroundColor: '#062A52',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        marginVertical: 7,
+        borderRadius: 4,
+        overflow: 'hidden',
+        width: 150,
+        borderColor: 'white', // Set the border color to white
+        borderWidth: 2,
+    },
+    buttonText: {
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: '600'
+    },
+    closeButton: {
+        backgroundColor: '#062A52',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderRadius: 4,
+        overflow: 'hidden',
+    },
+    closeButtonText: {
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: '600'
     },
 });
 

@@ -36,7 +36,9 @@ export default function useResponsiveStyles() {
             backgroundColor: '#062A52',
             borderRadius: 15,
             marginTop: windowHeight * 0.005,
-            marginBottom: 5
+            marginBottom: 5,
+            borderColor: 'white',
+            borderWidth: 1,
         },
         buttonText: {
             color: "white",

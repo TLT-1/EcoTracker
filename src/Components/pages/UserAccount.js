@@ -8,8 +8,8 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Snowfall from "react-snowfall";
 import Leaderboard from './Leaderboard';
-import InviteButton from "../InviteBotton";
-import AddFriendsButton from "../AddFriendsButton ";
+import InviteButton from "../InviteButton";
+import AddFriendsButton from "../AddFriendsButton";
 
 const UserAccount = () => {
     const [user, setUser] = useState({
@@ -290,13 +290,18 @@ const UserAccount = () => {
                     <Text style={styles.info}>Birthday: {data_to[5]}</Text>
                 </View>
 
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
-                        <Text style={styles.buttonText}>Change Password</Text>
-                    </TouchableOpacity>
+                <View style={styles.componentsContainer}>
+                    <View style={styles.leaderboardContainer}>
+                        <View style={styles.leaderboard}>
+                            <Leaderboard users={users} />
+                        </View>
+                    </View>
+                    <View style={styles.buttonsContainer}>
+                        <View style={styles.addFriendsButton}>
+                            <AddFriendsButton />
+                        </View>
+                    </View>
                 </View>
-                <AddFriendsButton />
-                <Leaderboard users={users} />
             </ImageBackground>
             <Footer style={styles.footer} navigation={navigation} />
         </ScrollView>

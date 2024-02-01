@@ -24,7 +24,7 @@ const GraphCard = ({ title, data, chartConfig }) => {
         decimalPlaces: 2, // specify the number of decimal places you want
         color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // make sure this is a function
         labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-        
+
     };
 
     const downloadChart = async () => {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 10,
         right: 10,
-        backgroundColor: 'blue',
+        backgroundColor: '#062A52',
         padding: 8,
         borderRadius: 5,
     },

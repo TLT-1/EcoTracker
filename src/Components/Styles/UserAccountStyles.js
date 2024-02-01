@@ -103,4 +103,26 @@ export default StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    componentsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    leaderboardContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    leaderboard: {
+        flex: 2,
+        left: 40,
+    },
+    buttonsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'flex-end', // Align children to the right
+        left: 180,
+        marginTop: 110,
+    },
+    addFriendsButton: {
+    },
 });
