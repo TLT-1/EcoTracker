@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, ImageBackground, Animated, Easing, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
+import { StyleSheet, ScrollView, Text, View, Image, ImageBackground, Animated, Easing, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
 import styles from "../Styles/UserAccountStyles";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -8,6 +8,8 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Snowfall from "react-snowfall";
 import Leaderboard from './Leaderboard';
+import InviteButton from "../InviteBotton";
+import AddFriendsButton from "../AddFriendsButton ";
 
 const UserAccount = () => {
     const [user, setUser] = useState({
@@ -219,7 +221,7 @@ const UserAccount = () => {
     const RenderIcon = () => <Text style={styles.icon}>🖉</Text>;
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Navbar />
             <ImageBackground
                 source={require("../../../assets/ecoBackground.png")}
@@ -293,10 +295,11 @@ const UserAccount = () => {
                         <Text style={styles.buttonText}>Change Password</Text>
                     </TouchableOpacity>
                 </View>
+                <AddFriendsButton />
                 <Leaderboard users={users} />
             </ImageBackground>
             <Footer style={styles.footer} navigation={navigation} />
-        </View>
+        </ScrollView>
     );
 };
 
