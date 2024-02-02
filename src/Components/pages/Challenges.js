@@ -149,7 +149,7 @@ const Challenges = ({ navigation }) => {
                 />
                 <Image source={require("../../../assets/ecoMountain.png")} style={{ position: 'absolute', bottom: 0, width: '100%', height: 500 }} />
                 <Snowfall snowflakeCount={250} />
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: 0, width: '100%', height: 160 }} />
             </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
