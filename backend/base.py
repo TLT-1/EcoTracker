@@ -540,6 +540,50 @@ def energy():
 
 
 
+@app.route('/leaderboard', methods=['POST'])
+def leaderboard():
+    data = request.json
+    name = data.get('name')
+    score = data.get('score')
+
+
+    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    #Create a new client and connect to the server
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["EcoTracker"]
+    col = db["leaderboard"]
+    
+    if request.is_json:  # Check if the request has a JSON content type
+        data = request.json
+        name = data.get('name')
+        score = data.get('score')
+        # Define the filter as a dictionary
+        user_filter = {"_id": ObjectId(name)}
+
+        #print(year, make, model)
+        # Attempt to find the user by first and last name and update their email
+        update_dict = {
+        "$set": {
+            "leaderbaord.name": name,
+            "leaderboard.score": score,
+            }
+        }
+         
+    # Attempt to find the user by first and last name and update the document
+        result = col.update_one(
+            user_filter,
+            update_dict
+        )
+
+        # Check if the update was successful
+        if result.modified_count > 0:
+            return jsonify({"message": "energy updated successfully"}), 200
+        else:
+            return jsonify({"message": "No changes made to the energy"}), 400
+    else:
+        return jsonify({"message": "Request must be JSON"}), 400
+
+
 
 
 
