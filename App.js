@@ -38,6 +38,7 @@ import Diet from './src/Components/pages/Diet';
 import Exercise from './src/Components/pages/Exercise';
 import Water from './src/Components/pages/Water';
 import Challenges from './src/Components/pages/Challenges';
+import Guide from './src/Components/pages/Guide';
 import PasswordReset from './src/Components/pages/PasswordReset';
 import TrackNav from './src/Components/pages/TrackNav';
 import PasswordResetTemp from './src/Components/pages/PasswordResetTemp';
@@ -146,6 +147,7 @@ function App() {
                     <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
                     <Stack.Screen name="News" component={News} options={{ headerShown: false }} />
                     <Stack.Screen name="Challenges" component={Challenges} options={{ headerShown: false }} />
+                    <Stack.Screen name="Guide" component={Guide} options={{ headerShown: false }} />
                     <Stack.Screen name="Test" component={Test} options={{ headerShown: false }} />
 
                     <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />

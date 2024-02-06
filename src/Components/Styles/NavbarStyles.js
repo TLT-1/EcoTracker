@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
         width: 120,
         padding: 10,
         borderRadius: 5,
-
     },
     menuItem: {
         color: 'white',
@@ -38,8 +37,24 @@ const styles = StyleSheet.create({
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
-        marginHorizontal: 50,
+        marginHorizontal: 15,
         marginVertical: 10,
+        borderRightWidth: 1,
+        borderRightColor: 'white',
+        paddingRight: 25,
+    },
+    menuItemDrop: {
+        color: 'white',
+        fontSize: 20,
+        textAlign: 'center',
+        textShadowColor: 'black',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 1,
+        marginVertical: 5,
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        paddingBottom: 15,
+        width: 100,
     },
 });
 
