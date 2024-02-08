@@ -73,7 +73,19 @@ const Driving = () => {
     const customChartConfig = {
         // Optional custom chart configuration here
     };
+    const onIncrement = (dayIndex) => {
+        let newWeeklyData = [...weeklyIntakeData];
+        newWeeklyData[dayIndex] += 1; // Increment the value for the day
+        setWeeklyIntakeData(newWeeklyData); // Update the state
+    };
 
+    // Function to decrement the intake for a specific day
+    const onDecrement = (dayIndex) => {
+        let newWeeklyData = [...weeklyIntakeData];
+        newWeeklyData[dayIndex] = Math.max(0, newWeeklyData[dayIndex] - 1); // Decrement the value for the day, but not below 0
+        setWeeklyIntakeData(newWeeklyData); // Update the state
+    };
+    const [weeklyIntakeData, setWeeklyIntakeData] = useState([2093, 2152, 4921, 0, 1790, 398, 19282]);
 
     return (
         <View style={{ flex: 1 }}>
@@ -124,6 +136,8 @@ const Driving = () => {
                     title="Weekly Carbon Emissions"
                     data={graphData}
                     chartConfig={customChartConfig}
+                    onIncrement={onIncrement}
+                    onDecrement={onDecrement}
                 />
             </View>
             <Footer style={{ height: 18 }} navigation={navigation} />

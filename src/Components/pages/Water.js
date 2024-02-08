@@ -48,11 +48,40 @@ const Water = ({ navigation }) => {
     }, []);
 
 
+
+    const onIncrement = (dayIndex) => {
+        let newWeeklyData = [...weeklyIntakeData];
+        newWeeklyData[dayIndex] += 1; // Increment the value for the day
+        setWeeklyIntakeData(newWeeklyData); // Update the state
+    };
+
+    // Function to decrement the intake for a specific day
+    const onDecrement = (dayIndex) => {
+        let newWeeklyData = [...weeklyIntakeData];
+        newWeeklyData[dayIndex] = Math.max(0, newWeeklyData[dayIndex] - 1); // Decrement the value for the day, but not below 0
+        setWeeklyIntakeData(newWeeklyData); // Update the state
+    };
+    const [weeklyIntakeData, setWeeklyIntakeData] = useState([2, 15, 20, 8, 9, 3, 13]);
+
+    // Function to update a specific day's intake
+    const updateDailyIntake = (dayIndex) => {
+        const updatedIntakeData = [...weeklyIntakeData]; // assuming this is your state array for the graph
+        updatedIntakeData[dayIndex] = updatedIntakeData[dayIndex] + 1; // Increment the value
+        setWeeklyIntakeData(updatedIntakeData); // Update the state
+    };
+    const onUpdateDailyIntake = (dayIndex) => {
+        // Assuming you have a state named weeklyIntakeData to track this
+        let newWeeklyData = [...weeklyIntakeData];
+        newWeeklyData[dayIndex] += 1; // Increment the intake
+        setWeeklyIntakeData(newWeeklyData); // Update the state
+    };
+
+
     const graphData = {
         labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
 
         datasets: [{
-            data: [2, 15, 20, 8, 9, 3, 13],
+            data: weeklyIntakeData
             // ... other dataset properties
         }]
     };
@@ -91,14 +120,19 @@ const Water = ({ navigation }) => {
                 </View>
                 <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
-            </ImageBackground>
+
+
+            
             <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
                 <GraphCard
                     title="Weekly Water Consumption"
                     data={graphData}
-                    chartConfig={customChartConfig}
+                        chartConfig={customChartConfig}
+                        onIncrement={onIncrement}
+                        onDecrement={onDecrement}
                 />
             </View>
+            </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );

@@ -12,7 +12,7 @@ if (Platform.OS === 'web') {
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-const GraphCard = ({ title, data, chartConfig }) => {
+const GraphCard = ({ title, data, chartConfig, onIncrement, onDecrement }) => {
     // Ref for the chart container
     const chartRef = useRef(null);
 
@@ -41,6 +41,28 @@ const GraphCard = ({ title, data, chartConfig }) => {
     };
     const combinedChartConfig = { ...defaultConfig, ...chartConfig };
 
+
+    const renderControlButtons = () => (
+        <View style={styles.controlsRow}>
+            {data.labels.map((_, index) => (
+                <View key={index} style={styles.controlsColumn}>
+                    <TouchableOpacity
+                        style={styles.controlButton}
+                        onPress={() => onIncrement(index)}
+                    >
+                        <Text style={styles.controlButtonText}>+</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.controlButton}
+                        onPress={() => onDecrement(index)}
+                    >
+                        <Text style={styles.controlButtonText}>-</Text>
+                    </TouchableOpacity>
+                </View>
+            ))}
+        </View>
+    );
+
     return (
         <View style={styles.graphContainer} ref={chartRef}>
             <Text style={styles.title}>{title}</Text>
@@ -56,6 +78,10 @@ const GraphCard = ({ title, data, chartConfig }) => {
                     <Text style={styles.downloadButtonText}>Download</Text>
                 </TouchableOpacity>
             )}
+
+
+
+            {renderControlButtons()}
         </View>
     );
 };
@@ -90,6 +116,50 @@ const styles = StyleSheet.create({
     downloadButtonText: {
         color: 'white',
         fontSize: 14,
+    },
+    intakeButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        position: 'absolute', // Positioning at the bottom of the graph
+        bottom: 10,
+        width: '100%',
+        paddingLeft: 24, // Padding to align with the graph content
+        paddingRight: 24,
+    },
+    intakeButton: {
+        padding: 4,
+        backgroundColor: 'blue',
+        borderRadius: 4,
+    },
+    intakeButtonText: {
+        color: 'white',
+        fontSize: 12,
+    },
+    controlButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        position: 'absolute',
+        bottom: 10,
+        left: 10,
+    },
+    controlsRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 4,
+    },
+    controlsColumn: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    controlButton: {
+        backgroundColor: '#062A52',
+        padding: 8,
+        borderRadius: 5,
+        marginVertical: 2, // Space between control buttons
+    },
+    controlButtonText: {
+        color: 'white',
+        fontSize: 16,
     },
 });
 
