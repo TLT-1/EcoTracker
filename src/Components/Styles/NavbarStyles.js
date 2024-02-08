@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         textShadowColor: 'black',
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
-        marginHorizontal: 15,
+        marginHorizontal: 12.5,
         marginVertical: 10,
         borderRightWidth: 1,
         borderRightColor: 'white',

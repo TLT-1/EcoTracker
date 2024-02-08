@@ -6,7 +6,6 @@ import Footer from '../Footer';
 // import Snowfall from 'react-snowfall';
 import Fact from '../Fact';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//import { isToday } from 'date-fns';
 import GraphCard from '../GraphCard';
 
 const Water = ({ navigation }) => {
