@@ -22,7 +22,7 @@ const Guide = () => {
                 }}>Click the IMAGE to Learn the Right Way to Recycle</Text>
                 <TouchableOpacity
                     onPress={() => Linking.openURL('https://www.wm.com/us/en/recycle-right/recycling-101')}
-                    style={{ width: '25%', height: '25%' }}>  {/* Reduce this percentage to shrink the image */}
+                    style={{ width: '25%', height: '25%', marginBottom: 300 }}>
                     <Image source={require("../../../assets/Recycle.png")} style={{ width: '100%', height: '100%' }} resizeMode='contain' />
                 </TouchableOpacity>
             </ImageBackground>
