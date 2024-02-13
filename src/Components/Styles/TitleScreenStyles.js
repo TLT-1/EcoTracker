@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     idk: {
         backgroundColor: 'transparent',
     },
-
     themeButtonsContainer: {
         position: 'absolute',
         top: 40,

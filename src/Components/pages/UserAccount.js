@@ -226,8 +226,20 @@ const UserAccount = () => {
             <ImageBackground
                 source={require("../../../assets/ecoBackground.png")}
                 style={styles.background}>
-                <Snowfall snowflakeCount={250} />
-
+                <View style={styles.themeButtonsContainer}>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('spring')}>
+                        <Text style={styles.buttonText}>Spring</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('summer')}>
+                        <Text style={styles.buttonText}>Summer</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('autumn')}>
+                        <Text style={styles.buttonText}>Autumn</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('winter')}>
+                        <Text style={styles.buttonText}>Winter</Text>
+                    </TouchableOpacity>
+                </View>
                 <div style={styles.profilePicContainer}>
                     <img style={styles.profilePic} src={profilePic} alt="" />
                     <input style={styles.fileInput} type="file" onChange={handleFileChange} />

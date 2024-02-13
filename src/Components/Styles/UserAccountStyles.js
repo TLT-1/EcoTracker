@@ -125,4 +125,21 @@ export default StyleSheet.create({
     },
     addFriendsButton: {
     },
+    themeButtonsContainer: {
+        position: 'absolute',
+        top: -20,
+        left: 150,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        padding: 10,
+    },
+    themeButton: {
+        backgroundColor: '#000',
+        padding: 10,
+        margin: 5,
+        borderRadius: 5,
+    },
+    themeButtonText: {
+        color: '#000',
+    },
 });
