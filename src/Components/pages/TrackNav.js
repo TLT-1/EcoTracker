@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Driving from '../pages/Driving';
@@ -11,18 +11,25 @@ import Exercise from './Exercise';
 import Water from './Water';
 import Snowfall from 'react-snowfall';
 import Fact from '../Fact';
+import ThemeContext from '../ThemeContext';
 
 const Stack = createStackNavigator();
 
 function TrackOptions({ navigation }) {
     const styles = useResponsiveStyles();
     const [isModalVisible, setModalVisible] = useState(true);
+    const { theme } = useContext(ThemeContext);
 
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={[styles.container, { overflow: 'hidden' }]}>
-                <Snowfall snowflakeCount={250} />
+                {
+                    theme === 'autumn' && <Snowfall snowflakeCount={100} />
+                }
+                {
+                    theme === 'winter' && <Snowfall snowflakeCount={300} />
+                }
                 <View style={{ marginTop: -300, alignItems: 'center' }}>
                     <Text style={[styles.buttonText, { fontSize: 24, marginBottom: 50 }]}>Choose An Option To Track</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
@@ -41,7 +48,12 @@ function TrackOptions({ navigation }) {
                         <Text style={styles.buttonText}>Water</Text>
                     </TouchableOpacity>
                 </View>
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image
+                    source={theme === 'spring' ? require("../../../assets/springTree.png") :
+                        theme === 'summer' ? require("../../../assets/summerTree.png") :
+                            theme === 'autumn' ? require("../../../assets/autumnTree.png") :
+                                require("../../../assets/winterTree.png")}
+                    style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />

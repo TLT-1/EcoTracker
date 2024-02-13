@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ThemeContext = React.createContext('default');
+const ThemeContext = React.createContext('winter');
 
 export default ThemeContext;

@@ -44,6 +44,7 @@ import TrackNav from './src/Components/pages/TrackNav';
 import PasswordResetTemp from './src/Components/pages/PasswordResetTemp';
 import Test from './src/Components/pages/Testing';
 import Snowfall from 'react-snowfall';
+import ThemeContext from './src/Components/ThemeContext';
 
 
 function HomeScreen({ navigation }) {
@@ -99,7 +100,6 @@ const linking = {
 function TrackNavStackScreen() {
     return (
         <>
-            <Snowfall snowflakeCount={250} />
             <TrackNavStack.Navigator initialRouteName="TrackNav">
                 <TrackNavStack.Screen name="TrackNav" component={TrackNav} options={{ headerShown: false }} />
                 <TrackNavStack.Screen name="Driving" component={Driving} options={{ headerShown: false }} />
@@ -115,6 +115,8 @@ function TrackNavStackScreen() {
 function App() {
     const [key, setKey] = useState(Math.random());
 
+    const [theme, setTheme] = useState('winter');
+
     useEffect(() => {
         const handlePopState = () => {
             setKey(Math.random());  // Force a re-render by changing the state
@@ -128,33 +130,35 @@ function App() {
     }, []);
 
     return (
-        <View key={key} style={{ flex: 1 }}>
-            <Snowfall snowflakeCount={250} />
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+            <View key={key} style={{ flex: 1 }}>
+                <Snowfall snowflakeCount={250} />
 
-            <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-                <Stack.Navigator initialRouteName="Home">
-                    <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Overview' }} />
-                    <Stack.Screen name="Details" component={DetailsScreen} />
-                    <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
-                    <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
-                    <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
-                    <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
-                    <Stack.Screen name="ToS" component={ToS} options={{ headerShown: false }} />
-                    <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
-                    <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
-                    <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-                    <Stack.Screen name="PasswordReset" component={PasswordReset} options={{ headerShown: false }} />
-                    <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
-                    <Stack.Screen name="News" component={News} options={{ headerShown: false }} />
-                    <Stack.Screen name="Challenges" component={Challenges} options={{ headerShown: false }} />
-                    <Stack.Screen name="Guide" component={Guide} options={{ headerShown: false }} />
-                    <Stack.Screen name="Test" component={Test} options={{ headerShown: false }} />
+                <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+                    <Stack.Navigator initialRouteName="Home">
+                        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Overview' }} />
+                        <Stack.Screen name="Details" component={DetailsScreen} />
+                        <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
+                        <Stack.Screen name="LogIn" component={LogIn} options={{ headerShown: false }} />
+                        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+                        <Stack.Screen name="PP" component={PP} options={{ headerShown: false }} />
+                        <Stack.Screen name="ToS" component={ToS} options={{ headerShown: false }} />
+                        <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
+                        <Stack.Screen name="UserAccount" component={UserAccount} options={{ headerShown: false }} />
+                        <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
+                        <Stack.Screen name="PasswordReset" component={PasswordReset} options={{ headerShown: false }} />
+                        <Stack.Screen name="PasswordResetTemp" component={PasswordResetTemp} options={{ headerShown: false }} />
+                        <Stack.Screen name="News" component={News} options={{ headerShown: false }} />
+                        <Stack.Screen name="Challenges" component={Challenges} options={{ headerShown: false }} />
+                        <Stack.Screen name="Guide" component={Guide} options={{ headerShown: false }} />
+                        <Stack.Screen name="Test" component={Test} options={{ headerShown: false }} />
 
-                    <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
+                        <Stack.Screen name="TrackNav" component={TrackNavStackScreen} options={{ headerShown: false }} />
 
-                </Stack.Navigator>
-            </NavigationContainer>
-        </View>
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </View>
+        </ThemeContext.Provider>
     );
 }
 

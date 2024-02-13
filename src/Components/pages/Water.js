@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
@@ -7,6 +7,7 @@ import Footer from '../Footer';
 import Fact from '../Fact';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GraphCard from '../GraphCard';
+import ThemeContext from '../ThemeContext';
 
 const Water = ({ navigation }) => {
     const [waterIntake, setWaterIntake] = useState(0);
@@ -90,6 +91,7 @@ const Water = ({ navigation }) => {
         // Optional custom chart configuration here
     };
 
+    const { theme } = useContext(ThemeContext);
 
     return (
         <View style={{ flex: 1 }}>
@@ -118,20 +120,25 @@ const Water = ({ navigation }) => {
                     </View>
                     <Text style={{ fontSize: 32, marginTop: 20, color: "white" }}>Your Water Intake: {waterIntake} Cups</Text>
                 </View>
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image
+                    source={theme === 'spring' ? require("../../../assets/springTree.png") :
+                        theme === 'summer' ? require("../../../assets/summerTree.png") :
+                            theme === 'autumn' ? require("../../../assets/autumnTree.png") :
+                                require("../../../assets/winterTree.png")}
+                    style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
 
 
-            
-            <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
-                <GraphCard
-                    title="Weekly Water Consumption"
-                    data={graphData}
+
+                <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
+                    <GraphCard
+                        title="Weekly Water Consumption"
+                        data={graphData}
                         chartConfig={customChartConfig}
                         onIncrement={onIncrement}
                         onDecrement={onDecrement}
-                />
-            </View>
+                    />
+                </View>
             </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>

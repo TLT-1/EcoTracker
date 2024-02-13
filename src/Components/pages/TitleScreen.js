@@ -37,7 +37,7 @@ index data_to ie data_to[0] and this might output 2007 if you are pulling from t
 
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, ScrollView, Text, View, Image, ImageBackground, Animated, Easing, Touchable, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
 
 
@@ -51,6 +51,7 @@ import Snowfall from 'react-snowfall';
 import CarbonFootprintInfo from '../CarbonFootprintInfo';
 import Testimonials from '../Testimonials';
 import CommunitySignUp from '../CommunitySignUp';
+import ThemeContext from '../ThemeContext';
 
 const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation prop if it's being used
     const [scaleValue] = useState(new Animated.Value(1));
@@ -94,7 +95,7 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
         // Optional custom chart configuration here
     };
 
-    const [theme, setTheme] = useState('spring');
+    const { theme, setTheme } = useContext(ThemeContext);
 
     return (
         <>
@@ -222,7 +223,3 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
 };
 
 export default TitleScreen;
-
-
-
-

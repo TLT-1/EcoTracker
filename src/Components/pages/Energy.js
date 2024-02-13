@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native';
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
@@ -8,6 +8,7 @@ import Snowfall from 'react-snowfall';
 import axios from 'axios';
 import DropDownPicker from 'react-native-dropdown-picker';
 import GraphCard from '../GraphCard';
+import ThemeContext from '../ThemeContext';
 
 
 const Energy = ({ navigation }) => {
@@ -108,11 +109,18 @@ const Energy = ({ navigation }) => {
         // Optional custom chart configuration here
     };
 
+    const { theme } = useContext(ThemeContext);
+
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
-                <Snowfall snowflakeCount={250} />
+                {
+                    theme === 'autumn' && <Snowfall snowflakeCount={100} />
+                }
+                {
+                    theme === 'winter' && <Snowfall snowflakeCount={300} />
+                }
                 <Image source={require("../../../assets/ecoEnergy.png")} style={{ ...styles.title, marginTop: -200 }} />
                 <Text style={styles.buttonText}>Appliance:</Text>
                 <View style={styles.buttonText}>
@@ -145,8 +153,12 @@ const Energy = ({ navigation }) => {
                 <View style={styles.button}>
                     <Button title="Clear" onPress={handleClear} color="transparent" />
                 </View>
-
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image
+                    source={theme === 'spring' ? require("../../../assets/springTree.png") :
+                        theme === 'summer' ? require("../../../assets/summerTree.png") :
+                            theme === 'autumn' ? require("../../../assets/autumnTree.png") :
+                                require("../../../assets/winterTree.png")}
+                    style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
                 <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
             <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, Image, ImageBackground, FlatList, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Navbar from '../Navbar';
@@ -6,6 +6,7 @@ import Footer from '../Footer';
 import Snowfall from 'react-snowfall';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isToday } from 'date-fns';
+import ThemeContext from '../ThemeContext';
 
 
 const Challenges = ({ navigation }) => {
@@ -74,6 +75,8 @@ const Challenges = ({ navigation }) => {
             // loading error
         }
     };
+
+    const { theme } = useContext(ThemeContext);
 
     useEffect(() => {
         loadCompletedChallenges();
@@ -147,9 +150,18 @@ const Challenges = ({ navigation }) => {
                     style={{ zIndex: 1 }}
                     numColumns={2}
                 />
-                <Image source={require("../../../assets/ecoMountain.png")} style={{ position: 'absolute', bottom: 0, width: '100%', height: 500 }} />
-                <Snowfall snowflakeCount={250} />
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: 0, width: '100%', height: 160 }} />
+                {
+                    theme === 'autumn' && <Snowfall snowflakeCount={100} />
+                }
+                {
+                    theme === 'winter' && <Snowfall snowflakeCount={300} />
+                }
+                <Image
+                    source={theme === 'spring' ? require("../../../assets/springMT.png") :
+                        theme === 'summer' ? require("../../../assets/summerMT.png") :
+                            theme === 'autumn' ? require("../../../assets/autumnMT.png") :
+                                require("../../../assets/winterMT.png")}
+                    style={{ position: 'absolute', bottom: 0, width: '100%', height: 500 }} />
             </ImageBackground>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
