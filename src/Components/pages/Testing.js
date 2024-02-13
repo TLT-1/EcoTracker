@@ -79,7 +79,7 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                     </View>
                 </ImageBackground>
 
-                <View style={styles.line } />
+                <View style={styles.line} />
 
                 <Text style={styles.titleto}>
                     Popular Eco-Friendly{'\n'}Products
@@ -108,7 +108,7 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                     />
                 </View>
 
-                
+
                 <View style={styles.line} />
 
                 <Text style={styles.titleto}>
@@ -126,10 +126,10 @@ const Test = ({ navigation }) => { // Make sure to receive the navigation prop i
                         comparison="-10% compared to last month"
                     />
                 </View>
-                
+
                 <View style={styles.line} />
 
-                <CarbonFootprintInfo  />
+                <CarbonFootprintInfo />
                 <View style={styles.line} />
 
                 <Testimonials />

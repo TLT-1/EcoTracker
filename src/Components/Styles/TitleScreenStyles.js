@@ -107,6 +107,24 @@ const styles = StyleSheet.create({
     idk: {
         backgroundColor: 'transparent',
     },
+
+    themeButtonsContainer: {
+        position: 'absolute',
+        top: 40,
+        left: 150,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        padding: 10,
+    },
+    themeButton: {
+        backgroundColor: '#000',
+        padding: 10,
+        margin: 5,
+        borderRadius: 5,
+    },
+    themeButtonText: {
+        color: '#000',
+    },
 });
 
 export default styles;

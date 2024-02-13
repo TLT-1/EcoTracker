@@ -94,18 +94,39 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
         // Optional custom chart configuration here
     };
 
-
+    const [theme, setTheme] = useState('spring');
 
     return (
         <>
             <Navbar />
             <ImageBackground source={require("../../../assets/ecoBackground.png")}>
-                <Snowfall snowflakeCount={250} />
+                {
+                    theme === 'autumn' && <Snowfall snowflakeCount={200} />
+                }
+                {
+                    theme === 'winter' && <Snowfall snowflakeCount={1000} />
+                }
                 <ScrollView contentContainerStyle={styles.container}>
                     <ImageBackground
-                        source={require("../../../assets/ecoTrackTitleScreenChristmas.png")}
+                        source={theme === 'spring' ? require("../../../assets/spring.png") :
+                            theme === 'summer' ? require("../../../assets/summer.png") :
+                                theme === 'autumn' ? require("../../../assets/autumn.png") :
+                                    require("../../../assets/winter.png")}
                         style={{ ...styles.titleScreen, marginTop: -60 }}>
-
+                        <View style={styles.themeButtonsContainer}>
+                            <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('spring')}>
+                                <Text style={styles.buttonText}>Spring</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('summer')}>
+                                <Text style={styles.buttonText}>Summer</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('autumn')}>
+                                <Text style={styles.buttonText}>Autumn</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('winter')}>
+                                <Text style={styles.buttonText}>Winter</Text>
+                            </TouchableOpacity>
+                        </View>
                         <Animated.Image
                             source={require("../../../assets/ecoTrackLogosu.png")}
                             style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
@@ -196,6 +217,7 @@ const TitleScreen = ({ navigation }) => { // Make sure to receive the navigation
             </ImageBackground>
             <Footer navigation={navigation} />
         </>
+
     );
 };
 
