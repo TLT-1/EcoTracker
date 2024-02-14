@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, ScrollView, Text, View, Image, ImageBackground, Animated, Easing, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
 import styles from "../Styles/UserAccountStyles";
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,6 +10,7 @@ import Snowfall from "react-snowfall";
 import Leaderboard from './Leaderboard';
 import InviteButton from "../InviteButton";
 import AddFriendsButton from "../AddFriendsButton";
+import ThemeContext from "../ThemeContext";
 
 const UserAccount = () => {
     const [user, setUser] = useState({
@@ -29,8 +30,6 @@ const UserAccount = () => {
         { name: 'Claire', score: 110 },
         // ... more users
     ];
-
-
 
     useEffect(() => {
         fetch('http://localhost:5000/profile')
@@ -59,10 +58,6 @@ const UserAccount = () => {
                 console.error("There was an error fetching the data:", error);
             });
     }, []);
-
-
-
-
 
     const changeName = async () => {
         try {
@@ -126,13 +121,8 @@ const UserAccount = () => {
         }
     }, [newNameFirst, newNameLast]); // Dependencies array
 
-
-
-
-
     const [newEmail, setNewEmail] = useState('');
     const [emailModalVisible, setEmailModalVisible] = useState(false);
-
 
     const changeEmail = async () => {
         try {
@@ -219,7 +209,7 @@ const UserAccount = () => {
     };
 
     const RenderIcon = () => <Text style={styles.icon}>🖉</Text>;
-
+    const { theme, setTheme } = useContext(ThemeContext);
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Navbar />
