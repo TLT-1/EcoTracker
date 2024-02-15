@@ -150,12 +150,16 @@ const styles = StyleSheet.create({
     controlsColumn: {
         alignItems: 'center',
         justifyContent: 'center',
+        marginHorizontal: 19,
     },
     controlButton: {
         backgroundColor: '#062A52',
-        padding: 8,
-        borderRadius: 5,
-        marginVertical: 2, // Space between control buttons
+        borderRadius: 30,
+        marginVertical: 1,
+        width: 30,
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     controlButtonText: {
         color: 'white',
