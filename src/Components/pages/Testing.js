@@ -1,149 +1,151 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, ScrollView, Text, View, Image, ImageBackground, Animated, Easing, Touchable, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, TextInput, Keyboard } from 'react-native';
+import { LineChart } from 'react-native-chart-kit';
 
+const screenWidth = Dimensions.get('window').width;
 
-import styles from "../Styles/TitleScreenStyles";
-import ProductCard from '../ProductCard';
-import InfoCard from '../InfoCard';
-import GraphCard from '../GraphCard';
-import Footer from '../Footer';
-import Navbar from '../Navbar';
-import Snowfall from 'react-snowfall';
-import CarbonFootprintInfo from '../CarbonFootprintInfo';
-import Testimonials from '../Testimonials';
-import CommunitySignUp from '../CommunitySignUp';
-
-const Test = ({ navigation }) => { // Make sure to receive the navigation prop if it's being used
-    const [scaleValue] = useState(new Animated.Value(1));
-
-    useEffect(() => {
-        const pulseAnimation = Animated.sequence([
-            Animated.timing(scaleValue, {
-                toValue: 1.07,
-                duration: 1500,
-                easing: Easing.ease,
-                useNativeDriver: true,
-            }),
-            Animated.timing(scaleValue, {
-                toValue: 1,
-                duration: 1500,
-                easing: Easing.ease,
-                useNativeDriver: true,
-            }),
-        ]);
-
-        Animated.loop(pulseAnimation).start();
-    }, [scaleValue]);
-
-    const screenHeight = Dimensions.get('window').height;
-
-    const handleLikePress = () => {
-        // Handle the like button press
-    };
-    const graphData = {
-        labels: ["January", "February", "March", "April", "May", "June"],
+const Test = ({ title }) => {
+    const [data, setData] = useState({
+        labels: Array.from({ length: 30 }, (_, i) => (i + 1).toString()), // Labels for each day of the month
         datasets: [{
-            data: [20, 45, 28, 80, 99, 43],
-            // ... other dataset properties
-        }]
+            data: Array.from({ length: 30 }, () => Math.random() * 100), // Initial random data
+        }],
+    });
+    const [inputValue, setInputValue] = useState('');
+    const [selectedDay, setSelectedDay] = useState(null);
+
+    // Generate a random number based on user input
+    const generateRandomData = (userInput) => {
+        const maxChange = 5;
+        const randomChange = Math.floor(Math.random() * (maxChange * 2 + 1)) - maxChange;
+        return Math.max(0, userInput + randomChange);
+    };
+
+    // Update the data for a specific day with the user's input
+    const handleSubmit = () => {
+        const userValue = Number(inputValue);
+        if (!isNaN(userValue) && selectedDay !== null) {
+            const newData = [...data.datasets[0].data];
+            newData[selectedDay] = generateRandomData(userValue);
+            setData({
+                ...data,
+                datasets: [{ ...data.datasets[0], data: newData }],
+            });
+            setSelectedDay(null);
+            setInputValue('');
+            Keyboard.dismiss();
+        }
+    };
+
+    // Chart configuration
+    const chartConfig = {
+        backgroundColor: '#FFFFFF',
+        backgroundGradientFrom: '#FFFFFF',
+        backgroundGradientTo: '#FFFFFF',
+        decimalPlaces: 2,
+        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+        labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+        // ...other properties
     };
 
     return (
-        <>
-            <Navbar />
-            <ScrollView contentContainerStyle={styles.container}>
-                <ImageBackground
-                    source={require("../../../assets/ecoTrackTitleScreenChristmas.png")}
-                    style={styles.titleScreen}>
+        <View style={styles.graphContainer}>
+            <Text style={styles.title}>{title}</Text>
+            <LineChart
+                data={data}
+                width={screenWidth}
+                height={220}
+                chartConfig={chartConfig}
+                bezier
+            />
 
-                    <Animated.Image
-                        source={require("../../../assets/ecoTrackLogosu.png")}
-                        style={[styles.logo, { transform: [{ scale: scaleValue }] }]}
-                    />
-
-                    <View style={styles.contentContainer}>
-                        <Text style={styles.title}>
-                            Track and Reduce Your{'\n'}Carbon Footprint
-                        </Text>
-                        <Text style={styles.subtitle}>
-                            Monitor your daily activities and get personalized insights and{'\n'}recommended to lower your impact.
-                        </Text>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Learn more</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.button} onPress={() => { }}>
-                                <Text style={styles.buttonText}>Start tracking</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </ImageBackground>
-
-                <View style={styles.line} />
-
-                <Text style={styles.titleto}>
-                    Popular Eco-Friendly{'\n'}Products
-                </Text>
-                <View style={styles.productSection}>
-                    <ProductCard
-                        bestsellerLabel="Best Seller"
-                        productName="Reusable Water Bottle"
-                        productDesc="1,000 plastic bottles avoided"
-                        imageSrc={require('../../../assets/reusablewaterbottle.png')}
-                        onLikePress={handleLikePress}
-                    />
-                    <ProductCard
-                        bestsellerLabel="New"
-                        productName="Compostable Food Containers"
-                        productDesc="50 pounds of waste diverted"
-                        imageSrc={require('../../../assets/CompostableFoodContainers.png')}
-                        onLikePress={handleLikePress}
-                    />
-                    <ProductCard
-                        bestsellerLabel="Old"
-                        productName="Solar Power Bank"
-                        productDesc="2,000mAh of clean energy"
-                        imageSrc={require('../../../assets/SolarPowerBank.png')}
-                        onLikePress={handleLikePress}
+            {/* Input field for user interaction */}
+            {selectedDay !== null && (
+                <View style={styles.inputContainer}>
+                    <Text style={styles.inputLabel}>Enter your miles drove for day {selectedDay + 1}:</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={inputValue}
+                        onChangeText={setInputValue}
+                        keyboardType='numeric'
+                        onSubmitEditing={handleSubmit}
+                        returnKeyType='done'
+                        placeholder="Input value"
                     />
                 </View>
+            )}
 
-
-                <View style={styles.line} />
-
-                <Text style={styles.titleto}>
-                    Your Carbon Footprint
-                </Text>
-                <View style={styles.infoCardContainer}>
-                    <InfoCard
-                        title="Today's Emissions"
-                        value="14.5kg CO2e"
-                        comparison="+2% compared to yesterday"
-                    />
-                    <InfoCard
-                        title="Total Savings"
-                        value="150kg CO2e"
-                        comparison="-10% compared to last month"
-                    />
-                </View>
-
-                <View style={styles.line} />
-
-                <CarbonFootprintInfo />
-                <View style={styles.line} />
-
-                <Testimonials />
-                <View style={styles.line} />
-
-                <CommunitySignUp />
-
-                <Snowfall snowflakeCount={250} />
-                <View style={{ height: 500, backgroundColor: 'green' }} /> {/* This is your spacer View */}
-            </ScrollView>
-            <Footer navigation={navigation} />
-        </>
+            {/* Day labels */}
+            <View style={styles.labelsContainer}>
+                {data.labels.map((label, index) => (
+                    <TouchableOpacity
+                        key={label}
+                        style={styles.label}
+                        onPress={() => setSelectedDay(index)}
+                    >
+                        <Text style={styles.labelText}>{label}</Text>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </View>
     );
 };
 
-export default Test;
+const styles = StyleSheet.create({
+    graphContainer: {
+        alignItems: 'center',
+        backgroundColor: '#FFF',
+        padding: 16,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowRadius: 5,
+        shadowOpacity: 0.2,
+        elevation: 6,
+        margin: 10,
+        position: 'relative',
+    },
+    title: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    inputContainer: {
+        alignItems: 'center',
+        marginTop: 12,
+    },
+    inputLabel: {
+        fontSize: 16,
+        color: '#333',
+        marginBottom: 4,
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: '#CCCCCC',
+        borderRadius: 5,
+        padding: 8,
+        width: '80%',
+        fontSize: 16,
+        color: '#333',
+        textAlign: 'center',
+        backgroundColor: '#F7F7F7',
+    },
+    labelsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
+        marginTop: 8,
+    },
+    label: {
+        padding: 4,
+        backgroundColor: '#EFEFEF',
+        borderRadius: 5,
+    },
+    labelText: {
+        color: 'black',
+        fontSize: 12,
+    },
+    // ... other styles you may want to add
+});
 
+export default Test;
