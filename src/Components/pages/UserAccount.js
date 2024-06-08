@@ -7,7 +7,7 @@ import axios from 'axios';
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Snowfall from "react-snowfall";
-import Leaderboard from './Leaderboard';
+import Leaderboard from './LeaderBoard';
 import InviteButton from "../InviteButton";
 import AddFriendsButton from "../AddFriendsButton";
 import ThemeContext from "../ThemeContext";
