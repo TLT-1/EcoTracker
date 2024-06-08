@@ -16,7 +16,6 @@ export default function useResponsiveStyles() {
             width: "17%",
             aspectRatio: 1,
             resizeMode: "contain",
-
         },
         input: {
             width: windowWidth * 0.13,
@@ -30,13 +29,16 @@ export default function useResponsiveStyles() {
             backgroundColor: 'white',
         },
         button: {
-            width: windowWidth * 0.04,
+            width: windowWidth * 0.06,
             height: windowHeight * 0.04,
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: '#062A52',
             borderRadius: 15,
             marginTop: windowHeight * 0.005,
+            marginBottom: 5,
+            borderColor: 'white',
+            borderWidth: 1,
         },
         buttonText: {
             color: "white",

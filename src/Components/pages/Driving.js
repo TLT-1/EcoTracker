@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Button, Image, ImageBackground } from 'react-native'
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import Fact from '../Fact';
 import Snowfall from 'react-snowfall';
 import axios from 'axios';
+import GraphCard from '../GraphCard';
+import ThemeContext from '../ThemeContext';
+
 
 const Driving = () => {
     const [formData, setFormData] = useState({
@@ -16,6 +20,7 @@ const Driving = () => {
         miles_driven: ''
     });
     const styles = useResponsiveStyles();
+    const [isModalVisible, setModalVisible] = useState(true);
 
     const [carbonEmissions, setCarbonEmissions] = useState(null);
     const [error, setError] = useState('');
@@ -58,12 +63,44 @@ const Driving = () => {
         });
     };
 
+    const graphData = {
+        labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        datasets: [{
+            data: [2093, 2152, 4921, 0, 1790, 398, 19282],
+            // ... other dataset properties
+        }]
+    };
+
+    const customChartConfig = {
+        // Optional custom chart configuration here
+    };
+    const onIncrement = (dayIndex) => {
+        let newWeeklyData = [...weeklyIntakeData];
+        newWeeklyData[dayIndex] += 1; // Increment the value for the day
+        setWeeklyIntakeData(newWeeklyData); // Update the state
+    };
+
+    // Function to decrement the intake for a specific day
+    const onDecrement = (dayIndex) => {
+        let newWeeklyData = [...weeklyIntakeData];
+        newWeeklyData[dayIndex] = Math.max(0, newWeeklyData[dayIndex] - 1); // Decrement the value for the day, but not below 0
+        setWeeklyIntakeData(newWeeklyData); // Update the state
+    };
+    const [weeklyIntakeData, setWeeklyIntakeData] = useState([2093, 2152, 4921, 0, 1790, 398, 19282]);
+
+    const { theme } = useContext(ThemeContext);
 
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={{ ...styles.container, overflow: 'hidden' }}>
-                <Image source={require("../../../assets/ecoVehicle.png")} style={styles.title} />
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ ...styles.container, overflow: 'hidden' }}>
+                {
+                    theme === 'autumn' && <Snowfall snowflakeCount={100} />
+                }
+                {
+                    theme === 'winter' && <Snowfall snowflakeCount={300} />
+                }
+                <Image source={require("../../../assets/ecoVehicle.png")} style={{ ...styles.title, marginTop: -50 }} />
 
                 <View style={{ marginTop: -50, flex: 1, alignItems: 'center' }}>
                     <Text style={styles.buttonText}>Year:</Text>
@@ -75,8 +112,8 @@ const Driving = () => {
                         onChangeText={(text) => handleChange('make', text)} />
 
                     <Text style={styles.buttonText}>Model:</Text>
-                    <TextInput style={styles.input} onChangeText={(text) => handleChange('model', text)}
-                        style={styles.input} />
+                    <TextInput style={styles.input} value={formData.model}
+                        onChangeText={(text) => handleChange('model', text)} />
 
                     <Text style={styles.buttonText}>Average Speed (mph):</Text>
                     <TextInput style={styles.input} value={formData.avg_speed}
@@ -98,10 +135,23 @@ const Driving = () => {
                         <Button title="Clear" onPress={handleClear} color="transparent" />
                     </View>
                 </View>
-
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: '17%' }} />
+                <Image
+                    source={theme === 'spring' ? require("../../../assets/springTree.png") :
+                        theme === 'summer' ? require("../../../assets/summerTree.png") :
+                            theme === 'autumn' ? require("../../../assets/autumnTree.png") :
+                                require("../../../assets/winterTree.png")}
+                    style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <Snowfall snowflakeCount={250} />
+            <View style={{ ...styles.graphCardContainer, position: 'absolute', left: 0, top: '35%', padding: 10, }}>
+                <GraphCard
+                    title="Weekly Carbon Emissions"
+                    data={graphData}
+                    chartConfig={customChartConfig}
+                    onIncrement={onIncrement}
+                    onDecrement={onDecrement}
+                />
+            </View>
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
 

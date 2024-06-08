@@ -3,7 +3,6 @@ import { View, ScrollView, Text, FlatList, StyleSheet, ImageBackground, Touchabl
 import axios from 'axios';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import Snowfall from 'react-snowfall';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
@@ -25,7 +24,11 @@ function News() {
                 });
 
                 const excludedDomains = ['subscriber.politicopro.com', 'www.vox.com', 'www.sciencedaily.com', 'www.forbes.com', 'www.planetizen.com', 'press.un.org', 'www.rigzone.com', 'www.globenewswire.com', 'www.marketscreener.com', 'www.defense.gov', 'removed.com',
-                    'www.bangkokpost.com', 'theconversation.com', 'www.cnn.com', 'inthesetimes.com', 'electrek.co', 'allafrica.com', 'www.cnbc.com', 'www.nationalobserver.com', 'www.businessinsider.com', 'www.latimes.com'];
+                    'www.bangkokpost.com', 'theconversation.com', 'www.cnn.com', 'inthesetimes.com', 'electrek.co', 'allafrica.com', 'www.cnbc.com', 'www.nationalobserver.com', 'www.businessinsider.com', 'www.latimes.com', 'voxeurop.eu', 'economictimes.indiatimes.com',
+                    'wattsupwiththat.com', 'www.vice.com', 'theecologist.org', 'www.newsweek.com', 'truthout.org', 'www.project-syndicate.org', 'variety.com', 'news.sky.com', 'sustainability.stanford.edu', 'time.com', 'www.scientificamerican.com', 'divinity.yale.edu',
+                    'news.yale.edu', 'iasexamportal.com', 'newrepublic.com', 'wwd.com', 'skepticalscience.com', 'www.rawstory.com', 'pr.euractiv.com', 'newatlas.com', 'goodinternet.substack.com', 'www.foxnews.com', 'www.irishtimes.com', 'www.wallpaper.com', 'www.news24.com',
+                    'www.gamesradar.com', 'www.counterpunch.org', 'www.nzherald.co.nz', 'www.advocate.com', 'sustainability.yale.edu', 'www.ecb.europa.eu', 'call-for-papers.sas.upenn.edu', 'www.livemint.com', 'www.thenation.com', 'www.straitstimes.com', 'www.psychologytoday.com',
+                    'bleedingcool.com', 'www.cbc.ca', 'www.thestar.com.my', 'www.commondreams.org', 'environment.yale.edu'];
 
                 const filteredArticles = response.data.articles.filter(article => {
                     const articleDomain = new URL(article.url).hostname;
@@ -66,7 +69,7 @@ function News() {
     return (
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={{ flex: 1, ...styles.container, overflow: 'hidden' }}>
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={{ flex: 1, ...styles.container, overflow: 'hidden' }}>
                 {news.length > 0 ? (
                     <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
                         <Text style={{ fontSize: 50, fontWeight: 'bold', color: 'white', textAlign: 'center' }}>Current News</Text>
@@ -114,7 +117,6 @@ function News() {
                     <button onClick={closeModal} style={{ position: 'absolute', top: 0, right: 0 }}>X</button>
                 </Modal>
             </ImageBackground>
-            <Snowfall style={{}} snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
 

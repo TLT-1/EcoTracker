@@ -1,5 +1,5 @@
-﻿import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, ImageBackground, Animated, Easing, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
+﻿import React, { useState, useEffect, useContext } from "react";
+import { StyleSheet, ScrollView, Text, View, Image, ImageBackground, Animated, Easing, Button, TextInput, Alert, Dimensions, TouchableOpacity, Modal } from "react-native";
 import styles from "../Styles/UserAccountStyles";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -7,6 +7,10 @@ import axios from 'axios';
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import Snowfall from "react-snowfall";
+import Leaderboard from './Leaderboard';
+import InviteButton from "../InviteButton";
+import AddFriendsButton from "../AddFriendsButton";
+import ThemeContext from "../ThemeContext";
 
 const UserAccount = () => {
     const [user, setUser] = useState({
@@ -19,7 +23,13 @@ const UserAccount = () => {
     const [email_data, setEmailData] = useState('');
     const [dob_data, setDobData] = useState('');
 
-
+    const users = [
+        { name: 'Alice', score: 100 },
+        { name: 'Bob', score: 90 },
+        { name: 'Claire', score: 110 },
+        { name: 'Claire', score: 110 },
+        // ... more users
+    ];
 
     useEffect(() => {
         fetch('http://localhost:5000/profile')
@@ -48,10 +58,6 @@ const UserAccount = () => {
                 console.error("There was an error fetching the data:", error);
             });
     }, []);
-
-
-
-
 
     const changeName = async () => {
         try {
@@ -115,13 +121,8 @@ const UserAccount = () => {
         }
     }, [newNameFirst, newNameLast]); // Dependencies array
 
-
-
-
-
     const [newEmail, setNewEmail] = useState('');
     const [emailModalVisible, setEmailModalVisible] = useState(false);
-
 
     const changeEmail = async () => {
         try {
@@ -175,9 +176,19 @@ const UserAccount = () => {
         setNewEmail(''); // Reset the new email state when closing the modal
     };
 
+    const [profilePic, setProfilePic] = useState(null);
 
+    const handleFileChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
 
+            reader.onload = (e) => {
+                setProfilePic(e.target.result);
+            };
 
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    };
 
     const handleChangePassword = async () => {
         // Implement navigation or modal popup for password change
@@ -198,13 +209,32 @@ const UserAccount = () => {
     };
 
     const RenderIcon = () => <Text style={styles.icon}>🖉</Text>;
-
+    const { theme, setTheme } = useContext(ThemeContext);
     return (
-        <View style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Navbar />
             <ImageBackground
-                source={require("../../../assets/ecoBackgroundChristmas.png")}
-                style={{ flex: 1, overflow: 'hidden' }}>
+                source={require("../../../assets/ecoBackground.png")}
+                style={styles.background}>
+                <View style={styles.themeButtonsContainer}>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('spring')}>
+                        <Text style={styles.buttonText}>Spring</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('summer')}>
+                        <Text style={styles.buttonText}>Summer</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('autumn')}>
+                        <Text style={styles.buttonText}>Autumn</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.themeButton} onPress={() => setTheme('winter')}>
+                        <Text style={styles.buttonText}>Winter</Text>
+                    </TouchableOpacity>
+                </View>
+                <div style={styles.profilePicContainer}>
+                    <img style={styles.profilePic} src={profilePic} alt="" />
+                    <input style={styles.fileInput} type="file" onChange={handleFileChange} />
+                    {!profilePic && <div style={styles.chooseImageText}>Choose Image</div>}
+                </div>
                 <Text style={styles.title}>User Account</Text>
                 <View style={styles.infoContainer}>
                     <Text style={styles.info}>Name: {data_to[0]} {data_to[1]}</Text>
@@ -217,22 +247,19 @@ const UserAccount = () => {
                         transparent={true}
                         visible={modalVisible}
                         onRequestClose={handleCloseModal}>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ margin: 20, backgroundColor: 'white', borderRadius: 20, padding: 35, alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84, elevation: 5 }}>
+                        <View style={styles.modalContainer}>
+                            <View style={styles.modalContent}>
                                 <TextInput
                                     placeholder="Enter your new name"
                                     value={newName}
                                     onChangeText={setNewName}
-                                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 20, width: '100%' }}
+                                    style={styles.input}
                                 />
                                 <Button title="Save" onPress={handleSaveName} />
                             </View>
                         </View>
                     </Modal>
-
-
                 </View>
-
 
                 <View style={styles.infoContainer}>
                     <Text style={styles.info}>Email: {email_data}</Text>
@@ -247,13 +274,13 @@ const UserAccount = () => {
                     transparent={true}
                     visible={emailModalVisible}
                     onRequestClose={handleCloseEmailModal}>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={modalStyle}>
+                    <View style={styles.modalContainer}>
+                        <View style={styles.modalContent}>
                             <TextInput
                                 placeholder="Enter your new email"
                                 value={newEmail}
                                 onChangeText={setNewEmail}
-                                style={textInputStyle}
+                                style={styles.input}
                                 keyboardType="email-address"
                             />
                             <Button title="Save" onPress={handleSaveEmail} />
@@ -261,42 +288,26 @@ const UserAccount = () => {
                     </View>
                 </Modal>
 
-
                 <View style={styles.infoContainer}>
                     <Text style={styles.info}>Birthday: {data_to[5]}</Text>
-
                 </View>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
-                        <Text style={{ color: 'white' }}>Change Password</Text>
-                    </TouchableOpacity>
+
+                <View style={styles.componentsContainer}>
+                    <View style={styles.leaderboardContainer}>
+                        <View style={styles.leaderboard}>
+                            <Leaderboard users={users} />
+                        </View>
+                    </View>
+                    <View style={styles.buttonsContainer}>
+                        <View style={styles.addFriendsButton}>
+                            <AddFriendsButton />
+                        </View>
+                    </View>
                 </View>
             </ImageBackground>
-            <Snowfall snowflakeCount={250} />
-            <Footer style={{ height: 18 }} navigation={navigation} />
-        </View>
+            <Footer style={styles.footer} navigation={navigation} />
+        </ScrollView>
     );
-};
-
-const modalStyle = {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
-};
-
-const textInputStyle = {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-    width: '100%'
 };
 
 export default UserAccount;

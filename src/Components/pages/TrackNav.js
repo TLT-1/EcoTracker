@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, TouchableOpacity, Image, ImageBackground, StyleSheet, Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Driving from '../pages/Driving';
 import Energy from '../pages/Energy';
@@ -8,20 +8,30 @@ import Footer from '../Footer';
 import useResponsiveStyles from '../Styles/TrackStyles';
 import Diet from './Diet';
 import Exercise from './Exercise';
+import Water from './Water';
 import Snowfall from 'react-snowfall';
+import Fact from '../Fact';
+import ThemeContext from '../ThemeContext';
 
 const Stack = createStackNavigator();
 
 function TrackOptions({ navigation }) {
     const styles = useResponsiveStyles();
+    const [isModalVisible, setModalVisible] = useState(true);
+    const { theme } = useContext(ThemeContext);
 
     return (
-
         <View style={{ flex: 1 }}>
             <Navbar />
-            <ImageBackground source={require("../../../assets/ecoBackgroundChristmas.png")} style={[styles.container, { overflow: 'hidden' }]}>
+            <ImageBackground source={require("../../../assets/ecoBackground.png")} style={[styles.container, { overflow: 'hidden' }]}>
+                {
+                    theme === 'autumn' && <Snowfall snowflakeCount={100} />
+                }
+                {
+                    theme === 'winter' && <Snowfall snowflakeCount={300} />
+                }
                 <View style={{ marginTop: -300, alignItems: 'center' }}>
-                    <Text style={[styles.buttonText, { marginBottom: 50 }]}>Choose An Option To Track</Text>
+                    <Text style={[styles.buttonText, { fontSize: 24, marginBottom: 50 }]}>Choose An Option To Track</Text>
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Driving')}>
                         <Text style={styles.buttonText}>Driving</Text>
                     </TouchableOpacity>
@@ -34,16 +44,27 @@ function TrackOptions({ navigation }) {
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Exercise')}>
                         <Text style={styles.buttonText}>Exercise</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Water')}>
+                        <Text style={styles.buttonText}>Water</Text>
+                    </TouchableOpacity>
                 </View>
-                <Image source={require("../../../assets/ecoTreesSnow.png")} style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Image
+                    source={theme === 'spring' ? require("../../../assets/springTree.png") :
+                        theme === 'summer' ? require("../../../assets/summerTree.png") :
+                            theme === 'autumn' ? require("../../../assets/autumnTree.png") :
+                                require("../../../assets/winterTree.png")}
+                    style={{ position: 'absolute', bottom: -40, width: '100%', height: 160 }} />
+                <Fact isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
             </ImageBackground>
-            <Snowfall style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} snowflakeCount={250} />
             <Footer style={{ height: 18 }} navigation={navigation} />
         </View>
     );
 }
 
+
 function TrackNav() {
+
+
     return (
         <View style={{ flex: 1 }}>
             <Stack.Navigator initialRouteName="Track">
@@ -72,7 +93,13 @@ function TrackNav() {
                     component={Exercise}
                     options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                    name="Water"
+                    component={Water}
+                    options={{ headerShown: false }}
+                />
             </Stack.Navigator>
+
         </View>
     );
 }
