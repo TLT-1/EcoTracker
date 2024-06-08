@@ -1,22 +1,44 @@
-# Use an official Node.js runtime as a base image
-FROM node:14
+# Stage 1: Build the Expo app
+FROM node:14 as builder
 
-# Create app directory
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
 # Install Expo CLI globally
 RUN npm install -g expo-cli
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Bundle app source
+# Copy the rest of the application code
 COPY . .
 
-EXPOSE 19006
+# List files for debugging
+RUN ls -al /app
 
-# Start the application
-CMD ["npm", "start"]
+# Print expo version
+RUN npx expo --version
+
+# Build the Expo app using the local CLI
+RUN npx expo export:web
+
+# List files after build
+RUN ls -al /app/web-build
+
+# Stage 2: Serve the built app using nginx
+FROM nginx:alpine
+
+# Copy the build output from the builder stage
+COPY --from=builder /app/web-build /usr/share/nginx/html
+
+# List files in nginx html directory for debugging
+RUN ls -al /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

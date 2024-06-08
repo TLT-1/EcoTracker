@@ -1,5 +1,6 @@
 # EcoTracker
 EcoTrack: Real-time Carbon Footprint Tracking App
+https://myapp-frontend-kwwnyucu7a-uc.a.run.app
 
 Introduction:
 EcoTrack is a mobile application designed to promote environmental consciousness by providing users with real-time tracking of their carbon footprint based on their daily activities. By calculating the environmental impact of actions such as driving, energy consumption, and dietary choices, EcoTrack offers users a tangible understanding of their contribution to carbon emissions. Alongside tracking, the application provides personalized insights and actionable recommendations to help users transition towards a more sustainable lifestyle.
