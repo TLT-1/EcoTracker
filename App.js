@@ -134,7 +134,7 @@ function App() {
                 <Snowfall snowflakeCount={250} />
 
                 <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-                    <Stack.Navigator initialRouteName="Home">
+                    <Stack.Navigator initialRouteName="Title">
                         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Overview' }} />
                         <Stack.Screen name="Details" component={DetailsScreen} />
                         <Stack.Screen name="Title" component={TitleScreen} options={{ headerShown: false }} />
