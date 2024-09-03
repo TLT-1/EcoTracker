@@ -1,22 +1,3 @@
-/*import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar, View } from "react-native";
-import TitleScreen from "./src/Components/pages/TitleScreen";
-import TitleScreen from "./src/Components/pages/LogIn";
-
-const App = () => {
-    return (
-        <NavigationContainer>{ 
-            <View style={{ flex: 1 }}>
-                <TitleScreen />
-                <StatusBar style="auto" />
-            </View>
-        }</NavigationContainer>
-    );
-};
-
-export default App; */
-
 import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 import { useState, useEffect } from 'react';
@@ -67,16 +48,16 @@ function DetailsScreen({ navigation }) {
             <Snowfall snowflakeCount={250} />
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text>Details Screen</Text>
-                <Button
+                {/* <Button
                     title="Go to Details... again"
                     onPress={() => navigation.navigate('Details')}
                 />
-                <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-                <Button title="Go back" onPress={() => navigation.goBack()} />
-                <Button
+                <Button title="Go to Home" onPress={() => navigation.navigate('Home')} /> */}
+                <Button title="Go Back" onPress={() => navigation.goBack()} />
+                {/* <Button
                     title="Go back to first screen in stack"
                     onPress={() => navigation.popToTop()}
-                />
+                /> */}
                 <Button title="Go to Title" onPress={() => navigation.navigate('Title')} />
                 {/*<Button
             title="Go to Details... again"
