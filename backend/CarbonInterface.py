@@ -1,4 +1,4 @@
-api_key = 'PiksmePK9KR6tM0CyXpSPA'
+api_key = ''
 
 import requests
 import json
