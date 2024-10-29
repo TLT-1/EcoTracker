@@ -20,7 +20,7 @@ def init_all():
     user_energy_usage()
 
 def data_init():
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
 
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
@@ -126,7 +126,7 @@ def user_energy_usage():
 #user_energy_usage()
 
 def all_users_email():
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
 
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
