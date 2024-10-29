@@ -9,7 +9,7 @@ def email(receiver_email):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587  # For starttls
     username = "ecotracker2023@gmail.com"
-    password = "bkmwlpiuovvpxnke"
+    password = ""
     # Create the message
     sender_email = "ecotracker2023@gmail.com"
     
