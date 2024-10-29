@@ -112,7 +112,7 @@ def login():
     email = data.get('email')
     password = data.get('password')
     
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -140,7 +140,7 @@ def signup():
     #data['verification_code'] = verification_code
     
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -223,7 +223,7 @@ def change_name():
     new_last = data.get('new_last')
     #current_code = data['code'] 
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -260,7 +260,7 @@ def change_email():
     new_email = data.get('new_email')
     #current_code = data['code'] 
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -307,7 +307,7 @@ def change_password():
     email = data.get('email')
     password = data.get('password')
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -339,7 +339,7 @@ def change_password():
 @app.route('/driving', methods=['POST'])
 def driving():
     # MongoDB connection URI
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     
     # Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
@@ -396,7 +396,7 @@ def exercise():
     durationPerDayMin = data.get('durationPerDayMin')
 
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -446,7 +446,7 @@ def diet():
     food = data.get('food')
 
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -497,7 +497,7 @@ def energy():
     hoursDay = data.get('hoursDay')
 
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
@@ -547,7 +547,7 @@ def leaderboard():
     score = data.get('score')
 
 
-    uri = "mongodb+srv://ncmare01:aHfh4LO44P4p6fWo@cluster0.6l3vzy0.mongodb.net/?retryWrites=true&w=majority"
+    uri = ""
     #Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
     db = client["EcoTracker"]
